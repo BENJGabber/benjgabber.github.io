@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Étudiant Bac Pro CIEL</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="#accueil">Mon Portfolio</a></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="./formation/formation.html">Parcours et Experiences</a></li>
+                <li><a href="./forum/forum.html">Articles</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="side-nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="./formation/formation.html">Parcours et Experiences</a></li>
+            <li><a href="./forum/forum.html">Articles</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Bonjour, bienvenu sur mon Portfolio interactif</h1>
+            <p class="subtitle">Étudiant en Terminale Bac Pro CIEL</p>
+            <p class="description">
+                passionné par l'informatique et l'électronique, je développe actuellement mes compétences techniques en réseaux, électronique, dévloppement web et sécurité informatique. Mon objectif est de poursuivre mes études dans le domaine de la cybersécurité tout en appliquant
+                mes connaissances dans des projets concrets.
+            </p>
+            <div class="cta-buttons">
+                <a href="./formation/formation.html" class="btn btn-primary">Mon parcours</a>
+                <a href="./forum/forum.html" class="btn btn-secondary">Articles</a>
+            </div>
+        </div>
+
+        <div class="floating">
+            <div class="scroll-indicator">
+                <a href="#apropos" class="scroll-indicator">
+                    Découvrez mon univers
+                    <span class="scroll-arrow">↓</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section À propos / CV -->
+    <section id="apropos" class="cv-section">
+        <div class="container">
+            <h2 class="section-title-cv">À propos de moi</h2>
+            <div class="cv-content">
+                <div class="cv-image">
+                    <div class="image-placeholder">
+                        <div class="placeholder-icon"><img id="cvPhoto" src="./images/photo_profil.jpg" alt="Photo de profil"></div>
+                        
+                    </div>
+                </div>
+                <div class="cv-info">
+                    <h3>Benjamin Blondiaux</h3>
+                    <p class="cv-title">Étudiant en Bac Pro CIEL</p>
+
+                    <div class="cv-details">
+                        <div class="cv-item">
+                            <strong>📧 Email :</strong>
+                            <span>benbenjamin3005@gmail.com</span>
+                        </div>
+                        <div class="cv-item">
+                            <strong>📱 Téléphone :</strong>
+                            <span>+33 7 66 73 96 14</span>
+                        </div>
+                        <div class="cv-item">
+                            <strong>📍 Adresse :</strong>
+                            <span>Auberchicourt, Nord</span>
+                        </div>
+                        <div class="cv-item">
+                            <strong>🎂 Âge :</strong>
+                            <span>18 ans</span>
+                        </div>
+                    </div>
+
+                    <div class="cv-description">
+                        <h4>Profil</h4>
+                        <p>
+                            Étudiant motivé en Bac Pro CIEL (Cybersécurité, Informatique et Réseaux, Électronique), je suis passionné par l'informatique au sens large, notamment la réparation, l'assistance utilisateur et la gestion réseau. Mon parcours m’a permis d’acquérir des compétences solides en programmation, en administration réseau et en cybersécurité. Je me forme également de manière autodidacte dans les domaines du dépannage et de la maintenance.
+                        </p>
+
+                        <h4>Objectifs</h4>
+                        <p>
+                            Mon objectif est de poursuivre mes études de préférence en alternance pour pouvoir petit a petit m'initier dans le monde du travail, j'aimerai beaucoup travailler dans le monde de la réparation mais cela ne me déplairait pas de travailler dans la gestion réseau et informatique
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" aria-hidden="true" role="dialog" aria-label="Agrandissement de l'image">
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Agrandissement">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

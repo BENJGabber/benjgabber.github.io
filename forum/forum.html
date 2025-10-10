@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,6 +102,10 @@
         // Configuration du forum ADEPEM
         const FORUM_URL = 'https://forum.adepem.com';
         
+        // Utiliser un proxy CORS pour contourner les restrictions
+        const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+        const API_URL = CORS_PROXY + encodeURIComponent(`${FORUM_URL}/latest.json`);
+        
         // State
         let allTopics = [];
         let filteredTopics = [];
@@ -127,10 +128,11 @@
                 noResults.style.display = 'none';
                 errorMessage.style.display = 'none';
 
-                const response = await fetch(`${FORUM_URL}/latest.json`);
+                // Utiliser le proxy CORS pour éviter les erreurs CORS
+                const response = await fetch(API_URL);
                 
                 if (!response.ok) {
-                    throw new Error('Erreur lors du chargement du forum');
+                    throw new Error(`Erreur HTTP: ${response.status}`);
                 }
 
                 const data = await response.json();
@@ -140,10 +142,16 @@
                 filteredTopics = [...allTopics];
                 displayTopics();
             } catch (error) {
-                console.error('Erreur:', error);
+                console.error('Erreur détaillée:', error);
                 loading.style.display = 'none';
                 errorMessage.style.display = 'block';
-                errorText.textContent = error.message || 'Impossible de charger les discussions du forum';
+                
+                // Message d'erreur plus détaillé
+                if (error.message.includes('Failed to fetch')) {
+                    errorText.textContent = 'Impossible de se connecter au forum. Vérifiez votre connexion internet.';
+                } else {
+                    errorText.textContent = error.message || 'Impossible de charger les discussions du forum';
+                }
             }
         }
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio - Étudiant Bac Pro CIEL</title>
+    <title>Forum ADEPEM - Mon Portfolio</title>
     <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -12,12 +12,12 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo"><a href="#accueil">Mon Portfolio</a></div>
+            <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Accueil</a></li>
                 <li><a href="../index.html#apropos">À propos</a></li>
-                <li><a href="#">Parcours et Experiences</a></li>
-                <li><a href="#">Articles</a></li>
+                <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
+                <li><a href="#">Forum</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -49,8 +49,8 @@
         <ul class="side-nav-links">
             <li><a href="../index.html">Accueil</a></li>
             <li><a href="../index.html#apropos">À propos</a></li>
-            <li><a href="#">Parcours et Experiences</a></li>
-            <li><a href="#projets">Projets</a></li>
+            <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
+            <li><a href="#">Forum</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
@@ -58,154 +58,197 @@
     <!-- Forum Section -->
     <section id="forum" class="forum-section">
         <div class="container">
-            <h1 class="section-title">Articles & Projets</h1>
-            <p class="section-subtitle">Découvrez mes réalisations et articles techniques en temps réel</p>
+            <h1 class="section-title">Forum ADEPEM</h1>
+            <p class="forum-subtitle">Dernières discussions de la communauté en temps réel</p>
 
             <!-- Controls -->
-            <div class="controls">
+            <div class="forum-controls">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Rechercher un article...">
+                    <input type="text" id="searchInput" placeholder="🔍 Rechercher une discussion...">
                 </div>
-                <button class="refresh-btn" id="refreshBtn">
-                    🔄 Actualiser
-                </button>
+                <div class="forum-buttons">
+                    <button class="refresh-btn" id="refreshBtn">
+                        <span class="refresh-icon">🔄</span> Actualiser
+                    </button>
+                    <a href="https://forum.adepem.com" target="_blank" rel="noopener noreferrer" class="visit-forum-btn">
+                        Visiter le forum <span class="external-icon">↗</span>
+                    </a>
+                </div>
             </div>
 
             <!-- Loading State -->
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Chargement des articles...</p>
+                <p>Chargement des discussions...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="forum-error" id="errorMessage" style="display: none;">
+                <p id="errorText"></p>
+                <button class="retry-btn" id="retryBtn">Réessayer</button>
             </div>
 
             <!-- Articles Grid -->
-            <div class="articles-grid" id="articlesGrid"></div>
+            <div class="forum-grid" id="forumGrid"></div>
 
             <!-- No Results -->
             <div class="no-results" id="noResults" style="display: none;">
-                <h3>Aucun article trouvé</h3>
+                <div class="no-results-icon">💬</div>
+                <h3>Aucune discussion trouvée</h3>
                 <p>Essayez une autre recherche ou actualisez la page</p>
             </div>
         </div>
     </section>
 
+    <script src="../script.js"></script>
     <script>
+        // Configuration du forum ADEPEM
+        const FORUM_URL = 'https://forum.adepem.com';
+        
         // State
-        let allArticles = [];
-        let filteredArticles = [];
+        let allTopics = [];
+        let filteredTopics = [];
 
         // Elements
         const loading = document.getElementById('loading');
-        const articlesGrid = document.getElementById('articlesGrid');
+        const forumGrid = document.getElementById('forumGrid');
         const noResults = document.getElementById('noResults');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
         const searchInput = document.getElementById('searchInput');
         const refreshBtn = document.getElementById('refreshBtn');
+        const retryBtn = document.getElementById('retryBtn');
 
-        // Fetch articles from API
-        async function fetchArticles() {
+        // Fetch topics from ADEPEM forum
+        async function fetchForumTopics() {
             try {
                 loading.style.display = 'block';
-                articlesGrid.style.display = 'none';
+                forumGrid.style.display = 'none';
                 noResults.style.display = 'none';
+                errorMessage.style.display = 'none';
 
-                // Using JSONPlaceholder as demo API
-                // Replace this URL with your actual forum API endpoint
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const response = await fetch(`${FORUM_URL}/latest.json`);
                 
                 if (!response.ok) {
-                    throw new Error('Erreur lors du chargement');
+                    throw new Error('Erreur lors du chargement du forum');
                 }
 
                 const data = await response.json();
                 
-                // Limit to 12 articles for demo
-                allArticles = data.slice(0, 12).map(post => ({
-                    id: post.id,
-                    title: post.title,
-                    body: post.body,
-                    author: `Utilisateur ${post.userId}`,
-                    date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString('fr-FR')
-                }));
-
-                filteredArticles = [...allArticles];
-                displayArticles();
+                // Limiter à 12 discussions
+                allTopics = data.topic_list.topics.slice(0, 12);
+                filteredTopics = [...allTopics];
+                displayTopics();
             } catch (error) {
                 console.error('Erreur:', error);
-                loading.innerHTML = `
-                    <div style="color: #ef4444;">
-                        <h3>❌ Erreur de chargement</h3>
-                        <p>Impossible de charger les articles. Vérifiez votre connexion.</p>
-                    </div>
-                `;
+                loading.style.display = 'none';
+                errorMessage.style.display = 'block';
+                errorText.textContent = error.message || 'Impossible de charger les discussions du forum';
             }
         }
 
-        // Display articles
-        function displayArticles() {
+        // Display topics
+        function displayTopics() {
             loading.style.display = 'none';
 
-            if (filteredArticles.length === 0) {
-                articlesGrid.style.display = 'none';
+            if (filteredTopics.length === 0) {
+                forumGrid.style.display = 'none';
                 noResults.style.display = 'block';
                 return;
             }
 
-            articlesGrid.style.display = 'grid';
+            forumGrid.style.display = 'grid';
             noResults.style.display = 'none';
 
-            articlesGrid.innerHTML = filteredArticles.map(article => `
-                <div class="article-card" onclick="openArticle(${article.id})">
-                    <div class="article-header">
-                        <div class="article-id">#${article.id}</div>
-                    </div>
-                    <h3 class="article-title">${capitalizeFirst(article.title)}</h3>
-                    <p class="article-body">${truncate(article.body, 150)}</p>
-                    <div class="article-meta">
-                        <span class="article-author">👤 ${article.author}</span>
-                        <span class="article-date">📅 ${article.date}</span>
-                    </div>
-                </div>
-            `).join('');
+            forumGrid.innerHTML = filteredTopics.map(topic => {
+                const lastActivityDate = new Date(topic.last_posted_at || topic.created_at);
+                const formattedDate = formatDate(lastActivityDate);
+                
+                return `
+                    <a href="${FORUM_URL}/t/${topic.slug}/${topic.id}" target="_blank" rel="noopener noreferrer" class="forum-card">
+                        <div class="forum-card-header">
+                            <div class="forum-card-badges">
+                                ${topic.pinned ? '<span class="badge badge-pinned">📌 Épinglé</span>' : ''}
+                                ${topic.closed ? '<span class="badge badge-closed">🔒 Fermé</span>' : ''}
+                            </div>
+                            <span class="external-link-icon">↗</span>
+                        </div>
+                        
+                        <h3 class="forum-card-title">${escapeHtml(topic.title)}</h3>
+                        
+                        <div class="forum-card-stats">
+                            <span class="stat">
+                                <span class="stat-icon">💬</span>
+                                <span class="stat-value">${topic.posts_count - 1}</span>
+                            </span>
+                            <span class="stat">
+                                <span class="stat-icon">👤</span>
+                                <span class="stat-value">${topic.posters?.length || 0}</span>
+                            </span>
+                            <span class="stat">
+                                <span class="stat-icon">🕒</span>
+                                <span class="stat-value">${formattedDate}</span>
+                            </span>
+                        </div>
+                        
+                        ${topic.category_id ? `
+                            <div class="forum-card-category">
+                                <span class="category-badge" style="background-color: #${topic.category_color || '6366f1'}20; border-color: #${topic.category_color || '6366f1'}50; color: #${topic.category_color || 'a5b4fc'}">
+                                    ${escapeHtml(topic.category_name || 'Général')}
+                                </span>
+                            </div>
+                        ` : ''}
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // Format date
+        function formatDate(date) {
+            const now = new Date();
+            const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
+            
+            if (diffInHours < 1) return 'Il y a moins d\'1h';
+            if (diffInHours < 24) return `Il y a ${diffInHours}h`;
+            if (diffInHours < 48) return 'Hier';
+            const diffInDays = Math.floor(diffInHours / 24);
+            if (diffInDays < 7) return `Il y a ${diffInDays}j`;
+            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // Search functionality
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
             
-            filteredArticles = allArticles.filter(article => 
-                article.title.toLowerCase().includes(searchTerm) ||
-                article.body.toLowerCase().includes(searchTerm)
+            filteredTopics = allTopics.filter(topic => 
+                topic.title.toLowerCase().includes(searchTerm)
             );
             
-            displayArticles();
+            displayTopics();
         });
 
         // Refresh button
         refreshBtn.addEventListener('click', () => {
             searchInput.value = '';
-            fetchArticles();
+            fetchForumTopics();
         });
 
-        // Open article (you can customize this to open in modal or new page)
-        function openArticle(id) {
-            const article = allArticles.find(a => a.id === id);
-            alert(`Article #${id}\n\nTitre: ${article.title}\n\n${article.body}\n\n(Vous pouvez modifier cette fonction pour ouvrir une page détaillée ou un modal)`);
-        }
-
-        // Utility functions
-        function capitalizeFirst(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-
-        function truncate(str, maxLength) {
-            if (str.length <= maxLength) return str;
-            return str.substr(0, maxLength) + '...';
-        }
+        // Retry button
+        retryBtn.addEventListener('click', fetchForumTopics);
 
         // Initialize
-        fetchArticles();
+        fetchForumTopics();
 
-        // Auto-refresh every 5 minutes (optional)
-        // setInterval(fetchArticles, 5 * 60 * 1000);
+        // Auto-refresh every 5 minutes
+        setInterval(fetchForumTopics, 5 * 60 * 1000);
     </script>
 </body>
+
 </html>

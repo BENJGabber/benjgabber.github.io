@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mon Portfolio</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../index.html#apropos">À propos</a></li>
+                <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
+                <li><a href="../forum/forum.html">Articles</a></li>
+                <li><a href="#">Contact</a></li>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="side-nav-links">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../index.html#apropos">À propos</a></li>
+            <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
+            <li><a href="../forum/forum.html">Articles</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h1 class="section-title">Contactez-moi</h1>
+            <p class="section-subtitle">Une question ? Un projet ? N'hésitez pas à me contacter !</p>
+
+            <div class="contact-grid">
+                <!-- Formulaire de contact -->
+                <div class="contact-form-container">
+                    <h3>📨 Envoyez-moi un message</h3>
+                    
+                    <!-- Message de succès/erreur -->
+                    <div class="message success" id="successMessage">
+                        ✅ Message envoyé avec succès ! Je vous répondrai rapidement.
+                    </div>
+                    <div class="message error" id="errorMessage">
+                        ❌ Une erreur s'est produite. Veuillez réessayer.
+                    </div>
+
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span>Envoyer le message</span>
+                            <span>✉️</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Informations de contact -->
+                <div class="contact-info-container">
+                    <!-- Coordonnées -->
+                    <div class="contact-info-card">
+                        <h4>📞 Mes coordonnées</h4>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-item-content">
+                                <div class="contact-item-label">Email</div>
+                                <div class="contact-item-value">
+                                    <a href="mailto:benbenjamin3005@gmail.com">benbenjamin3005@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-item-content">
+                                <div class="contact-item-label">Téléphone</div>
+                                <div class="contact-item-value">
+                                    <a href="tel:+33766739614">+33 7 66 73 96 14</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-item-content">
+                                <div class="contact-item-label">Localisation</div>
+                                <div class="contact-item-value">Auberchicourt, Nord</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="contact-info-card">
+                        <h4>🌐 Réseaux sociaux</h4>
+                        <div class="social-links">
+                            <a href="https://linkedin.com" target="_blank" class="social-btn">
+                                <span>💼</span>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com" target="_blank" class="social-btn">
+                                <span>💻</span>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Télécharger CV -->
+                    <div class="download-cv">
+                        <h4>📄 Mon CV</h4>
+                        <p>Téléchargez mon CV complet au format PDF</p>
+                        <a href="#" class="cv-btn" download>
+                            <span>⬇️</span>
+                            <span>Télécharger mon CV</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+    <script>
+        // Configuration EmailJS (à remplacer par vos vraies clés)
+        // Créez un compte gratuit sur https://www.emailjs.com/
+        const EMAIL_SERVICE_ID = 'YOUR_SERVICE_ID';
+        const EMAIL_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        const EMAIL_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Désactiver le bouton pendant l'envoi
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
+
+            // Cacher les messages précédents
+            successMessage.classList.remove('show');
+            errorMessage.classList.remove('show');
+
+            // Récupérer les données du formulaire
+            const formData = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // Simulation d'envoi (remplacez par EmailJS en production)
+                await simulateEmailSend(formData);
+                
+                // Afficher le message de succès
+                successMessage.classList.add('show');
+                contactForm.reset();
+
+                // Cacher le message après 5 secondes
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+            } catch (error) {
+                // Afficher le message d'erreur
+                errorMessage.classList.add('show');
+                console.error('Erreur:', error);
+
+                // Cacher le message après 5 secondes
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 5000);
+            } finally {
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
+            }
+        });
+
+        // Fonction de simulation (à remplacer par EmailJS)
+        function simulateEmailSend(data) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Simuler un succès (90% du temps)
+                    if (Math.random() > 0.1) {
+                        console.log('Email simulé envoyé:', data);
+                        resolve();
+                    } else {
+                        reject(new Error('Erreur simulée'));
+                    }
+                }, 1500);
+            });
+        }
+
+        // Pour utiliser EmailJS en production, décommentez et configurez :
+        /*
+        async function sendEmailWithEmailJS(data) {
+            return emailjs.send(
+                EMAIL_SERVICE_ID,
+                EMAIL_TEMPLATE_ID,
+                data,
+                EMAIL_PUBLIC_KEY
+            );
+        }
+        */
+    </script>
+</body>
+
+</html>

@@ -20,20 +20,7 @@
                 <li><a href="../forum/forum.html">Articles</a></li>
                 <li><a href="#">Contact</a></li>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
+                    <!-- icônes soleil / lune -->
                 </button>
             </ul>
             <div class="menu-toggle" id="menuToggle">
@@ -107,7 +94,6 @@
                     <!-- Coordonnées -->
                     <div class="contact-info-card">
                         <h4>📞 Mes coordonnées</h4>
-
                         <div class="contact-item">
                             <div class="contact-icon">📧</div>
                             <div class="contact-item-content">
@@ -117,7 +103,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="contact-item">
                             <div class="contact-icon">📱</div>
                             <div class="contact-item-content">
@@ -127,7 +112,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="contact-item">
                             <div class="contact-icon">📍</div>
                             <div class="contact-item-content">
@@ -166,36 +150,28 @@
         </div>
     </section>
 
-    <script src="../script.js"></script>
-    <!-- Charger EmailJS avant ton script -->
+    <!-- Script EmailJS et formulaire -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
     <script>
-        // Initialisation EmailJS avec ta clé publique
+        // Initialisation EmailJS
         emailjs.init('t107x92N4c4V7GGX0');
 
-        // Récupération des éléments
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
 
-        // IDs EmailJS
         const EMAIL_SERVICE_ID = 'service_7n8wk97';
         const EMAIL_TEMPLATE_ID = 'template_44urjvt';
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Désactiver le bouton pendant l'envoi
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
-
-            // Cacher les messages précédents
             successMessage.classList.remove('show');
             errorMessage.classList.remove('show');
 
-            // Préparer les données du formulaire
             const formData = {
                 from_name: document.getElementById('name').value,
                 from_email: document.getElementById('email').value,
@@ -204,29 +180,15 @@
             };
 
             try {
-                // Envoi réel avec EmailJS
                 await emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, formData);
-
-                // Message de succès
                 successMessage.classList.add('show');
                 contactForm.reset();
-
-                // Masquer le message après 5 secondes
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 5000);
-
+                setTimeout(() => successMessage.classList.remove('show'), 5000);
             } catch (error) {
-                // Message d'erreur
                 errorMessage.classList.add('show');
                 console.error('Erreur EmailJS:', error);
-
-                // Masquer le message après 5 secondes
-                setTimeout(() => {
-                    errorMessage.classList.remove('show');
-                }, 5000);
+                setTimeout(() => errorMessage.classList.remove('show'), 5000);
             } finally {
-                // Réactiver le bouton
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
             }

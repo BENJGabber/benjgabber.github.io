@@ -167,20 +167,22 @@
     </section>
 
     <script src="../script.js"></script>
+    <!-- Charger EmailJS avant ton script -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script>
-        // Configuration EmailJS (à remplacer par vos vraies clés)
-        emailjs.init('t107x92N4c4V7GGX0'); // ta clé publique
+        // Initialisation EmailJS avec ta clé publique
+        emailjs.init('t107x92N4c4V7GGX0');
 
-        const EMAIL_SERVICE_ID = 'service_7n8wk97';
-        const EMAIL_TEMPLATE_ID = 'template_44urjvt';
-        const EMAIL_PUBLIC_KEY = 't107x92N4c4V7GGX0';
-
+        // Récupération des éléments
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
+
+        // IDs EmailJS
+        const EMAIL_SERVICE_ID = 'service_7n8wk97';
+        const EMAIL_TEMPLATE_ID = 'template_44urjvt';
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -193,7 +195,7 @@
             successMessage.classList.remove('show');
             errorMessage.classList.remove('show');
 
-            // Récupérer les données du formulaire
+            // Préparer les données du formulaire
             const formData = {
                 from_name: document.getElementById('name').value,
                 from_email: document.getElementById('email').value,
@@ -202,37 +204,24 @@
             };
 
             try {
+                // Envoi réel avec EmailJS
+                await emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, formData);
 
-                await emailjs.send(
-                    EMAIL_SERVICE_ID,
-                    EMAIL_TEMPLATE_ID,
-                    formData,
-                    EMAIL_PUBLIC_KEY
-                ).then(() => {
-                    // Afficher le message de succès
-                    successMessage.classList.add('show');
-                    contactForm.reset();
-                }).catch((error) => {
-                    // Afficher le message d'erreur
-                    errorMessage.classList.add('show');
-                    console.error('Erreur:', error);
-                });
-
-                // Afficher le message de succès
+                // Message de succès
                 successMessage.classList.add('show');
                 contactForm.reset();
 
-                // Cacher le message après 5 secondes
+                // Masquer le message après 5 secondes
                 setTimeout(() => {
                     successMessage.classList.remove('show');
                 }, 5000);
 
             } catch (error) {
-                // Afficher le message d'erreur
+                // Message d'erreur
                 errorMessage.classList.add('show');
-                console.error('Erreur:', error);
+                console.error('Erreur EmailJS:', error);
 
-                // Cacher le message après 5 secondes
+                // Masquer le message après 5 secondes
                 setTimeout(() => {
                     errorMessage.classList.remove('show');
                 }, 5000);
@@ -242,33 +231,6 @@
                 submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
             }
         });
-
-        // Fonction de simulation (à remplacer par EmailJS)
-        function simulateEmailSend(data) {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    // Simuler un succès (90% du temps)
-                    if (Math.random() > 0.1) {
-                        console.log('Email simulé envoyé:', data);
-                        resolve();
-                    } else {
-                        reject(new Error('Erreur simulée'));
-                    }
-                }, 1500);
-            });
-        }
-
-        // Pour utiliser EmailJS en production, décommentez et configurez :
-        /*
-        async function sendEmailWithEmailJS(data) {
-            return emailjs.send(
-                EMAIL_SERVICE_ID,
-                EMAIL_TEMPLATE_ID,
-                data,
-                EMAIL_PUBLIC_KEY
-            );
-        }
-        */
     </script>
 </body>
 

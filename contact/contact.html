@@ -162,7 +162,8 @@
         const errorMessage = document.getElementById('errorMessage');
 
         const EMAIL_SERVICE_ID = 'service_7n8wk97';
-        const EMAIL_TEMPLATE_ID = 'template_44urjvt';
+        const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
+        const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -176,11 +177,21 @@
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 title: document.getElementById('subject').value,
-                content: document.getElementById('message').value
+                message: document.getElementById('message').value
             };
 
             try {
-                await emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, formData);
+                // 1. Tu reçois le message
+                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    subject: formData.title,
+                    message: formData.message
+                });
+
+                // 2. L'expéditeur reçoit l'auto-reply
+                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, formData);
+
                 successMessage.classList.add('show');
                 contactForm.reset();
                 setTimeout(() => successMessage.classList.remove('show'), 5000);

@@ -167,8 +167,12 @@
     </section>
 
     <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <script>
         // Configuration EmailJS (à remplacer par vos vraies clés)
+        emailjs.init('t107x92N4c4V7GGX0'); // ta clé publique
+
         const EMAIL_SERVICE_ID = 'service_7n8wk97';
         const EMAIL_TEMPLATE_ID = 'template_44urjvt';
         const EMAIL_PUBLIC_KEY = 't107x92N4c4V7GGX0';
@@ -198,8 +202,21 @@
             };
 
             try {
-                // Simulation d'envoi (remplacez par EmailJS en production)
-                await simulateEmailSend(formData);
+
+                await emailjs.send(
+                    EMAIL_SERVICE_ID,
+                    EMAIL_TEMPLATE_ID,
+                    formData,
+                    EMAIL_PUBLIC_KEY
+                ).then(() => {
+                    // Afficher le message de succès
+                    successMessage.classList.add('show');
+                    contactForm.reset();
+                }).catch((error) => {
+                    // Afficher le message d'erreur
+                    errorMessage.classList.add('show');
+                    console.error('Erreur:', error);
+                });
 
                 // Afficher le message de succès
                 successMessage.classList.add('show');

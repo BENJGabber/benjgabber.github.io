@@ -65,7 +65,7 @@
                 <!-- Formulaire de contact -->
                 <div class="contact-form-container">
                     <h3>📨 Envoyez-moi un message</h3>
-                    
+
                     <!-- Message de succès/erreur -->
                     <div class="message success" id="successMessage">
                         ✅ Message envoyé avec succès ! Je vous répondrai rapidement.
@@ -107,7 +107,7 @@
                     <!-- Coordonnées -->
                     <div class="contact-info-card">
                         <h4>📞 Mes coordonnées</h4>
-                        
+
                         <div class="contact-item">
                             <div class="contact-icon">📧</div>
                             <div class="contact-item-content">
@@ -156,7 +156,7 @@
                     <div class="download-cv">
                         <h4>📄 Mon CV</h4>
                         <p>Téléchargez mon CV complet au format PDF</p>
-                        <a href="#" class="cv-btn" download>
+                        <a href="./CV.pdf" class="cv-btn" download>
                             <span>⬇️</span>
                             <span>Télécharger mon CV</span>
                         </a>
@@ -169,7 +169,7 @@
     <script src="../script.js"></script>
     <script>
         // Configuration EmailJS (à remplacer par vos vraies clés)
-        const EMAIL_SERVICE_ID = 'website_contact_page';
+        const EMAIL_SERVICE_ID = 'service_7n8wk97';
         const EMAIL_TEMPLATE_ID = 'template_44urjvt';
         const EMAIL_PUBLIC_KEY = 't107x92N4c4V7GGX0';
 
@@ -200,7 +200,7 @@
             try {
                 // Simulation d'envoi (remplacez par EmailJS en production)
                 await simulateEmailSend(formData);
-                
+
                 // Afficher le message de succès
                 successMessage.classList.add('show');
                 contactForm.reset();

@@ -181,12 +181,12 @@
             };
 
             try {
-                // 1. Tu reçois le message
+                // 1. Vous recevez le message (utilisez les MÊMES noms que dans votre template)
                 await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    subject: formData.title,
-                    message: formData.message
+                    name: formData.name, // ✅ Correspond à {{name}}
+                    email: formData.email, // ✅ Correspond à {{email}}
+                    title: formData.title, // ✅ Correspond à {{title}}
+                    message: formData.message // ✅ Correspond à {{message}}
                 });
 
                 // 2. L'expéditeur reçoit l'auto-reply

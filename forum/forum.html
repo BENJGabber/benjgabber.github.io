@@ -18,7 +18,7 @@
                 <li><a href="../index.html#apropos">À propos</a></li>
                 <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
                 <li><a href="#">Forum</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -104,16 +104,16 @@
     <script>
         // Configuration du forum ADEPEM
         const FORUM_URL = 'https://forum.adepem.com';
-        
+
         // Liste de proxies CORS (avec fallback)
         const CORS_PROXIES = [
             'https://corsproxy.io/?',
             'https://api.codetabs.com/v1/proxy?quest=',
             'https://api.allorigins.win/raw?url='
         ];
-        
+
         let currentProxyIndex = 0;
-        
+
         // State
         let allTopics = [];
         let filteredTopics = [];
@@ -138,45 +138,45 @@
 
                 // Construire l'URL avec le proxy actuel
                 const proxyUrl = CORS_PROXIES[currentProxyIndex] + encodeURIComponent(`${FORUM_URL}/latest.json`);
-                
+
                 // Timeout de 10 secondes
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
-                
+
                 const response = await fetch(proxyUrl, {
                     signal: controller.signal
                 });
-                
+
                 clearTimeout(timeoutId);
-                
+
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP: ${response.status}`);
                 }
 
                 const data = await response.json();
-                
+
                 // Limiter à 12 discussions
                 allTopics = data.topic_list.topics.slice(0, 12);
                 filteredTopics = [...allTopics];
                 displayTopics();
-                
+
                 // Réinitialiser l'index du proxy en cas de succès
                 currentProxyIndex = 0;
             } catch (error) {
                 console.error('Erreur détaillée:', error);
-                
+
                 // Essayer le proxy suivant si disponible
                 if (currentProxyIndex < CORS_PROXIES.length - 1) {
                     currentProxyIndex++;
                     console.log(`Tentative avec un autre proxy (${currentProxyIndex + 1}/${CORS_PROXIES.length})...`);
                     return fetchForumTopics(); // Réessayer avec le proxy suivant
                 }
-                
+
                 // Si tous les proxies ont échoué
                 loading.style.display = 'none';
                 errorMessage.style.display = 'block';
                 currentProxyIndex = 0; // Réinitialiser pour la prochaine tentative
-                
+
                 // Message d'erreur
                 if (error.name === 'AbortError') {
                     errorText.textContent = 'Le serveur met trop de temps à répondre. Réessayez dans quelques instants.';
@@ -204,7 +204,7 @@
             forumGrid.innerHTML = filteredTopics.map(topic => {
                 const lastActivityDate = new Date(topic.last_posted_at || topic.created_at);
                 const formattedDate = formatDate(lastActivityDate);
-                
+
                 return `
                     <a href="${FORUM_URL}/t/${topic.slug}/${topic.id}" target="_blank" rel="noopener noreferrer" class="forum-card">
                         <div class="forum-card-header">
@@ -248,13 +248,16 @@
         function formatDate(date) {
             const now = new Date();
             const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
-            
+
             if (diffInHours < 1) return 'Il y a moins d\'1h';
             if (diffInHours < 24) return `Il y a ${diffInHours}h`;
             if (diffInHours < 48) return 'Hier';
             const diffInDays = Math.floor(diffInHours / 24);
             if (diffInDays < 7) return `Il y a ${diffInDays}j`;
-            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            return date.toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'short'
+            });
         }
 
         // Escape HTML
@@ -267,11 +270,11 @@
         // Search functionality
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
-            
-            filteredTopics = allTopics.filter(topic => 
+
+            filteredTopics = allTopics.filter(topic =>
                 topic.title.toLowerCase().includes(searchTerm)
             );
-            
+
             displayTopics();
         });
 

@@ -1809,6 +1809,15 @@ body.light-mode .no-results p {
     min-height: 100vh;
 }
 
+/* Headings colors in dark mode for Projects (match Formation) */
+.projects-section .section-title {
+    color: #ffffff !important;
+}
+
+.projects-section .section-subtitle {
+    color: #cbd5e1 !important;
+}
+
 .project-why {
     max-width: 900px;
     margin: 0 auto 3rem;
@@ -1895,6 +1904,15 @@ body.light-mode .project-card,
 body.light-mode .learning-list {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(69, 0, 180, 0.2);
+}
+
+/* Headings colors in light mode for Projects */
+body.light-mode .projects-section .section-title {
+    color: #333 !important;
+}
+
+body.light-mode .projects-section .section-subtitle {
+    color: #555 !important;
 }
 
 body.light-mode .project-why h2,

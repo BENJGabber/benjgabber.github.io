@@ -163,7 +163,7 @@
         </div>
     </section>
 
-    <!-- Script EmailJS et formulaire -->
+    <script src="../script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         // Initialisation EmailJS
@@ -194,12 +194,12 @@
             };
 
             try {
-                // 1. Vous recevez le message (utilisez les MÊMES noms que dans votre template)
+                // 1. Tu reçois le message
                 await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, {
-                    name: formData.name, // ✅ Correspond à {{name}}
-                    email: formData.email, // ✅ Correspond à {{email}}
-                    title: formData.title, // ✅ Correspond à {{title}}
-                    message: formData.message // ✅ Correspond à {{message}}
+                    name: formData.name,
+                    email: formData.email,
+                    title: formData.title,
+                    message: formData.message
                 });
 
                 // 2. L'expéditeur reçoit l'auto-reply

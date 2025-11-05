@@ -210,6 +210,7 @@ nav {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -217,16 +218,19 @@ nav {
 }
 
 @keyframes floating {
+
     0%,
     100% {
         transform: translateX(-50%) translateY(0);
     }
+
     50% {
         transform: translateX(-50%) translateY(-10px);
     }
 }
 
 @keyframes bounce {
+
     0%,
     20%,
     50%,
@@ -234,9 +238,11 @@ nav {
     100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-5px);
     }
+
     60% {
         transform: translateY(-3px);
     }
@@ -1127,8 +1133,13 @@ body.light-mode .competence {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Articles Grid */
@@ -1318,30 +1329,30 @@ body.light-mode .no-results p {
         width: 40px;
         height: 40px;
     }
-    
+
     .theme-toggle svg {
         width: 18px;
         height: 18px;
     }
-    
+
     .controls {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .search-box {
         max-width: 100%;
     }
-    
+
     .articles-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .article-card {
         padding: 1.5rem;
     }
-    
+
     .article-meta {
         flex-direction: column;
         gap: 0.5rem;
@@ -1464,7 +1475,9 @@ body.light-mode .no-results p {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Error State */
@@ -1787,6 +1800,126 @@ body.light-mode .no-results p {
     margin-top: 3rem;
 }
 
+/* ===========================
+   PROJECTS SECTION STYLES
+   =========================== */
+.projects-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    min-height: 100vh;
+}
+
+.project-why {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #cbd5e1;
+}
+
+.project-why h2 {
+    color: #f8fafc;
+    margin-bottom: 1rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.project-card {
+    background: rgba(30, 41, 59, 0.8);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.project-card h3 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    margin-bottom: 0.75rem;
+}
+
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(139, 92, 246, 0.2);
+    color: #c4b5fd;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.learning-list {
+    max-width: 900px;
+    margin: 0 auto;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #cbd5e1;
+    list-style: disc inside;
+}
+
+/* Light mode for Projects */
+body.light-mode .projects-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+}
+
+body.light-mode .project-why,
+body.light-mode .project-card,
+body.light-mode .learning-list {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(69, 0, 180, 0.2);
+}
+
+body.light-mode .project-why h2,
+body.light-mode .project-card h3 {
+    color: #333;
+}
+
+body.light-mode .project-card p,
+body.light-mode .project-why,
+body.light-mode .learning-list {
+    color: #555;
+}
+
+body.light-mode .tag {
+    background: rgba(69, 0, 180, 0.1);
+    color: #4500b4;
+    border: 1px solid rgba(69, 0, 180, 0.2);
+}
+
+@media (max-width: 768px) {
+    .learning-list {
+        padding: 1.25rem 1rem;
+    }
+}
+
 /* Contact Form */
 .contact-form-container {
     background: rgba(30, 41, 59, 0.8);
@@ -1909,6 +2042,7 @@ body.light-mode .no-results p {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

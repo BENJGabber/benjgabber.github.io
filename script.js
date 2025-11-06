@@ -395,14 +395,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     try {
                         initI18n();
                     } catch (e) {
-                        /* no-op */ }
+                        /* no-op */
+                    }
                 })();
             } else {
                 document.addEventListener('DOMContentLoaded', () => {
                     try {
                         initI18n();
                     } catch (e) {
-                        /* no-op */ }
+                        /* no-op */
+                    }
                 });
             }
             // Placeholders

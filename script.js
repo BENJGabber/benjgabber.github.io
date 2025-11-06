@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cvPhoto = document.getElementById('cvPhoto');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
-    const languageToggle = document.getElementById('languageToggle');
 
     menuToggle.addEventListener('click', () => {
         sideMenu.classList.toggle('open');
@@ -388,6 +387,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.textContent = dict[key];
                 }
             });
+
+            // Initialize i18n regardless of when this script loads
+            if (document.readyState !== 'loading') {
+                // DOM is already ready
+                (function() {
+                    try {
+                        initI18n();
+                    } catch (e) {
+                        /* no-op */ }
+                })();
+            } else {
+                document.addEventListener('DOMContentLoaded', () => {
+                    try {
+                        initI18n();
+                    } catch (e) {
+                        /* no-op */ }
+                });
+            }
             // Placeholders
             document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
                 const key = el.getAttribute('data-i18n-placeholder');
@@ -396,21 +413,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             document.documentElement.setAttribute('lang', lang);
-            if (languageToggle) {
-                languageToggle.textContent = lang === 'fr' ? 'EN' : 'FR';
-                languageToggle.setAttribute('aria-label', lang === 'fr' ? 'Switch language to English' : 'Changer la langue en français');
+            const toggleEl = document.getElementById('languageToggle');
+            if (toggleEl) {
+                toggleEl.textContent = lang === 'fr' ? 'EN' : 'FR';
+                toggleEl.setAttribute('aria-label', lang === 'fr' ? 'Switch language to English' : 'Changer la langue en français');
             }
         }
 
-        const savedLang = localStorage.getItem('lang') || 'fr';
-        applyTranslations(savedLang);
-
-        if (languageToggle) {
-            languageToggle.addEventListener('click', () => {
-                const newLang = (localStorage.getItem('lang') || 'fr') === 'fr' ? 'en' : 'fr';
-                localStorage.setItem('lang', newLang);
-                applyTranslations(newLang);
-            });
+        function initI18n() {
+            const current = localStorage.getItem('lang') || 'fr';
+            applyTranslations(current);
+            const toggle = document.getElementById('languageToggle');
+            if (toggle) {
+                // Ensure only one listener
+                toggle.replaceWith(toggle.cloneNode(true));
+                const freshToggle = document.getElementById('languageToggle');
+                freshToggle.addEventListener('click', () => {
+                    const newLang = (localStorage.getItem('lang') || 'fr') === 'fr' ? 'en' : 'fr';
+                    localStorage.setItem('lang', newLang);
+                    applyTranslations(newLang);
+                });
+            }
         }
 
         function isMobile() {

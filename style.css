@@ -78,6 +78,32 @@ nav {
     color: #4500b4;
 }
 
+/* Language Toggle Button */
+.lang-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 6px 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #4500b4;
+}
+
+body.light-mode .lang-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+body.light-mode .lang-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
 
 /* Hero Section */
 

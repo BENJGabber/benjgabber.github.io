@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cvPhoto = document.getElementById('cvPhoto');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
+    const languageToggle = document.getElementById('languageToggle');
 
     menuToggle.addEventListener('click', () => {
         sideMenu.classList.toggle('open');
@@ -237,6 +238,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function clamp(value, min, max) {
             return Math.min(Math.max(value, min), max);
+        }
+
+        // ===========================
+        // Language Toggle & i18n
+        // ===========================
+        const translations = {
+            fr: {
+                'hero.title': 'Bonjour, bienvenu sur mon Portfolio interactif',
+                'hero.subtitle': 'Étudiant en Terminale Bac Pro C.I.E.L',
+                'hero.description': "passionné par l'informatique et l'électronique, je développe actuellement mes compétences techniques en réseaux, électronique, dévloppement web et sécurité informatique. Mon objectif est de poursuivre mes études dans le domaine de la cybersécurité tout en appliquant mes connaissances dans des projets concrets.",
+                'hero.ctaJourney': 'Mon parcours',
+                'hero.ctaArticles': 'Articles',
+                'hero.discover': 'Découvrez mon univers',
+                'about.title': 'À propos de moi',
+                'about.subtitle': 'Étudiant en Bac Pro C.I.E.L',
+                'about.email': '📧 Email :',
+                'about.phone': '📱 Téléphone :',
+                'about.address': '📍 Adresse :',
+                'about.age': '🎂 Âge :',
+                'about.profile': 'Profil',
+                'about.objectives': 'Objectifs'
+            },
+            en: {
+                'hero.title': 'Hello, welcome to my interactive Portfolio',
+                'hero.subtitle': 'Final-year student in C.I.E.L vocational baccalaureate',
+                'hero.description': 'Passionate about IT and electronics, I am developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to pursue studies in cybersecurity while applying my knowledge in real projects.',
+                'hero.ctaJourney': 'My journey',
+                'hero.ctaArticles': 'Articles',
+                'hero.discover': 'Discover my world',
+                'about.title': 'About me',
+                'about.subtitle': 'C.I.E.L vocational student',
+                'about.email': '📧 Email:',
+                'about.phone': '📱 Phone:',
+                'about.address': '📍 Address:',
+                'about.age': '🎂 Age:',
+                'about.profile': 'Profile',
+                'about.objectives': 'Objectives'
+            }
+        };
+
+        function applyTranslations(lang) {
+            const dict = translations[lang] || translations.fr;
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.textContent = dict[key];
+                }
+            });
+            document.documentElement.setAttribute('lang', lang);
+            if (languageToggle) {
+                languageToggle.textContent = lang === 'fr' ? 'EN' : 'FR';
+                languageToggle.setAttribute('aria-label', lang === 'fr' ? 'Switch language to English' : 'Changer la langue en français');
+            }
+        }
+
+        const savedLang = localStorage.getItem('lang') || 'fr';
+        applyTranslations(savedLang);
+
+        if (languageToggle) {
+            languageToggle.addEventListener('click', () => {
+                const newLang = (localStorage.getItem('lang') || 'fr') === 'fr' ? 'en' : 'fr';
+                localStorage.setItem('lang', newLang);
+                applyTranslations(newLang);
+            });
         }
 
         function isMobile() {

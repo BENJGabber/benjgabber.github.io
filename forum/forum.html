@@ -14,12 +14,13 @@
         <div class="nav-container">
             <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="../index.html#apropos">À propos</a></li>
-                <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
-                <li><a href="../projets/projets.html">Projets</a></li>
-                <li><a href="#">Forum</a></li>
-                <li><a href="../contact/contact.html">Contact</a></li>
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Experiences</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="#" data-i18n="nav.forum">Forum</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">EN</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -60,19 +61,19 @@
     <!-- Forum Section -->
     <section id="forum" class="forum-section">
         <div class="container">
-            <h1 class="section-title">Forum ADEPEM</h1>
-            <p class="forum-subtitle">Dernières discussions de la communauté en temps réel</p>
+            <h1 class="section-title" data-i18n="forum.title">Forum ADEPEM</h1>
+            <p class="forum-subtitle" data-i18n="forum.subtitle">Dernières discussions de la communauté en temps réel</p>
 
             <!-- Controls -->
             <div class="forum-controls">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Rechercher une discussion...">
+                    <input type="text" id="searchInput" data-i18n-placeholder="forum.search" placeholder="🔍 Rechercher une discussion...">
                 </div>
                 <div class="forum-buttons">
-                    <button class="refresh-btn" id="refreshBtn">
+                    <button class="refresh-btn" id="refreshBtn" data-i18n="forum.refresh">
                         <span class="refresh-icon">🔄</span> Actualiser
                     </button>
-                    <a href="https://forum.adepem.com" target="_blank" rel="noopener noreferrer" class="visit-forum-btn">
+                    <a href="https://forum.adepem.com" target="_blank" rel="noopener noreferrer" class="visit-forum-btn" data-i18n="forum.visit">
                         Visiter le forum <span class="external-icon">↗</span>
                     </a>
                 </div>
@@ -81,13 +82,13 @@
             <!-- Loading State -->
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <p>Chargement des discussions...</p>
+                <p data-i18n="forum.loading">Chargement des discussions...</p>
             </div>
 
             <!-- Error State -->
             <div class="forum-error" id="errorMessage" style="display: none;">
                 <p id="errorText"></p>
-                <button class="retry-btn" id="retryBtn">Réessayer</button>
+                <button class="retry-btn" id="retryBtn" data-i18n="forum.retry">Réessayer</button>
             </div>
 
             <!-- Articles Grid -->
@@ -96,8 +97,8 @@
             <!-- No Results -->
             <div class="no-results" id="noResults" style="display: none;">
                 <div class="no-results-icon">💬</div>
-                <h3>Aucune discussion trouvée</h3>
-                <p>Essayez une autre recherche ou actualisez la page</p>
+                <h3 data-i18n="forum.noresults.title">Aucune discussion trouvée</h3>
+                <p data-i18n="forum.noresults.desc">Essayez une autre recherche ou actualisez la page</p>
             </div>
         </div>
     </section>

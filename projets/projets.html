@@ -14,12 +14,13 @@
         <div class="nav-container">
             <div class="logo"><a href="../index.html#accueil">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="../index.html#apropos">À propos</a></li>
-                <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
-                <li><a href="#" aria-current="page">Projets</a></li>
-                <li><a href="../forum/forum.html">Articles</a></li>
-                <li><a href="../contact/contact.html">Contact</a></li>
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Experiences</a></li>
+                <li><a href="#" aria-current="page" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">EN</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -60,11 +61,11 @@
     <!-- Projects Section -->
     <section class="projects-section">
         <div class="container">
-            <h1 class="section-title">Mes Projets & Apprentissages</h1>
-            <p class="section-subtitle">Pourquoi ce projet, mes projets passés et ce que j'en ai tiré</p>
+            <h1 class="section-title" data-i18n="projects.title">Mes Projets & Apprentissages</h1>
+            <p class="section-subtitle" data-i18n="projects.subtitle">Pourquoi ce projet, mes projets passés et ce que j'en ai tiré</p>
 
             <div class="project-why">
-                <h2>Pourquoi j'ai choisi ce projet</h2>
+                <h2 data-i18n="projects.why.title">Pourquoi j'ai choisi ce projet</h2>
                 <p>
                     J'ai choisi de réaliser ce portfolio comme projet principal car il rassemble mes centres d'intérêt: le développement web,
                     la présentation claire de mon parcours et la mise en valeur de mes compétences techniques. Ce site me permet de pratiquer
@@ -77,7 +78,7 @@
                 </p>
             </div>
 
-            <h2 class="section-subtitle">Mes projets passés</h2>
+            <h2 class="section-subtitle" data-i18n="projects.past">Mes projets passés</h2>
             <div class="project-grid">
                 <div class="project-card">
                     <h3>Online Launchpad</h3>
@@ -109,7 +110,7 @@
             </div>
         </div>
 
-        <h2 class="section-subtitle">Ce que j'ai appris</h2>
+        <h2 class="section-subtitle" data-i18n="projects.learned.title">Ce que j'ai appris</h2>
         <ul class="learning-list">
             <li>Organisation d'un site: navigation claire, cohérence visuelle, responsive design.</li>
             <li>Composants réutilisables: cartes, boutons, formulaires avec styles cohérents.</li>

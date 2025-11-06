@@ -14,12 +14,13 @@
         <div class="nav-container">
             <div class="logo"><a href="#accueil">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="../index.html#apropos">À propos</a></li>
-                <li><a href="#">Parcours et Experiences</a></li>
-                <li><a href="../projets/projets.html">Projets</a></li>
-                <li><a href="../forum/forum.html">Articles</a></li>
-                <li><a href="../contact/contact.html">Contact</a></li>
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="#" data-i18n="nav.path">Parcours et Experiences</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">EN</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -60,7 +61,7 @@
     <!-- Formation Section -->
     <section id="formation" class="formation-section">
         <div class="container">
-            <h1 class="section-title">Mon Parcours Scolaire</h1>
+            <h1 class="section-title" data-i18n="formation.title">Mon Parcours Scolaire</h1>
 
             <div class="formation-timeline">
                 <div class="timeline-item">
@@ -93,7 +94,7 @@
                 </div>
             </div>
 
-            <h2 class="section-subtitle">Mes Expériences</h2>
+            <h2 class="section-subtitle" data-i18n="formation.experiences">Mes Expériences</h2>
 
             <div class="experiences-grid">
                 <!-- 1. Projet Personnel - 2024-2026 (en cours) -->

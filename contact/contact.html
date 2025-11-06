@@ -14,12 +14,13 @@
         <div class="nav-container">
             <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="../index.html#apropos">À propos</a></li>
-                <li><a href="../formation/formation.html">Parcours et Experiences</a></li>
-                <li><a href="../projets/projets.html">Projets</a></li>
-                <li><a href="../forum/forum.html">Articles</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Experiences</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="#" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">EN</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -60,44 +61,44 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h1 class="section-title">Contactez-moi</h1>
-            <p class="section-subtitle">Une question ? Un projet ? N'hésitez pas à me contacter !</p>
+            <h1 class="section-title" data-i18n="contact.title">Contactez-moi</h1>
+            <p class="section-subtitle" data-i18n="contact.subtitle">Une question ? Un projet ? N'hésitez pas à me contacter !</p>
 
             <div class="contact-grid">
                 <!-- Formulaire de contact -->
                 <div class="contact-form-container">
-                    <h3>📨 Envoyez-moi un message</h3>
+                    <h3 data-i18n="contact.form.title">📨 Envoyez-moi un message</h3>
 
                     <!-- Message de succès/erreur -->
-                    <div class="message success" id="successMessage">
+                    <div class="message success" id="successMessage" data-i18n="contact.form.success">
                         ✅ Message envoyé avec succès ! Je vous répondrai rapidement.
                     </div>
-                    <div class="message error" id="errorMessage">
+                    <div class="message error" id="errorMessage" data-i18n="contact.form.error">
                         ❌ Une erreur s'est produite. Veuillez réessayer.
                     </div>
 
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Nom complet *</label>
-                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                            <label for="name" data-i18n="contact.form.name.label">Nom complet *</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom" data-i18n-placeholder="contact.form.name.ph" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                            <label for="email" data-i18n="contact.form.email.label">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com" data-i18n-placeholder="contact.form.email.ph" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="subject">Sujet *</label>
-                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" required>
+                            <label for="subject" data-i18n="contact.form.subject.label">Sujet *</label>
+                            <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" data-i18n-placeholder="contact.form.subject.ph" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+                            <label for="message" data-i18n="contact.form.message.label">Message *</label>
+                            <textarea id="message" name="message" placeholder="Votre message..." data-i18n-placeholder="contact.form.message.ph" required></textarea>
                         </div>
 
-                        <button type="submit" class="submit-btn" id="submitBtn">
+                        <button type="submit" class="submit-btn" id="submitBtn" data-i18n="contact.form.submit">
                             <span>Envoyer le message</span>
                             <span>✉️</span>
                         </button>
@@ -108,11 +109,11 @@
                 <div class="contact-info-container">
                     <!-- Coordonnées -->
                     <div class="contact-info-card">
-                        <h4>📞 Mes coordonnées</h4>
+                        <h4 data-i18n="contact.info.title">📞 Mes coordonnées</h4>
                         <div class="contact-item">
                             <div class="contact-icon">📧</div>
                             <div class="contact-item-content">
-                                <div class="contact-item-label">Email</div>
+                                <div class="contact-item-label" data-i18n="contact.info.email">Email</div>
                                 <div class="contact-item-value">
                                     <a href="mailto:benbenjamin3005@gmail.com">benbenjamin3005@gmail.com</a>
                                 </div>
@@ -121,7 +122,7 @@
                         <div class="contact-item">
                             <div class="contact-icon">📱</div>
                             <div class="contact-item-content">
-                                <div class="contact-item-label">Téléphone</div>
+                                <div class="contact-item-label" data-i18n="contact.info.phone">Téléphone</div>
                                 <div class="contact-item-value">
                                     <a href="tel:+33766739614">+33 7 66 73 96 14</a>
                                 </div>
@@ -130,15 +131,15 @@
                         <div class="contact-item">
                             <div class="contact-icon">📍</div>
                             <div class="contact-item-content">
-                                <div class="contact-item-label">Localisation</div>
-                                <div class="contact-item-value">Auberchicourt, Nord</div>
+                                <div class="contact-item-label" data-i18n="contact.info.location">Localisation</div>
+                                <div class="contact-item-value" data-i18n="contact.info.location.value">Auberchicourt, Nord</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Réseaux sociaux -->
                     <div class="contact-info-card">
-                        <h4>🌐 Réseaux sociaux</h4>
+                        <h4 data-i18n="contact.social.title">🌐 Réseaux sociaux</h4>
                         <div class="social-links">
                             <a href="https://linkedin.com" target="_blank" class="social-btn">
                                 <span>💼</span>
@@ -153,11 +154,11 @@
 
                     <!-- Télécharger CV -->
                     <div class="download-cv">
-                        <h4>📄 Mon CV</h4>
-                        <p>Téléchargez mon CV complet au format PDF</p>
+                        <h4 data-i18n="contact.cv.title">📄 Mon CV</h4>
+                        <p data-i18n="contact.cv.desc">Téléchargez mon CV complet au format PDF</p>
                         <a href="./CV.pdf" class="cv-btn" download>
                             <span>⬇️</span>
-                            <span>Télécharger mon CV</span>
+                            <span data-i18n="contact.cv.button">Télécharger mon CV</span>
                         </a>
                     </div>
                 </div>

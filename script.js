@@ -245,6 +245,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // ===========================
         const translations = {
             fr: {
+                // Nav
+                'nav.home': 'Accueil',
+                'nav.about': 'À propos',
+                'nav.path': 'Parcours et Experiences',
+                'nav.projects': 'Projets',
+                'nav.articles': 'Articles',
+                'nav.contact': 'Contact',
+                'nav.forum': 'Forum',
                 'hero.title': 'Bonjour, bienvenu sur mon Portfolio interactif',
                 'hero.subtitle': 'Étudiant en Terminale Bac Pro C.I.E.L',
                 'hero.description': "passionné par l'informatique et l'électronique, je développe actuellement mes compétences techniques en réseaux, électronique, dévloppement web et sécurité informatique. Mon objectif est de poursuivre mes études dans le domaine de la cybersécurité tout en appliquant mes connaissances dans des projets concrets.",
@@ -258,9 +266,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 'about.address': '📍 Adresse :',
                 'about.age': '🎂 Âge :',
                 'about.profile': 'Profil',
-                'about.objectives': 'Objectifs'
+                'about.objectives': 'Objectifs',
+                // Formation page
+                'formation.title': 'Mon Parcours Scolaire',
+                'formation.experiences': 'Mes Expériences',
+                // Projects page
+                'projects.title': 'Mes Projets & Apprentissages',
+                'projects.subtitle': "Pourquoi ce projet, mes projets passés et ce que j'en ai tiré",
+                'projects.why.title': "Pourquoi j'ai choisi ce projet",
+                'projects.past': 'Mes projets passés',
+                'projects.learned.title': "Ce que j'ai appris",
+                // Forum page
+                'forum.title': 'Forum ADEPEM',
+                'forum.subtitle': 'Dernières discussions de la communauté en temps réel',
+                'forum.search': '🔍 Rechercher une discussion...',
+                'forum.refresh': 'Actualiser',
+                'forum.visit': 'Visiter le forum',
+                'forum.loading': 'Chargement des discussions...',
+                'forum.retry': 'Réessayer',
+                'forum.noresults.title': 'Aucune discussion trouvée',
+                'forum.noresults.desc': 'Essayez une autre recherche ou actualisez la page',
+                // Contact page
+                'contact.title': 'Contactez-moi',
+                'contact.subtitle': "Une question ? Un projet ? N'hésitez pas à me contacter !",
+                'contact.form.title': '📨 Envoyez-moi un message',
+                'contact.form.success': '✅ Message envoyé avec succès ! Je vous répondrai rapidement.',
+                'contact.form.error': "❌ Une erreur s'est produite. Veuillez réessayer.",
+                'contact.form.name.label': 'Nom complet *',
+                'contact.form.name.ph': 'Votre nom',
+                'contact.form.email.label': 'Email *',
+                'contact.form.email.ph': 'votre@email.com',
+                'contact.form.subject.label': 'Sujet *',
+                'contact.form.subject.ph': 'Sujet de votre message',
+                'contact.form.message.label': 'Message *',
+                'contact.form.message.ph': 'Votre message...',
+                'contact.form.submit': 'Envoyer le message',
+                'contact.info.title': '📞 Mes coordonnées',
+                'contact.info.email': 'Email',
+                'contact.info.phone': 'Téléphone',
+                'contact.info.location': 'Localisation',
+                'contact.info.location.value': 'Auberchicourt, Nord',
+                'contact.social.title': '🌐 Réseaux sociaux',
+                'contact.cv.title': '📄 Mon CV',
+                'contact.cv.desc': 'Téléchargez mon CV complet au format PDF',
+                'contact.cv.button': 'Télécharger mon CV'
             },
             en: {
+                // Nav
+                'nav.home': 'Home',
+                'nav.about': 'About',
+                'nav.path': 'Education & Experience',
+                'nav.projects': 'Projects',
+                'nav.articles': 'Articles',
+                'nav.contact': 'Contact',
+                'nav.forum': 'Forum',
                 'hero.title': 'Hello, welcome to my interactive Portfolio',
                 'hero.subtitle': 'Final-year student in C.I.E.L vocational baccalaureate',
                 'hero.description': 'Passionate about IT and electronics, I am developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to pursue studies in cybersecurity while applying my knowledge in real projects.',
@@ -274,7 +333,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 'about.address': '📍 Address:',
                 'about.age': '🎂 Age:',
                 'about.profile': 'Profile',
-                'about.objectives': 'Objectives'
+                'about.objectives': 'Objectives',
+                // Formation page
+                'formation.title': 'My Education',
+                'formation.experiences': 'My Experiences',
+                // Projects page
+                'projects.title': 'My Projects & Learnings',
+                'projects.subtitle': 'Why this project, my past projects and what I learned',
+                'projects.why.title': 'Why I chose this project',
+                'projects.past': 'My past projects',
+                'projects.learned.title': 'What I learned',
+                // Forum page
+                'forum.title': 'ADEPEM Forum',
+                'forum.subtitle': 'Latest community discussions in real time',
+                'forum.search': '🔍 Search a discussion...',
+                'forum.refresh': 'Refresh',
+                'forum.visit': 'Visit the forum',
+                'forum.loading': 'Loading discussions...',
+                'forum.retry': 'Retry',
+                'forum.noresults.title': 'No discussions found',
+                'forum.noresults.desc': 'Try another search or refresh the page',
+                // Contact page
+                'contact.title': 'Contact me',
+                'contact.subtitle': 'A question? A project? Feel free to contact me!',
+                'contact.form.title': '📨 Send me a message',
+                'contact.form.success': '✅ Message sent successfully! I will get back to you soon.',
+                'contact.form.error': '❌ An error occurred. Please try again.',
+                'contact.form.name.label': 'Full name *',
+                'contact.form.name.ph': 'Your name',
+                'contact.form.email.label': 'Email *',
+                'contact.form.email.ph': 'your@email.com',
+                'contact.form.subject.label': 'Subject *',
+                'contact.form.subject.ph': 'Subject of your message',
+                'contact.form.message.label': 'Message *',
+                'contact.form.message.ph': 'Your message...',
+                'contact.form.submit': 'Send message',
+                'contact.info.title': '📞 My contact details',
+                'contact.info.email': 'Email',
+                'contact.info.phone': 'Phone',
+                'contact.info.location': 'Location',
+                'contact.info.location.value': 'Auberchicourt, Nord',
+                'contact.social.title': '🌐 Social networks',
+                'contact.cv.title': '📄 My resume',
+                'contact.cv.desc': 'Download my full resume in PDF format',
+                'contact.cv.button': 'Download my CV'
             }
         };
 
@@ -284,6 +386,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[key]) {
                     el.textContent = dict[key];
+                }
+            });
+            // Placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) {
+                    el.setAttribute('placeholder', dict[key]);
                 }
             });
             document.documentElement.setAttribute('lang', lang);

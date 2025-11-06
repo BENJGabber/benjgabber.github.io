@@ -57,10 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 showClickHint('Encore un peu... 👀');
             }
 
-            // Normal lightbox behavior
-            lightboxImage.src = cvPhoto.src;
-            lightbox.classList.add('open');
-            lightbox.setAttribute('aria-hidden', 'false');
+            // Ne pas ouvrir la lightbox pendant les clics pour l'easter egg
+            if (clickCount < CLICK_THRESHOLD) {
+                return; // on bloque le comportement d'agrandissement
+            }
+
         });
 
         // Close on click outside image

@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'about.profile': 'Profile',
             'about.objectives': 'Objectives',
             // Formation page
-            'formation.title': 'My Education',
+            'formation.title': 'My academic background',
             'formation.experiences': 'My Experiences',
             // Projects page
             'projects.title': 'My Projects & Learnings',

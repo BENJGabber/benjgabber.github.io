@@ -119,14 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Easter egg reveal
     function showEasterEgg() {
         const facts = [
-            "🎮 Fun Fact: J'adore démonter et réparer des appareils électroniques depuis l'âge de 12 ans !",
-            "🔧 Fun Fact: Mon premier ordinateur que j'ai démonté était un vieux PC de 2003 !",
-            "💻 Fun Fact: J'ai appris le HTML/CSS en créant des sites pour mes amis du collège !",
+            "🎮 Fun Fact: J'adore démonter et réparer des appareils électroniques depuis mon plus jeune ^ge !",
+            "🔧 Fun Fact: Mon premier ordinateur que j'ai démonté était un vieux PC sous Windows vista qui appartenait a ma tante !",
+            "💻 Fun Fact: J'ai appris le HTML/CSS en créant un site pendent mon tout premier stage de 3ème !",
             "🎯 Fun Fact: Mon rêve est de travailler dans la cybersécurité ou la réparation électronique !",
-            "🌟 Fun Fact: Je passe mon temps libre à apprendre de nouvelles technologies !",
+            "🌟 Fun Fact: Je passe mon temps libre a écouter de la musique en jouant a des jeux ou même en travaillant !",
             "🛠️ Fun Fact: J'ai réparé plus de 20 ordinateurs pendant mes stages !",
             "📱 Fun Fact: Mon premier site web était un clone de LDLC (un peu trop ambitieux 😅) !",
-            "🎨 Fun Fact: Ce portfolio a été entièrement codé à la main, sans template !"
+            "🎨 Fun Fact: Je compte me servir de ce Portfolio comme un artiste utiliserait un Portfolio, un peu comme un complément de CV !"
         ];
 
         const randomFact = facts[Math.floor(Math.random() * facts.length)];

@@ -30,21 +30,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const CLICK_THRESHOLD = 10;
     const RESET_DELAY = 3000; // Reset after 3 seconds of no clicks
 
+    // Helper: open the lightbox for the CV photo
+    function openLightbox() {
+        if (!cvPhoto || !lightbox || !lightboxImage) return;
+        lightboxImage.src = cvPhoto.src;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+    }
+
     // Lightbox behavior with easter egg
     if (cvPhoto && lightbox && lightboxImage) {
         cvPhoto.style.cursor = 'pointer';
         cvPhoto.addEventListener('click', (e) => {
             clickCount++;
 
-            // Reset timer
+            // Reset/defer timer
             clearTimeout(clickTimer);
             clickTimer = setTimeout(() => {
-                clickCount = 0;
+                // If user stopped clicking before reaching threshold, open lightbox once
+                if (clickCount > 0 && clickCount < CLICK_THRESHOLD) {
+                    openLightbox();
+                }
+                clickCount = 0; // always reset after inactivity
             }, RESET_DELAY);
 
             // Easter egg trigger
             if (clickCount === CLICK_THRESHOLD) {
                 e.stopPropagation();
+                clearTimeout(clickTimer); // cancel deferred lightbox
                 showEasterEgg();
                 clickCount = 0;
                 return;
@@ -57,11 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showClickHint('Encore un peu... 👀');
             }
 
-            // Ne pas ouvrir la lightbox pendant les clics pour l'easter egg
-            if (clickCount < CLICK_THRESHOLD) {
-                return; // on bloque le comportement d'agrandissement
-            }
-
+            // While counting towards the easter egg, do NOT open the lightbox
+            return;
         });
 
         // Close on click outside image

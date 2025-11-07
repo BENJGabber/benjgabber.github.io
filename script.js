@@ -6,23 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
 
-    menuToggle.addEventListener('click', () => {
-        sideMenu.classList.toggle('open');
-    });
-
-    // Close side menu when a link is clicked
-    sideMenu.querySelectorAll('.side-nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('open');
+    if (menuToggle && sideMenu) {
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.toggle('open');
         });
-    });
 
-    // Optional: Close side menu if clicked outside (for better UX)
-    document.addEventListener('click', (event) => {
-        if (!sideMenu.contains(event.target) && !menuToggle.contains(event.target) && sideMenu.classList.contains('open')) {
-            sideMenu.classList.remove('open');
-        }
-    });
+        // Close side menu when a link is clicked
+        sideMenu.querySelectorAll('.side-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                sideMenu.classList.remove('open');
+            });
+        });
+
+        // Optional: Close side menu if clicked outside (for better UX)
+        document.addEventListener('click', (event) => {
+            if (!sideMenu.contains(event.target) && !menuToggle.contains(event.target) && sideMenu.classList.contains('open')) {
+                sideMenu.classList.remove('open');
+            }
+        });
+    }
 
     // Easter Egg: Click counter on photo
     let clickCount = 0;
@@ -259,423 +261,485 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-// ===========================
-// ENHANCED AUTO-TRANSLATION SYSTEM
-// ===========================
+    // ===========================
+    // ENHANCED AUTO-TRANSLATION SYSTEM
+    // ===========================
 
-const TRANSLATION_CACHE_KEY = 'translationCache';
-const CACHE_EXPIRY_DAYS = 7;
-const originalTranslations = {};
-const originalPlaceholders = {};
+    const TRANSLATION_CACHE_KEY = 'translationCache';
+    const CACHE_EXPIRY_DAYS = 7;
+    const originalTranslations = {};
+    const originalPlaceholders = {};
 
-// Manual translations for English (instant display)
-const manualTranslations = {
-    en: {
-        'nav.brand': 'My Portfolio',
-        'nav.home': 'Home',
-        'nav.about': 'About',
-        'nav.journey': 'Journey & Experience',
-        'nav.path': 'Journey & Experience',
-        'nav.projects': 'Projects',
-        'nav.articles': 'Articles',
-        'nav.forum': 'Forum',
-        'nav.contact': 'Contact',
-        'hero.title': 'Hello, welcome to my interactive portfolio',
-        'hero.subtitle': 'Student in Terminal Bac Pro C.I.E.L',
-        'hero.description': "Passionate about IT and electronics, I am currently developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to continue my studies in cybersecurity while applying my knowledge to real-world projects.",
-        'hero.ctaJourney': 'My journey',
-        'hero.ctaArticles': 'Articles',
-        'hero.discover': 'Discover my world<span class="scroll-arrow">↓</span>',
-        'about.title': 'About me',
-        'about.subtitle': 'Student in Bac Pro C.I.E.L',
-        'about.email': '📧 Email:',
-        'about.phone': '📱 Phone:',
-        'about.address': '📍 Address:',
-        'about.age': '🎂 Age:',
-        'about.profile': 'Profile',
-        'about.objectives': 'Goals',
-        'about.profileText': 'Motivated student in the Bac Pro CIEL (Cybersecurity, IT and Networks, Electronics). I am passionate about computers in general, especially repair, user support and network management. My journey has helped me build strong skills in programming, network administration and cybersecurity. I also self-train in troubleshooting and maintenance.',
-        'about.objectivesText': "My goal is to continue my studies, ideally through a work-study program so I can progressively enter the professional world. I would love to work in device repair, but I would also enjoy roles in network and IT management.",
-        'formation.title': 'My Academic Journey',
-        'formation.experiences': 'My Experiences',
-        'projects.title': 'My Projects & Learning',
-        'projects.subtitle': 'Why this project, my past projects and what I learned from them',
-        'projects.why.title': 'Why I chose this project',
-        'projects.past': 'My past projects',
-        'projects.learned.title': 'What I learned',
-        'contact.title': 'Contact Me',
-        'contact.subtitle': 'A question? A project? Feel free to contact me!',
-        'contact.form.title': '📨 Send me a message',
-        'contact.form.name.label': 'Full Name *',
-        'contact.form.name.ph': 'Your name',
-        'contact.form.email.label': 'Email *',
-        'contact.form.email.ph': 'your@email.com',
-        'contact.form.subject.label': 'Subject *',
-        'contact.form.subject.ph': 'Subject of your message',
-        'contact.form.message.label': 'Message *',
-        'contact.form.message.ph': 'Your message...',
-        'contact.form.submit': 'Send message',
-        'contact.form.success': '✅ Message sent successfully! I will reply quickly.',
-        'contact.form.error': '❌ An error occurred. Please try again.',
-        'contact.info.title': '📞 My contact details',
-        'contact.info.email': 'Email',
-        'contact.info.phone': 'Phone',
-        'contact.info.location': 'Location',
-        'contact.info.location.value': 'Auberchicourt, Nord',
-        'contact.social.title': '🌐 Social Media',
-        'contact.cv.title': '📄 My CV',
-        'contact.cv.desc': 'Download my complete CV in PDF format',
-        'contact.cv.button': 'Download my CV',
-        'forum.title': 'ADEPEM Forum',
-        'forum.subtitle': 'Latest community discussions in real time',
-        'forum.search': '🔍 Search for a discussion...',
-        'forum.refresh': 'Refresh',
-        'forum.visit': 'Visit forum',
-        'forum.loading': 'Loading discussions...',
-        'forum.retry': 'Retry',
-        'forum.noresults.title': 'No discussion found',
-        'forum.noresults.desc': 'Try another search or refresh the page'
-    }
-};
-
-const manualPlaceholderTranslations = {
-    en: {
-        'contact.form.name.ph': 'Your name',
-        'contact.form.email.ph': 'your@email.com',
-        'contact.form.subject.ph': 'Subject of your message',
-        'contact.form.message.ph': 'Your message...',
-        'forum.search': '🔍 Search for a discussion...'
-    }
-};
-
-// Languages available
-const languages = [
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'en', name: 'English', flag: '🇬🇧' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'pt', name: 'Português', flag: '🇵🇹' },
-    { code: 'nl', name: 'Nederlands', flag: '🇳🇱' },
-    { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-    { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-    { code: 'ja', name: '日本語', flag: '🇯🇵' },
-    { code: 'zh', name: '中文', flag: '🇨🇳' },
-    { code: 'ar', name: 'العربية', flag: '🇸🇦' }
-];
-
-// Capture original French text
-function captureOriginalTranslations() {
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.dataset.i18n;
-        if (!key) return;
-        if (!originalTranslations[key]) {
-            originalTranslations[key] = element.innerHTML.trim();
+    // Manual translations for English (instant display)
+    const manualTranslations = {
+        en: {
+            'nav.brand': 'My Portfolio',
+            'nav.home': 'Home',
+            'nav.about': 'About',
+            'nav.journey': 'Journey & Experience',
+            'nav.path': 'Journey & Experience',
+            'nav.projects': 'Projects',
+            'nav.articles': 'Articles',
+            'nav.forum': 'Forum',
+            'nav.contact': 'Contact',
+            'hero.title': 'Hello, welcome to my interactive portfolio',
+            'hero.subtitle': 'Student in Terminal Bac Pro C.I.E.L',
+            'hero.description': "Passionate about IT and electronics, I am currently developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to continue my studies in cybersecurity while applying my knowledge to real-world projects.",
+            'hero.ctaJourney': 'My journey',
+            'hero.ctaArticles': 'Articles',
+            'hero.discover': 'Discover my world<span class="scroll-arrow">↓</span>',
+            'about.title': 'About me',
+            'about.subtitle': 'Student in Bac Pro C.I.E.L',
+            'about.email': '📧 Email:',
+            'about.phone': '📱 Phone:',
+            'about.address': '📍 Address:',
+            'about.age': '🎂 Age:',
+            'about.profile': 'Profile',
+            'about.objectives': 'Goals',
+            'about.profileText': 'Motivated student in the Bac Pro CIEL (Cybersecurity, IT and Networks, Electronics). I am passionate about computers in general, especially repair, user support and network management. My journey has helped me build strong skills in programming, network administration and cybersecurity. I also self-train in troubleshooting and maintenance.',
+            'about.objectivesText': "My goal is to continue my studies, ideally through a work-study program so I can progressively enter the professional world. I would love to work in device repair, but I would also enjoy roles in network and IT management.",
+            'formation.title': 'My Academic Journey',
+            'formation.experiences': 'My Experiences',
+            'projects.title': 'My Projects & Learning',
+            'projects.subtitle': 'Why this project, my past projects and what I learned from them',
+            'projects.why.title': 'Why I chose this project',
+            'projects.past': 'My past projects',
+            'projects.learned.title': 'What I learned',
+            'contact.title': 'Contact Me',
+            'contact.subtitle': 'A question? A project? Feel free to contact me!',
+            'contact.form.title': '📨 Send me a message',
+            'contact.form.name.label': 'Full Name *',
+            'contact.form.name.ph': 'Your name',
+            'contact.form.email.label': 'Email *',
+            'contact.form.email.ph': 'your@email.com',
+            'contact.form.subject.label': 'Subject *',
+            'contact.form.subject.ph': 'Subject of your message',
+            'contact.form.message.label': 'Message *',
+            'contact.form.message.ph': 'Your message...',
+            'contact.form.submit': 'Send message',
+            'contact.form.success': '✅ Message sent successfully! I will reply quickly.',
+            'contact.form.error': '❌ An error occurred. Please try again.',
+            'contact.info.title': '📞 My contact details',
+            'contact.info.email': 'Email',
+            'contact.info.phone': 'Phone',
+            'contact.info.location': 'Location',
+            'contact.info.location.value': 'Auberchicourt, Nord',
+            'contact.social.title': '🌐 Social Media',
+            'contact.cv.title': '📄 My CV',
+            'contact.cv.desc': 'Download my complete CV in PDF format',
+            'contact.cv.button': 'Download my CV',
+            'forum.title': 'ADEPEM Forum',
+            'forum.subtitle': 'Latest community discussions in real time',
+            'forum.search': '🔍 Search for a discussion...',
+            'forum.refresh': 'Refresh',
+            'forum.visit': 'Visit forum',
+            'forum.loading': 'Loading discussions...',
+            'forum.retry': 'Retry',
+            'forum.noresults.title': 'No discussion found',
+            'forum.noresults.desc': 'Try another search or refresh the page'
         }
-    });
+    };
 
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-        const key = element.dataset.i18nPlaceholder;
-        if (!key) return;
-        if (!originalPlaceholders[key]) {
-            originalPlaceholders[key] = element.getAttribute('placeholder');
+    const manualPlaceholderTranslations = {
+        en: {
+            'contact.form.name.ph': 'Your name',
+            'contact.form.email.ph': 'your@email.com',
+            'contact.form.subject.ph': 'Subject of your message',
+            'contact.form.message.ph': 'Your message...',
+            'forum.search': '🔍 Search for a discussion...'
         }
-    });
-}
+    };
 
-// Cache management
-function getCache() {
-    try {
-        const cache = localStorage.getItem(TRANSLATION_CACHE_KEY);
-        if (!cache) return {};
-        const parsed = JSON.parse(cache);
-        const now = Date.now();
-        if (parsed.timestamp && (now - parsed.timestamp) > CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000) {
-            localStorage.removeItem(TRANSLATION_CACHE_KEY);
-            return {};
+    // Languages available
+    const languages = [{
+            code: 'fr',
+            name: 'Français',
+            flag: '🇫🇷'
+        },
+        {
+            code: 'en',
+            name: 'English',
+            flag: '🇬🇧'
+        },
+        {
+            code: 'es',
+            name: 'Español',
+            flag: '🇪🇸'
+        },
+        {
+            code: 'de',
+            name: 'Deutsch',
+            flag: '🇩🇪'
+        },
+        {
+            code: 'it',
+            name: 'Italiano',
+            flag: '🇮🇹'
+        },
+        {
+            code: 'pt',
+            name: 'Português',
+            flag: '🇵🇹'
+        },
+        {
+            code: 'nl',
+            name: 'Nederlands',
+            flag: '🇳🇱'
+        },
+        {
+            code: 'pl',
+            name: 'Polski',
+            flag: '🇵🇱'
+        },
+        {
+            code: 'ru',
+            name: 'Русский',
+            flag: '🇷🇺'
+        },
+        {
+            code: 'ja',
+            name: '日本語',
+            flag: '🇯🇵'
+        },
+        {
+            code: 'zh',
+            name: '中文',
+            flag: '🇨🇳'
+        },
+        {
+            code: 'ar',
+            name: 'العربية',
+            flag: '🇸🇦'
         }
-        return parsed.data || {};
-    } catch (e) {
-        return {};
-    }
-}
+    ];
 
-function saveCache(cache) {
-    try {
-        localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify({
-            timestamp: Date.now(),
-            data: cache
-        }));
-    } catch (e) {
-        console.warn('Could not save translation cache:', e);
-    }
-}
-
-function getCachedTranslation(text, targetLang) {
-    const cache = getCache();
-    const key = `${text}|${targetLang}`;
-    return cache[key];
-}
-
-function setCachedTranslation(text, targetLang, translation) {
-    const cache = getCache();
-    const key = `${text}|${targetLang}`;
-    cache[key] = translation;
-    saveCache(cache);
-}
-
-// Translation using LibreTranslate
-async function translateText(text, targetLang) {
-    if (!text || !text.trim()) return text;
-    if (targetLang === 'fr') return text;
-
-    // Check cache first
-    const cached = getCachedTranslation(text, targetLang);
-    if (cached) return cached;
-
-    try {
-        // Clean HTML tags for translation
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = text;
-        const plainText = tempDiv.textContent || tempDiv.innerText || '';
-        
-        if (!plainText.trim()) return text;
-
-        const response = await fetch('https://libretranslate.com/translate', {
-            method: 'POST',
-            body: JSON.stringify({
-                q: plainText,
-                source: 'fr',
-                target: targetLang,
-                format: 'text'
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error('Translation failed');
-        }
-
-        const data = await response.json();
-        const translation = data.translatedText;
-
-        // Cache the translation
-        setCachedTranslation(text, targetLang, translation);
-
-        return translation;
-    } catch (error) {
-        console.error('Translation error:', error);
-        return text;
-    }
-}
-
-// Show notification
-function showTranslationNotification(message, isError = false) {
-    const existing = document.getElementById('translationNotification');
-    if (existing) existing.remove();
-
-    const notification = document.createElement('div');
-    notification.id = 'translationNotification';
-    notification.style.cssText = `
-        position: fixed;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: ${isError ? 'rgba(239, 68, 68, 0.95)' : 'rgba(168, 85, 247, 0.95)'};
-        color: white;
-        padding: 12px 24px;
-        border-radius: 10px;
-        font-weight: 600;
-        z-index: 9999;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        animation: slideDown 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    `;
-
-    notification.innerHTML = `
-        <span>${isError ? '⚠️' : '🌐'}</span>
-        <span>${message}</span>
-    `;
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideUp 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-
-    if (!document.querySelector('#translationNotificationStyle')) {
-        const style = document.createElement('style');
-        style.id = 'translationNotificationStyle';
-        style.textContent = `
-            @keyframes slideDown {
-                from { opacity: 0; transform: translate(-50%, -20px); }
-                to { opacity: 1; transform: translate(-50%, 0); }
-            }
-            @keyframes slideUp {
-                from { opacity: 1; transform: translate(-50%, 0); }
-                to { opacity: 0; transform: translate(-50%, -20px); }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-}
-
-// Apply manual translations (for English)
-function applyManualTranslations(targetLang) {
-    if (targetLang === 'fr') {
-        // Restore French
+    // Capture original French text
+    function captureOriginalTranslations() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.dataset.i18n;
-            if (originalTranslations[key]) {
-                element.innerHTML = originalTranslations[key];
+            if (!key) return;
+            if (!originalTranslations[key]) {
+                originalTranslations[key] = element.innerHTML.trim();
             }
         });
 
         document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
             const key = element.dataset.i18nPlaceholder;
-            if (originalPlaceholders[key]) {
-                element.setAttribute('placeholder', originalPlaceholders[key]);
+            if (!key) return;
+            if (!originalPlaceholders[key]) {
+                originalPlaceholders[key] = element.getAttribute('placeholder');
             }
         });
-        return true;
     }
 
-    if (targetLang === 'en') {
-        const langData = manualTranslations[targetLang];
-        const placeholderData = manualPlaceholderTranslations[targetLang];
+    // Cache management
+    function getCache() {
+        try {
+            const cache = localStorage.getItem(TRANSLATION_CACHE_KEY);
+            if (!cache) return {};
+            const parsed = JSON.parse(cache);
+            const now = Date.now();
+            if (parsed.timestamp && (now - parsed.timestamp) > CACHE_EXPIRY_DAYS * 24 * 60 * 60 * 1000) {
+                localStorage.removeItem(TRANSLATION_CACHE_KEY);
+                return {};
+            }
+            return parsed.data || {};
+        } catch (e) {
+            return {};
+        }
+    }
 
-        if (langData) {
+    function saveCache(cache) {
+        try {
+            localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify({
+                timestamp: Date.now(),
+                data: cache
+            }));
+        } catch (e) {
+            console.warn('Could not save translation cache:', e);
+        }
+    }
+
+    function getCachedTranslation(text, targetLang) {
+        const cache = getCache();
+        const key = `${text}|${targetLang}`;
+        return cache[key];
+    }
+
+    function setCachedTranslation(text, targetLang, translation) {
+        const cache = getCache();
+        const key = `${text}|${targetLang}`;
+        cache[key] = translation;
+        saveCache(cache);
+    }
+
+    // Translation using LibreTranslate
+    async function translateText(text, targetLang) {
+        if (!text || !text.trim()) return text;
+        if (targetLang === 'fr') return text;
+
+        // Check cache first
+        const cached = getCachedTranslation(text, targetLang);
+        if (cached) return cached;
+
+        try {
+            // Clean HTML tags for translation
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = text;
+            const plainText = tempDiv.textContent || tempDiv.innerText || '';
+
+            if (!plainText.trim()) return text;
+
+            const response = await fetch('https://libretranslate.com/translate', {
+                method: 'POST',
+                body: JSON.stringify({
+                    q: plainText,
+                    source: 'fr',
+                    target: targetLang,
+                    format: 'text'
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Translation failed');
+            }
+
+            const data = await response.json();
+            const translation = data.translatedText;
+
+            // Cache the translation
+            setCachedTranslation(text, targetLang, translation);
+
+            return translation;
+        } catch (error) {
+            console.error('Translation error:', error);
+            return text;
+        }
+    }
+
+    // Show notification
+    function showTranslationNotification(message, isError = false) {
+        const existing = document.getElementById('translationNotification');
+        if (existing) existing.remove();
+
+        const notification = document.createElement('div');
+        notification.id = 'translationNotification';
+        notification.style.cssText = `
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: ${isError ? 'rgba(239, 68, 68, 0.95)' : 'rgba(168, 85, 247, 0.95)'};
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        `;
+
+        notification.innerHTML = `
+            <span>${isError ? '⚠️' : '🌐'}</span>
+            <span>${message}</span>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideUp 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+
+        if (!document.querySelector('#translationNotificationStyle')) {
+            const style = document.createElement('style');
+            style.id = 'translationNotificationStyle';
+            style.textContent = `
+                @keyframes slideDown {
+                    from { opacity: 0; transform: translate(-50%, -20px); }
+                    to { opacity: 1; transform: translate(-50%, 0); }
+                }
+                @keyframes slideUp {
+                    from { opacity: 1; transform: translate(-50%, 0); }
+                    to { opacity: 0; transform: translate(-50%, -20px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // Apply manual translations (for English)
+    function applyManualTranslations(targetLang) {
+        if (targetLang === 'fr') {
+            // Restore French
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.dataset.i18n;
-                if (langData[key]) {
-                    element.innerHTML = langData[key];
+                if (originalTranslations[key]) {
+                    element.innerHTML = originalTranslations[key];
                 }
             });
-        }
 
-        if (placeholderData) {
             document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
                 const key = element.dataset.i18nPlaceholder;
-                if (placeholderData[key]) {
-                    element.setAttribute('placeholder', placeholderData[key]);
+                if (originalPlaceholders[key]) {
+                    element.setAttribute('placeholder', originalPlaceholders[key]);
                 }
             });
+            return true;
         }
-        return true;
-    }
 
-    return false;
-}
+        if (targetLang === 'en') {
+            const langData = manualTranslations[targetLang];
+            const placeholderData = manualPlaceholderTranslations[targetLang];
 
-// Translate all page elements
-async function translatePage(targetLang) {
-    const langName = languages.find(l => l.code === targetLang)?.name || targetLang;
-
-    // Apply manual translations if available
-    const manualApplied = applyManualTranslations(targetLang);
-    
-    if (manualApplied) {
-        showTranslationNotification(`✅ Page displayed in ${langName}`);
-        return;
-    }
-
-    // Otherwise, use auto-translation
-    showTranslationNotification(`🌐 Translating to ${langName}...`);
-
-    const elements = document.querySelectorAll('[data-i18n]');
-    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
-
-    try {
-        // Translate text content
-        for (const element of elements) {
-            const key = element.dataset.i18n;
-            const originalText = originalTranslations[key] || element.textContent.trim();
-            
-            if (originalText) {
-                const translated = await translateText(originalText, targetLang);
-                element.innerHTML = translated;
-                await new Promise(resolve => setTimeout(resolve, 100)); // Rate limiting
+            if (langData) {
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.dataset.i18n;
+                    if (langData[key]) {
+                        element.innerHTML = langData[key];
+                    }
+                });
             }
-        }
 
-        // Translate placeholders
-        for (const element of placeholderElements) {
-            const key = element.dataset.i18nPlaceholder;
-            const originalText = originalPlaceholders[key] || element.getAttribute('placeholder');
-            
-            if (originalText) {
-                const translated = await translateText(originalText, targetLang);
-                element.setAttribute('placeholder', translated);
-                await new Promise(resolve => setTimeout(resolve, 100));
+            if (placeholderData) {
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                    const key = element.dataset.i18nPlaceholder;
+                    if (placeholderData[key]) {
+                        element.setAttribute('placeholder', placeholderData[key]);
+                    }
+                });
             }
+            return true;
         }
 
-        showTranslationNotification(`✅ Page translated to ${langName}`);
-    } catch (error) {
-        console.error('Translation error:', error);
-        showTranslationNotification('Translation error occurred', true);
+        return false;
     }
-}
 
-// Initialize language selector
-function initLanguageSelector() {
-    const languageToggle = document.getElementById('languageToggle');
-    if (!languageToggle) return;
+    // Translate all page elements
+    async function translatePage(targetLang) {
+        const langName = languages.find(l => l.code === targetLang) ?.name || targetLang;
 
-    const currentLang = localStorage.getItem('selectedLang') || 'fr';
+        // Apply manual translations if available
+        const manualApplied = applyManualTranslations(targetLang);
 
-    // Create dropdown
-    const dropdown = document.createElement('select');
-    dropdown.id = 'languageDropdown';
-    dropdown.className = 'lang-toggle language-select';
-
-    // Add options
-    languages.forEach(lang => {
-        const option = document.createElement('option');
-        option.value = lang.code;
-        option.textContent = `${lang.flag} ${lang.name}`;
-        if (lang.code === currentLang) {
-            option.selected = true;
+        if (manualApplied) {
+            showTranslationNotification(`✅ Page displayed in ${langName}`);
+            return;
         }
-        dropdown.appendChild(option);
-    });
 
-    // Replace button with dropdown
-    languageToggle.parentNode.replaceChild(dropdown, languageToggle);
+        // Otherwise, use auto-translation
+        showTranslationNotification(`🌐 Translating to ${langName}...`);
 
-    // Handle language change
-    dropdown.addEventListener('change', async (e) => {
-        const newLang = e.target.value;
-        localStorage.setItem('selectedLang', newLang);
+        const elements = document.querySelectorAll('[data-i18n]');
+        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
 
-        dropdown.disabled = true;
-        dropdown.style.opacity = '0.5';
+        try {
+            // Translate text content
+            for (const element of elements) {
+                const key = element.dataset.i18n;
+                const originalText = originalTranslations[key] || element.textContent.trim();
 
-        await translatePage(newLang);
+                if (originalText) {
+                    const translated = await translateText(originalText, targetLang);
+                    element.innerHTML = translated;
+                    await new Promise(resolve => setTimeout(resolve, 100)); // Rate limiting
+                }
+            }
 
-        dropdown.disabled = false;
-        dropdown.style.opacity = '1';
-    });
+            // Translate placeholders
+            for (const element of placeholderElements) {
+                const key = element.dataset.i18nPlaceholder;
+                const originalText = originalPlaceholders[key] || element.getAttribute('placeholder');
 
-    // Apply saved language on load
-    if (currentLang !== 'fr') {
-        translatePage(currentLang);
+                if (originalText) {
+                    const translated = await translateText(originalText, targetLang);
+                    element.setAttribute('placeholder', translated);
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+
+            showTranslationNotification(`✅ Page translated to ${langName}`);
+        } catch (error) {
+            console.error('Translation error:', error);
+            showTranslationNotification('Translation error occurred', true);
+        }
     }
-}
 
-// Export for use in main script.js
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { captureOriginalTranslations, initLanguageSelector, translatePage };
-}
+    // Initialize language selector
+    function initLanguageSelector() {
+        const languageToggle = document.getElementById('languageToggle');
+        if (!languageToggle) return;
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+        const currentLang = localStorage.getItem('selectedLang') || 'fr';
+
+        // Create dropdown
+        const dropdown = document.createElement('select');
+        dropdown.id = 'languageDropdown';
+        dropdown.className = 'lang-toggle language-select';
+
+        // Add options
+        languages.forEach(lang => {
+            const option = document.createElement('option');
+            option.value = lang.code;
+            option.textContent = `${lang.flag} ${lang.name}`;
+            if (lang.code === currentLang) {
+                option.selected = true;
+            }
+            dropdown.appendChild(option);
+        });
+
+        // Replace button with dropdown
+        languageToggle.parentNode.replaceChild(dropdown, languageToggle);
+
+        // Handle language change
+        dropdown.addEventListener('change', async (e) => {
+            const newLang = e.target.value;
+            localStorage.setItem('selectedLang', newLang);
+
+            dropdown.disabled = true;
+            dropdown.style.opacity = '0.5';
+
+            await translatePage(newLang);
+
+            dropdown.disabled = false;
+            dropdown.style.opacity = '1';
+        });
+
+        // Apply saved language on load
+        if (currentLang !== 'fr') {
+            translatePage(currentLang);
+        }
+    }
+
+    // Initialize translation system
     captureOriginalTranslations();
     initLanguageSelector();
-});
+}); // <-- This was missing!
+
+// Theme Toggle Functionality
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+
+if (themeToggle) {
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    if (currentTheme === 'light') {
+        body.classList.add('light-mode');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            themeToggle.style.transform = 'rotate(0deg)';
+        }, 300);
+    });
+}

@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            const langName = (languages.find(l => l.code === targetLang)?.name) || targetLang;
             showTranslationNotification(`✅ Page traduite en ${langName}`);
         } catch (error) {
             console.error('Translation error:', error);

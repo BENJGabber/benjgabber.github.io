@@ -650,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
             if (manualApplied) {
                 showTranslationNotification(`✅ Page affichée en ${langName}`);
             } else {

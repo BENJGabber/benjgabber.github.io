@@ -265,6 +265,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const TRANSLATION_CACHE_KEY = 'translationCache';
     const CACHE_EXPIRY_DAYS = 7;
+    const originalTranslations = {};
+    const originalPlaceholders = {};
+    const manualTranslations = {
+        en: {
+            'nav.brand': 'My Portfolio',
+            'nav.home': 'Home',
+            'nav.about': 'About',
+            'nav.journey': 'Journey & Experience',
+            'nav.projects': 'Projects',
+            'nav.articles': 'Articles',
+            'nav.contact': 'Contact',
+            'hero.title': 'Hello, welcome to my interactive portfolio',
+            'hero.subtitle': 'Student in Terminal Bac Pro C.I.E.L',
+            'hero.description': "Passionate about IT and electronics, I am currently developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to continue my studies in cybersecurity while applying my knowledge to real-world projects.",
+            'hero.ctaJourney': 'My journey',
+            'hero.ctaArticles': 'Articles',
+            'hero.discover': 'Discover my world\n                    <span class="scroll-arrow">↓</span>',
+            'about.title': 'About me',
+            'about.subtitle': 'Student in Bac Pro C.I.E.L',
+            'about.email': '📧 Email:',
+            'about.phone': '📱 Phone:',
+            'about.address': '📍 Address:',
+            'about.age': '🎂 Age:',
+            'about.profile': 'Profile',
+            'about.objectives': 'Goals',
+            'about.profileText': 'Motivated student in the Bac Pro CIEL (Cybersecurity, IT and Networks, Electronics). I am passionate about computers in general, especially repair, user support and network management. My journey has helped me build strong skills in programming, network administration and cybersecurity. I also self-train in troubleshooting and maintenance.',
+            'about.objectivesText': "My goal is to continue my studies, ideally through a work-study program so I can progressively enter the professional world. I would love to work in device repair, but I would also enjoy roles in network and IT management."
+        }
+    };
+    const manualPlaceholderTranslations = {
+        en: {}
+    };
+
+    function captureOriginalTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.dataset.i18n;
+            if (!key) return;
+            if (!originalTranslations[key]) {
+                originalTranslations[key] = element.innerHTML.trim();
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const key = element.dataset.i18nPlaceholder;
+            if (!key) return;
+            if (!originalPlaceholders[key]) {
+                originalPlaceholders[key] = element.getAttribute('placeholder');
+            }
+        });
+    }
+
+    function applyManualTranslations(targetLang) {
+        if (targetLang === 'fr') {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (!key) return;
+                const fallback = originalTranslations[key];
+                if (fallback) {
+                    element.innerHTML = fallback;
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.dataset.i18nPlaceholder;
+                if (!key) return;
+                const fallback = originalPlaceholders[key];
+                if (fallback) {
+                    element.setAttribute('placeholder', fallback);
+                }
+            });
+            return true;
+        }
+
+        const langData = manualTranslations[targetLang];
+        const placeholderData = manualPlaceholderTranslations[targetLang];
+        if (!langData && !placeholderData) return false;
+
+        if (langData) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (!key) return;
+                const translation = langData[key];
+                const fallback = originalTranslations[key];
+                if (translation) {
+                    element.innerHTML = translation;
+                } else if (fallback) {
+                    element.innerHTML = fallback;
+                }
+            });
+        }
+
+        if (placeholderData) {
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.dataset.i18nPlaceholder;
+                if (!key) return;
+                const translation = placeholderData[key];
+                const fallback = originalPlaceholders[key];
+                if (translation) {
+                    element.setAttribute('placeholder', translation);
+                } else if (fallback) {
+                    element.setAttribute('placeholder', fallback);
+                }
+            });
+        }
+        return true;
+    }
+
+    captureOriginalTranslations();
 
     // Langues disponibles
     const languages = [{
@@ -373,7 +481,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Translation function using LibreTranslate
     async function translateText(text, targetLang) {
-        if (targetLang === 'fr' || !text) return text;
+        if (!text) return text;
+        if (targetLang === 'fr') return text;
 
         // Check cache first
         const cached = getCachedTranslation(text, targetLang);
@@ -384,12 +493,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: JSON.stringify({
                     q: text,
-                    source: 'fr',
+                    source: 'auto',
                     target: targetLang,
                     format: 'text'
                 }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 }
             });
 
@@ -479,9 +589,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Translate all elements with data-i18n
     async function translatePage(targetLang) {
-        if (targetLang === 'fr') {
-            // Reload page to restore original French text
-            location.reload();
+        if (applyManualTranslations(targetLang)) {
+            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            showTranslationNotification(`✅ Page affichée en ${langName}`);
             return;
         }
 
@@ -496,10 +606,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Translate text content
             for (const element of elements) {
-                const originalText = element.textContent.trim();
+                const key = element.dataset.i18n;
+                const originalText = key ? (originalTranslations[key] || element.textContent.trim()) : element.textContent.trim();
                 if (originalText) {
                     const translated = await translateText(originalText, targetLang);
-                    element.textContent = translated;
+                    element.innerHTML = translated;
                     translatedCount++;
 
                     // Small delay to avoid rate limiting
@@ -509,7 +620,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Translate placeholders
             for (const element of placeholderElements) {
-                const originalText = element.getAttribute('placeholder');
+                const key = element.dataset.i18nPlaceholder;
+                const originalText = key ? (originalPlaceholders[key] || element.getAttribute('placeholder')) : element.getAttribute('placeholder');
                 if (originalText) {
                     const translated = await translateText(originalText, targetLang);
                     element.setAttribute('placeholder', translated);
@@ -519,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const langName = (languages.find(l => l.code === targetLang)?.name) || targetLang;
+            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
             showTranslationNotification(`✅ Page traduite en ${langName}`);
         } catch (error) {
             console.error('Translation error:', error);
@@ -538,22 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create dropdown
         const dropdown = document.createElement('select');
         dropdown.id = 'languageDropdown';
-        dropdown.className = 'lang-toggle';
-        dropdown.style.cssText = `
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 6px 12px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            appearance: none;
-            padding-right: 30px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-        `;
+        dropdown.className = 'lang-toggle language-select';
 
         // Add options
         languages.forEach(lang => {

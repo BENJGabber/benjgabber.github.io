@@ -591,10 +591,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Translate all elements with data-i18n
     async function translatePage(targetLang) {
+
         const manualApplied = applyManualTranslations(targetLang);
         if (!manualApplied) {
             showTranslationNotification('Traduction en cours...');
         }
+
 
         const elements = document.querySelectorAll('[data-i18n]');
         const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
@@ -612,12 +614,14 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(el => !el.hasAttribute('data-i18n'));
 
         let translatedCount = 0;
+
         try {
             // Translate text content for keyed elements (skip keys already handled manually)
             for (const element of elements) {
                 const key = element.dataset.i18n;
                 const originalText = key ? (originalTranslations[key] || element.textContent.trim()) : element.textContent.trim();
                 if (originalText) {
+
                     if (!manualKeys.has(key)) {
                         const translated = await translateText(originalText, targetLang);
                         element.innerHTML = translated;
@@ -646,11 +650,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const translated = await translateText(originalText, targetLang);
                     element.setAttribute('placeholder', translated);
                     translatedCount++;
+
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }
             }
 
             const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
+
             if (manualApplied) {
                 showTranslationNotification(`✅ Page affichée en ${langName}`);
             } else {

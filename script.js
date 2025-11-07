@@ -273,8 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.home': 'Home',
             'nav.about': 'About',
             'nav.journey': 'Journey & Experience',
+            'nav.path': 'Journey & Experience',
             'nav.projects': 'Projects',
             'nav.articles': 'Articles',
+            'nav.forum': 'Forum',
             'nav.contact': 'Contact',
             'hero.title': 'Hello, welcome to my interactive portfolio',
             'hero.subtitle': 'Student in Terminal Bac Pro C.I.E.L',
@@ -589,31 +591,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Translate all elements with data-i18n
     async function translatePage(targetLang) {
-        if (applyManualTranslations(targetLang)) {
-            const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
-            showTranslationNotification(`✅ Page affichée en ${langName}`);
-            return;
+        const manualApplied = applyManualTranslations(targetLang);
+        if (!manualApplied) {
+            showTranslationNotification('Traduction en cours...');
         }
-
-        showTranslationNotification('Traduction en cours...');
 
         const elements = document.querySelectorAll('[data-i18n]');
         const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+        const manualKeys = new Set(Object.keys(manualTranslations[targetLang] || {}));
+
+        // Additional auto elements without explicit data-i18n (site-wide common content)
+        const autoSelectors = [
+            '.projects-section h1', '.projects-section h2', '.projects-section h3', '.projects-section p', '.projects-section li',
+            '.formation-section h1', '.formation-section h2', '.formation-section h3', '.formation-section p',
+            '.experience-card h3', '.experience-card p', '.experience-company', '.experience-date',
+            '.forum-section h1', '.forum-section .forum-subtitle', '.forum-section .no-results h3', '.forum-section .no-results p',
+            '.contact-section h1', '.contact-section h3', '.contact-section p', '.contact-section .message'
+        ];
+        const autoElements = Array.from(document.querySelectorAll(autoSelectors.join(',')))
+            .filter(el => !el.hasAttribute('data-i18n'));
 
         let translatedCount = 0;
-        const total = elements.length + placeholderElements.length;
-
         try {
-            // Translate text content
+            // Translate text content for keyed elements (skip keys already handled manually)
             for (const element of elements) {
                 const key = element.dataset.i18n;
                 const originalText = key ? (originalTranslations[key] || element.textContent.trim()) : element.textContent.trim();
                 if (originalText) {
-                    const translated = await translateText(originalText, targetLang);
-                    element.innerHTML = translated;
+                    if (!manualKeys.has(key)) {
+                        const translated = await translateText(originalText, targetLang);
+                        element.innerHTML = translated;
+                    }
                     translatedCount++;
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
 
-                    // Small delay to avoid rate limiting
+            // Translate additional auto-detected elements (no keys)
+            for (const element of autoElements) {
+                const originalText = element.textContent.trim();
+                if (originalText) {
+                    const translated = await translateText(originalText, targetLang);
+                    element.textContent = translated;
+                    translatedCount++;
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }
             }
@@ -626,13 +646,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const translated = await translateText(originalText, targetLang);
                     element.setAttribute('placeholder', translated);
                     translatedCount++;
-
                     await new Promise(resolve => setTimeout(resolve, 100));
                 }
             }
 
-            const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
-            showTranslationNotification(`✅ Page traduite en ${langName}`);
+            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            if (manualApplied) {
+                showTranslationNotification(`✅ Page affichée en ${langName}`);
+            } else {
+                showTranslationNotification(`✅ Page traduite en ${langName}`);
+            }
         } catch (error) {
             console.error('Translation error:', error);
             showTranslationNotification('Erreur de traduction', true);

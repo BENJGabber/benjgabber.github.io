@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Translate all elements with data-i18n
     async function translatePage(targetLang) {
         if (applyManualTranslations(targetLang)) {
-            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
             showTranslationNotification(`✅ Page affichée en ${langName}`);
             return;
         }
@@ -631,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const langName = (languages.find(l => l.code === targetLang) ? .name) || targetLang;
+            const langName = (languages.find(l => l.code === targetLang) ?.name) || targetLang;
             showTranslationNotification(`✅ Page traduite en ${langName}`);
         } catch (error) {
             console.error('Translation error:', error);

@@ -307,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'projects.why.desc.two': "It's also a testing ground: accessibility, responsive design, light/dark mode, and integration of dynamic content (articles, experiences, contacts). With each update, I improve the structure, performance, and usability.",
             'projects.past': 'My past projects',
             'projects.onlineLaunchpad': "The 'Launchpad' website replicates a musical device called a 'launchpad' which supposedly allowed users to create sounds using buttons. This project allowed me to discover the basics of JavaScript while testing my existing HTML and CSS skills, acquired through my coursework and a mini-website I created during my final year of middle-school internship.",
+            'projects.LDLCLONE': "I created a website that was a clone of the online sales platform 'LDLC,' with a simple interface using the colors of the Saint-Luc school logo. However, I ended up changing projects because it was far too ambitious and I lacked the necessary skills to complete it properly. I even tried learning React to develop it, but I still wasn't able to do it correctly",
             'projects.learned.title': 'What I learned',
             'contact.title': 'Contact Me',
             'contact.subtitle': 'A question? A project? Feel free to contact me!',

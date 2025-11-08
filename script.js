@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.forum': 'Forum',
             'nav.contact': 'Contact',
             'hero.title': 'Hello, welcome to my interactive portfolio',
-            'hero.subtitle': 'Student in Terminal Bac Pro C.I.E.L',
+            'hero.subtitle': 'Student in Final year of Professionnal C.I.E.L Baccalaureate',
             'hero.description': "Passionate about IT and electronics, I am currently developing my technical skills in networking, electronics, web development and cybersecurity. My goal is to continue my studies in cybersecurity while applying my knowledge to real-world projects.",
             'hero.ctaJourney': 'My journey',
             'hero.ctaArticles': 'Articles',

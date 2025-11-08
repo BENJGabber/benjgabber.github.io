@@ -303,6 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'projects.title': 'My Projects & Learning',
             'projects.subtitle': 'Why this project, my past projects and what I learned from them',
             'projects.why.title': 'Why I chose this project',
+            'projects.why.desc': "I chose to create this portfolio as my main project because it brings together my interests: web development, clearly presenting my career path, and showcasing my technical skills. This site allows me to practice HTML, CSS, and JavaScript while creating a professional tool for my job applications and network. It's also a testing ground: accessibility, responsive design, light/dark mode, and integration of dynamic content (articles, experiences, contacts). With each update, I improve the structure, performance, and usability.",
             'projects.past': 'My past projects',
             'projects.onlineLaunchpad': "I chose to create this portfolio as my main project because it brings together my interests: web development, clearly presenting my career path, and showcasing my technical skills. This site allows me to practice HTML, CSS, and JavaScript while creating a professional tool for my job applications and network. It's also a testing ground: accessibility, responsive design, light/dark mode, and integration of dynamic content (articles, experiences, contacts). With each update, I improve the structure, performance, and usability.",
             'projects.learned.title': 'What I learned',

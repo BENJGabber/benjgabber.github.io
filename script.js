@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const CACHE_EXPIRY_DAYS = 7;
     const originalTranslations = {};
     const originalPlaceholders = {};
+    const originalAria = {};
 
     // Manual translations for English (instant display)
     const manualTranslations = {
@@ -372,10 +373,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.retry': 'Retry',
             'forum.noresults.title': 'No discussion found',
             'forum.noresults.desc': 'Try another search or refresh the page'
+                ,
+                'back.toTop': 'Back to top'
         }
 
             ,
             es: {
+                        'back.toTop': 'Volver arriba',
             'nav.brand': 'Mi Portafolio',
             'nav.home': 'Inicio',
             'nav.about': 'Sobre mí',
@@ -528,6 +532,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!key) return;
             if (!originalPlaceholders[key]) {
                 originalPlaceholders[key] = element.getAttribute('placeholder');
+            }
+        });
+
+        // Capture original aria-labels for elements that require aria translation
+        document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+            const key = element.dataset.i18nAria;
+            if (!key) return;
+            if (!originalAria[key]) {
+                originalAria[key] = element.getAttribute('aria-label');
             }
         });
     }
@@ -692,6 +705,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('placeholder', originalPlaceholders[key]);
                 }
             });
+
+            // Restore original aria-labels
+            document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+                const key = element.dataset.i18nAria;
+                if (originalAria[key]) {
+                    element.setAttribute('aria-label', originalAria[key]);
+                }
+            });
             return true;
         }
 
@@ -713,6 +734,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const key = element.dataset.i18nPlaceholder;
                     if (placeholderData[key]) {
                         element.setAttribute('placeholder', placeholderData[key]);
+                    }
+                });
+            }
+
+            // Apply aria-label translations when available
+            if (langData) {
+                document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+                    const key = element.dataset.i18nAria;
+                    if (langData[key]) {
+                        element.setAttribute('aria-label', langData[key]);
                     }
                 });
             }

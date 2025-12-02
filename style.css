@@ -2468,6 +2468,19 @@ body.light-mode .cv-btn {
     height: 24px;
 }
 
+/* Visually hide text but keep it available to screen readers */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 /* Light Mode */
 body.light-mode .back-to-top {
     background: linear-gradient(135deg, #4500b4 0%, #3a0099 100%);

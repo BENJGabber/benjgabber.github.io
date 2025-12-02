@@ -106,19 +106,49 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => hint.remove(), 1500);
     }
 
-    function showEasterEgg() {
-        const facts = [
-            "🎮 Fun Fact: J'adore démonter et réparer des appareils électroniques depuis mon plus jeune âge !",
-            "🔧 Fun Fact: Mon premier ordinateur que j'ai démonté était un vieux PC sous Windows vista qui appartenait a ma tante !",
-            "💻 Fun Fact: J'ai appris le HTML/CSS en créant un site pendent mon tout premier stage de 3ème !",
-            "🎯 Fun Fact: Mon rêve est de travailler dans la cybersécurité ou la réparation électronique !",
-            "🌟 Fun Fact: Je passe mon temps libre a écouter de la musique en jouant a des jeux ou même en travaillant !",
-            "🛠️ Fun Fact: J'ai réparé plus de 20 ordinateurs pendant mes stages !",
-            "📱 Fun Fact: Mon premier site web était un clone de LDLC (un peu trop ambitieux 😅) !",
-            "🎨 Fun Fact: Je compte me servir de ce Portfolio comme un artiste utiliserait un Portfolio, un peu comme un complément de CV !"
-        ];
+    const EASTER_FACTS = {
+        fr: [
+            "🎮 Fun Fact : J'adore démonter et réparer des appareils électroniques depuis mon plus jeune âge !",
+            "🔧 Fun Fact : Mon premier ordinateur démonté était un vieux PC sous Windows Vista appartenant à ma tante !",
+            "💻 Fun Fact : J'ai appris le HTML/CSS en créant un site pendant mon premier stage de 3ème !",
+            "🎯 Fun Fact : Mon rêve est de travailler dans la cybersécurité ou la réparation électronique !",
+            "🌟 Fun Fact : Je passe mon temps libre à écouter de la musique, jouer à des jeux ou coder des projets perso !",
+            "🛠️ Fun Fact : J'ai réparé plus de 20 ordinateurs pendant mes stages !",
+            "📱 Fun Fact : Mon premier site web était un clone de LDLC (un peu trop ambitieux 😅) !",
+            "🎨 Fun Fact : J'utilise ce portfolio comme un complément artistique à mon CV."
+        ],
+        en: [
+            "🎮 Fun Fact: I've loved taking apart and repairing electronic devices since I was very young!",
+            "🔧 Fun Fact: The first computer I disassembled was an old Windows Vista PC that belonged to my aunt!",
+            "💻 Fun Fact: I learned HTML/CSS by building a site during my very first internship in middle school!",
+            "🎯 Fun Fact: My dream is to work in cybersecurity or electronic repair!",
+            "🌟 Fun Fact: In my free time I listen to music, play games, and work on personal projects!",
+            "🛠️ Fun Fact: I repaired over 20 computers during my internships!",
+            "📱 Fun Fact: My first website was a clone of LDLC (a bit too ambitious 😅)!",
+            "🎨 Fun Fact: I use this portfolio like an artist uses a portfolio — as a complement to my CV."
+        ],
+        es: [
+            "🎮 Fun Fact: ¡Me encanta desmontar y reparar dispositivos electrónicos desde muy joven!",
+            "🔧 Fun Fact: El primer ordenador que desmonté fue un viejo PC con Windows Vista que pertenecía a mi tía!",
+            "💻 Fun Fact: Aprendí HTML/CSS creando un sitio durante mis primeras prácticas en la escuela secundaria!",
+            "🎯 Fun Fact: ¡Mi sueño es trabajar en ciberseguridad o en la reparación electrónica!",
+            "🌟 Fun Fact: En mi tiempo libre escucho música, juego y trabajo en proyectos personales!",
+            "🛠️ Fun Fact: ¡He reparado más de 20 ordenadores durante mis prácticas!",
+            "📱 Fun Fact: Mi primer sitio web fue un clon de LDLC (¡un poco demasiado ambicioso 😅)!",
+            "🎨 Fun Fact: Utilizo este portafolio como un complemento artístico a mi CV."
+        ]
+    };
 
+    function showEasterEgg() {
+        const selectedLang = localStorage.getItem('selectedLang') || 'fr';
+        const facts = EASTER_FACTS[selectedLang] || EASTER_FACTS.fr;
         const randomFact = facts[Math.floor(Math.random() * facts.length)];
+
+        // Modal strings (fallback to French)
+        const manualLang = manualTranslations[selectedLang] || {};
+        const modalTitle = manualLang['easter.title'] || (selectedLang === 'en' ? 'Congrats! You found the Easter Egg!' : (selectedLang === 'es' ? '¡Felicidades! ¡Has encontrado el Easter Egg!' : 'Bravo ! Vous avez trouvé l\'Easter Egg !'));
+        const closeLabel = manualLang['easter.close'] || (selectedLang === 'en' ? 'Close' : (selectedLang === 'es' ? 'Cerrar' : 'Fermer'));
+
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -145,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.innerHTML = `
             <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Bravo ! Vous avez trouvé l'Easter Egg !</h2>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">${modalTitle}</h2>
             <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">${randomFact}</p>
             <button id="closeEasterEgg" style="
                 background: white;
@@ -157,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
-            ">Fermer</button>
+            ">${closeLabel}</button>
         `;
 
         overlay.appendChild(modal);

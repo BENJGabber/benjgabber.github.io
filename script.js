@@ -59,10 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const selLang = localStorage.getItem('selectedLang') || 'fr';
+            const hints = CLICK_HINTS[selLang] || CLICK_HINTS.fr;
+
             if (clickCount === 5) {
-                showClickHint('À mi-chemin... 🤔');
+                showClickHint(hints.half);
             } else if (clickCount === 8) {
-                showClickHint('Encore un peu... 👀');
+                showClickHint(hints.almost);
             }
             return;
         });
@@ -105,6 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(hint);
         setTimeout(() => hint.remove(), 1500);
     }
+
+    // Click hint translations
+    const CLICK_HINTS = {
+        fr: { half: 'À mi-chemin... 🤔', almost: 'Encore un peu... 👀' },
+        en: { half: 'Halfway... 🤔', almost: 'Almost there... 👀' },
+        es: { half: '¡A mitad de camino... 🤔', almost: '¡Casi listo... 👀' }
+    };
 
     const EASTER_FACTS = {
         fr: [

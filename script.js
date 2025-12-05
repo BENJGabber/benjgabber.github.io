@@ -930,11 +930,49 @@ if (backToTopButton) {
         }
     });
 
-    // Scroll to top on click
-    backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+    // Smooth scroll helper (works as a reliable fallback when native
+    // `behavior: 'smooth'` isn't supported or for finer control)
+    function smoothScrollToTop(duration = 600) {
+        const start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (start <= 0) return;
+        const startTime = performance.now();
+
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutCubic(progress);
+            const y = Math.round(start * (1 - eased));
+            window.scrollTo(0, y);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // Scroll to top on click — prefer native smooth when available
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const supportsNativeSmooth = (function() {
+            try {
+                if (typeof CSS !== 'undefined' && CSS.supports) {
+                    return CSS.supports('scroll-behavior', 'smooth');
+                }
+            } catch (err) {}
+            return 'scrollBehavior' in document.documentElement.style;
+        })();
+
+        if (supportsNativeSmooth) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // Fallback animation for older browsers
+            smoothScrollToTop(600);
+        }
     });
 }

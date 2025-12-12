@@ -846,7 +846,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize language selector
     function initLanguageSelector() {
         const languageToggle = document.getElementById('languageToggle');
-        if (!languageToggle) return;
+        const languageToggleMobile = document.getElementById('languageToggleMobile');
+        if (!languageToggle && !languageToggleMobile) return;
 
         const currentLang = localStorage.getItem('selectedLang') || 'fr';
 
@@ -866,8 +867,26 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.appendChild(option);
         });
 
-        // Replace button with dropdown
-        languageToggle.parentNode.replaceChild(dropdown, languageToggle);
+        // Replace button with dropdown for desktop
+        if (languageToggle) {
+            languageToggle.parentNode.replaceChild(dropdown, languageToggle);
+        }
+
+        // Also replace for mobile if exists
+        if (languageToggleMobile) {
+            const mobileDropdown = dropdown.cloneNode(true);
+            mobileDropdown.id = 'languageDropdownMobile';
+            languageToggleMobile.parentNode.replaceChild(mobileDropdown, languageToggleMobile);
+
+            // Sync the two dropdowns
+            mobileDropdown.addEventListener('change', (e) => {
+                dropdown.value = e.target.value;
+                dropdown.dispatchEvent(new Event('change'));
+            });
+            dropdown.addEventListener('change', (e) => {
+                mobileDropdown.value = e.target.value;
+            });
+        }
 
         // Handle language change
         dropdown.addEventListener('change', async (e) => {
@@ -876,11 +895,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dropdown.disabled = true;
             dropdown.style.opacity = '0.5';
+            if (mobileDropdown) {
+                mobileDropdown.disabled = true;
+                mobileDropdown.style.opacity = '0.5';
+            }
 
             await translatePage(newLang);
 
             dropdown.disabled = false;
             dropdown.style.opacity = '1';
+            if (mobileDropdown) {
+                mobileDropdown.disabled = false;
+                mobileDropdown.style.opacity = '1';
+            }
         });
 
         // Apply saved language on load
@@ -896,24 +923,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Theme Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
+const themeToggleMobile = document.getElementById('themeToggleMobile');
 const body = document.body;
 
-if (themeToggle) {
+function initThemeToggle(toggle) {
+    if (!toggle) return;
     const currentTheme = localStorage.getItem('theme') || 'dark';
     if (currentTheme === 'light') {
         body.classList.add('light-mode');
     }
 
-    themeToggle.addEventListener('click', () => {
+    toggle.addEventListener('click', () => {
         body.classList.toggle('light-mode');
         const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
         localStorage.setItem('theme', theme);
-        themeToggle.style.transform = 'rotate(360deg)';
+        toggle.style.transform = 'rotate(360deg)';
         setTimeout(() => {
-            themeToggle.style.transform = 'rotate(0deg)';
+            toggle.style.transform = 'rotate(0deg)';
         }, 300);
     });
 }
+
+if (themeToggle) initThemeToggle(themeToggle);
+if (themeToggleMobile) initThemeToggle(themeToggleMobile);
 
 // ===========================
 // BACK TO TOP BUTTON

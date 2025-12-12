@@ -374,6 +374,15 @@ body.light-mode .language-select option {
     color: #4500b4;
 }
 
+.side-menu-toggles {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
 
 /* Formation Section */
 

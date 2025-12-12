@@ -519,6 +519,7 @@ body.light-mode .language-select option {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(139, 92, 246, 0.2);
     animation: fadeInUp 1s ease-out;
+    overflow: hidden;
 }
 
 .cv-image {
@@ -527,7 +528,7 @@ body.light-mode .language-select option {
 
 .image-placeholder {
     width: min(300px, 90vw);
-    height: 360px;
+    height: min(360px, 70vh);
     background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
     border-radius: 15px;
     display: flex;
@@ -732,8 +733,8 @@ html {
 
     .image-placeholder {
         width: 100%;
-        max-width: 320px;
-        height: 360px;
+        max-width: min(320px, 90vw);
+        height: min(360px, 50vh);
     }
 
     .cv-info h3 {

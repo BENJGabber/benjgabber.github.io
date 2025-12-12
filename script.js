@@ -59,10 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const selLang = localStorage.getItem('selectedLang') || 'fr';
+            const hints = CLICK_HINTS[selLang] || CLICK_HINTS.fr;
+
             if (clickCount === 5) {
-                showClickHint('À mi-chemin... 🤔');
+                showClickHint(hints.half);
             } else if (clickCount === 8) {
-                showClickHint('Encore un peu... 👀');
+                showClickHint(hints.almost);
             }
             return;
         });
@@ -106,19 +109,56 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => hint.remove(), 1500);
     }
 
-    function showEasterEgg() {
-        const facts = [
-            "🎮 Fun Fact: J'adore démonter et réparer des appareils électroniques depuis mon plus jeune âge !",
-            "🔧 Fun Fact: Mon premier ordinateur que j'ai démonté était un vieux PC sous Windows vista qui appartenait a ma tante !",
-            "💻 Fun Fact: J'ai appris le HTML/CSS en créant un site pendent mon tout premier stage de 3ème !",
-            "🎯 Fun Fact: Mon rêve est de travailler dans la cybersécurité ou la réparation électronique !",
-            "🌟 Fun Fact: Je passe mon temps libre a écouter de la musique en jouant a des jeux ou même en travaillant !",
-            "🛠️ Fun Fact: J'ai réparé plus de 20 ordinateurs pendant mes stages !",
-            "📱 Fun Fact: Mon premier site web était un clone de LDLC (un peu trop ambitieux 😅) !",
-            "🎨 Fun Fact: Je compte me servir de ce Portfolio comme un artiste utiliserait un Portfolio, un peu comme un complément de CV !"
-        ];
+    // Click hint translations
+    const CLICK_HINTS = {
+        fr: { half: 'À mi-chemin... 🤔', almost: 'Encore un peu... 👀' },
+        en: { half: 'Halfway... 🤔', almost: 'Almost there... 👀' },
+        es: { half: '¡A mitad de camino... 🤔', almost: '¡Casi listo... 👀' }
+    };
 
+    const EASTER_FACTS = {
+        fr: [
+            "🎮 Fun Fact : J'adore démonter et réparer des appareils électroniques depuis mon plus jeune âge !",
+            "🔧 Fun Fact : Mon premier ordinateur démonté était un vieux PC sous Windows Vista appartenant à ma tante !",
+            "💻 Fun Fact : J'ai appris le HTML/CSS en créant un site pendant mon premier stage de 3ème !",
+            "🎯 Fun Fact : Mon rêve est de travailler dans la cybersécurité ou la réparation électronique !",
+            "🌟 Fun Fact : Je passe mon temps libre à écouter de la musique, jouer à des jeux ou coder des projets perso !",
+            "🛠️ Fun Fact : J'ai réparé plus de 20 ordinateurs pendant mes stages !",
+            "📱 Fun Fact : Mon premier site web était un clone de LDLC (un peu trop ambitieux 😅) !",
+            "🎨 Fun Fact : J'utilise ce portfolio comme un complément artistique à mon CV."
+        ],
+        en: [
+            "🎮 Fun Fact: I've loved taking apart and repairing electronic devices since I was very young!",
+            "🔧 Fun Fact: The first computer I disassembled was an old Windows Vista PC that belonged to my aunt!",
+            "💻 Fun Fact: I learned HTML/CSS by building a site during my very first internship in middle school!",
+            "🎯 Fun Fact: My dream is to work in cybersecurity or electronic repair!",
+            "🌟 Fun Fact: In my free time I listen to music, play games, and work on personal projects!",
+            "🛠️ Fun Fact: I repaired over 20 computers during my internships!",
+            "📱 Fun Fact: My first website was a clone of LDLC (a bit too ambitious 😅)!",
+            "🎨 Fun Fact: I use this portfolio like an artist uses a portfolio — as a complement to my CV."
+        ],
+        es: [
+            "🎮 Fun Fact: ¡Me encanta desmontar y reparar dispositivos electrónicos desde muy joven!",
+            "🔧 Fun Fact: El primer ordenador que desmonté fue un viejo PC con Windows Vista que pertenecía a mi tía!",
+            "💻 Fun Fact: Aprendí HTML/CSS creando un sitio durante mis primeras prácticas en la escuela secundaria!",
+            "🎯 Fun Fact: ¡Mi sueño es trabajar en ciberseguridad o en la reparación electrónica!",
+            "🌟 Fun Fact: En mi tiempo libre escucho música, juego y trabajo en proyectos personales!",
+            "🛠️ Fun Fact: ¡He reparado más de 20 ordenadores durante mis prácticas!",
+            "📱 Fun Fact: Mi primer sitio web fue un clon de LDLC (¡un poco demasiado ambicioso 😅)!",
+            "🎨 Fun Fact: Utilizo este portafolio como un complemento artístico a mi CV."
+        ]
+    };
+
+    function showEasterEgg() {
+        const selectedLang = localStorage.getItem('selectedLang') || 'fr';
+        const facts = EASTER_FACTS[selectedLang] || EASTER_FACTS.fr;
         const randomFact = facts[Math.floor(Math.random() * facts.length)];
+
+        // Modal strings (fallback to French)
+        const manualLang = manualTranslations[selectedLang] || {};
+        const modalTitle = manualLang['easter.title'] || (selectedLang === 'en' ? 'Congrats! You found the Easter Egg!' : (selectedLang === 'es' ? '¡Felicidades! ¡Has encontrado el Easter Egg!' : 'Bravo ! Vous avez trouvé l\'Easter Egg !'));
+        const closeLabel = manualLang['easter.close'] || (selectedLang === 'en' ? 'Close' : (selectedLang === 'es' ? 'Cerrar' : 'Fermer'));
+
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -145,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         modal.innerHTML = `
             <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
-            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Bravo ! Vous avez trouvé l'Easter Egg !</h2>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: white;">${modalTitle}</h2>
             <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">${randomFact}</p>
             <button id="closeEasterEgg" style="
                 background: white;
@@ -157,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 font-weight: 600;
                 cursor: pointer;
                 transition: all 0.3s ease;
-            ">Fermer</button>
+            ">${closeLabel}</button>
         `;
 
         overlay.appendChild(modal);
@@ -269,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const CACHE_EXPIRY_DAYS = 7;
     const originalTranslations = {};
     const originalPlaceholders = {};
+    const originalAria = {};
 
     // Manual translations for English (instant display)
     const manualTranslations = {
@@ -372,10 +413,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.retry': 'Retry',
             'forum.noresults.title': 'No discussion found',
             'forum.noresults.desc': 'Try another search or refresh the page'
+                ,
+                'back.toTop': 'Back to top'
         }
 
             ,
             es: {
+                        'back.toTop': 'Volver arriba',
             'nav.brand': 'Mi Portafolio',
             'nav.home': 'Inicio',
             'nav.about': 'Sobre mí',
@@ -528,6 +572,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!key) return;
             if (!originalPlaceholders[key]) {
                 originalPlaceholders[key] = element.getAttribute('placeholder');
+            }
+        });
+
+        // Capture original aria-labels for elements that require aria translation
+        document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+            const key = element.dataset.i18nAria;
+            if (!key) return;
+            if (!originalAria[key]) {
+                originalAria[key] = element.getAttribute('aria-label');
             }
         });
     }
@@ -692,6 +745,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     element.setAttribute('placeholder', originalPlaceholders[key]);
                 }
             });
+
+            // Restore original aria-labels
+            document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+                const key = element.dataset.i18nAria;
+                if (originalAria[key]) {
+                    element.setAttribute('aria-label', originalAria[key]);
+                }
+            });
             return true;
         }
 
@@ -713,6 +774,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const key = element.dataset.i18nPlaceholder;
                     if (placeholderData[key]) {
                         element.setAttribute('placeholder', placeholderData[key]);
+                    }
+                });
+            }
+
+            // Apply aria-label translations when available
+            if (langData) {
+                document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+                    const key = element.dataset.i18nAria;
+                    if (langData[key]) {
+                        element.setAttribute('aria-label', langData[key]);
                     }
                 });
             }
@@ -841,5 +912,67 @@ if (themeToggle) {
         setTimeout(() => {
             themeToggle.style.transform = 'rotate(0deg)';
         }, 300);
+    });
+}
+
+// ===========================
+// BACK TO TOP BUTTON
+// ===========================
+const backToTopButton = document.getElementById('backToTop');
+
+if (backToTopButton) {
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    // Smooth scroll helper (works as a reliable fallback when native
+    // `behavior: 'smooth'` isn't supported or for finer control)
+    function smoothScrollToTop(duration = 600) {
+        const start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (start <= 0) return;
+        const startTime = performance.now();
+
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        function step(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutCubic(progress);
+            const y = Math.round(start * (1 - eased));
+            window.scrollTo(0, y);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // Scroll to top on click — prefer native smooth when available
+    backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const supportsNativeSmooth = (function() {
+            try {
+                if (typeof CSS !== 'undefined' && CSS.supports) {
+                    return CSS.supports('scroll-behavior', 'smooth');
+                }
+            } catch (err) {}
+            return 'scrollBehavior' in document.documentElement.style;
+        })();
+
+        if (supportsNativeSmooth) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            // Fallback animation for older browsers
+            smoothScrollToTop(600);
+        }
     });
 }

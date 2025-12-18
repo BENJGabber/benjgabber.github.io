@@ -72,7 +72,7 @@
                 </svg>
                 <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
+                    </svg>
             </button>
             <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
         </div>
@@ -110,16 +110,13 @@
                             <label for="message" data-i18n="contact.form.message.label">Message *</label>
                             <textarea id="message" name="message" placeholder="Votre message..." data-i18n-placeholder="contact.form.message.ph" required></textarea>
                         </div>
-
                         <!-- Honeypot (anti-bot invisible) -->
                         <div style="display:none;">
                             <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off">
                         </div>
-
                         <!-- reCAPTCHA v2 Checkbox -->
                         <div class="g-recaptcha" data-sitekey="6Lc5sy8sAAAAAAXVtrcMYWXXPMXYChJ6EQOxykxe"></div>
                         <br>
-
                         <button type="submit" class="submit-btn" id="submitBtn" data-i18n="contact.form.submit">
                             <span>Envoyer le message</span>
                             <span>✉️</span>
@@ -190,18 +187,65 @@
         (function() {
             emailjs.init({
                 publicKey: 't107x92N4c4V7GGX0',
-                // Rate limit client-side : max 1 envoi toutes les 15 secondes
                 limitRate: {
-                    throttle: 15000 // 15000 ms = 15 secondes
+                    throttle: 15000 // 15 secondes entre chaque tentative
                 }
             });
         })();
+
+        // === Fingerprinting hardcore pour limiter par "appareil" ===
+        function getFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillStyle = '#069';
+            ctx.fillText('browser fingerprint 😈', 2, 15);
+            const canvasData = canvas.toDataURL();
+
+            const data = [
+                navigator.userAgent,
+                navigator.language || navigator.userLanguage,
+                screen.width + 'x' + screen.height + 'x' + screen.colorDepth,
+                new Date().getTimezoneOffset(),
+                !!window.sessionStorage,
+                !!window.indexedDB,
+                navigator.hardwareConcurrency || 'unknown',
+                canvasData.substring(canvasData.length - 100) // dernier bout du canvas (assez unique)
+            ];
+
+            // Hash simple en base64 (pas crypto, mais suffisant pour ça)
+            return btoa(data.join('|||'));
+        }
+
+        // === Check cooldown 10 minutes par fingerprint ===
+        function canSendMessage() {
+            const fp = getFingerprint();
+            const key = 'lastMessage_' + fp;
+            const lastSend = localStorage.getItem(key);
+
+            if (!lastSend) return true;
+
+            const now = Date.now();
+            const timeSinceLast = now - parseInt(lastSend);
+            const cooldown = 10 * 60 * 1000; // 10 minutes
+
+            if (timeSinceLast < cooldown) {
+                const minutesLeft = Math.ceil((cooldown - timeSinceLast) / 60000);
+                errorMessage.textContent = `T’as déjà envoyé un message avec cet appareil. Attends ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}, spammer. 😈`;
+                errorMessage.classList.add('show');
+                setTimeout(() => errorMessage.classList.remove('show'), 8000);
+                return false;
+            }
+            return true;
+        }
 
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         const successMessage = document.getElementById('successMessage');
         const errorMessage = document.getElementById('errorMessage');
-
         const EMAIL_SERVICE_ID = 'service_7n8wk97';
         const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
         const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
@@ -209,20 +253,26 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Honeypot check
+            // 1. Honeypot
             if (document.getElementById('honeypot').value !== '') {
-                errorMessage.textContent = "Spam détecté. Va te faire voir.";
+                errorMessage.textContent = "Spam détecté. Dégage.";
                 errorMessage.classList.add('show');
                 setTimeout(() => errorMessage.classList.remove('show'), 5000);
                 return;
             }
 
-            // reCAPTCHA check
+            // 2. reCAPTCHA
             const recaptchaResponse = grecaptcha.getResponse();
             if (recaptchaResponse.length === 0) {
-                errorMessage.textContent = "Coche la case « Je ne suis pas un robot », connard.";
+                errorMessage.textContent = "Coche le CAPTCHA, trou du cul.";
                 errorMessage.classList.add('show');
                 setTimeout(() => errorMessage.classList.remove('show'), 5000);
+                return;
+            }
+
+            // 3. Fingerprint + cooldown 10 min
+            if (!canSendMessage()) {
+                grecaptcha.reset();
                 return;
             }
 
@@ -240,12 +290,7 @@
             };
 
             try {
-                // 1. Message reçu par toi
-                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, {
-                    ...formData
-                });
-
-                // 2. Auto-reply à l'expéditeur
+                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, { ...formData });
                 await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, {
                     name: formData.name,
                     email: formData.email,
@@ -253,16 +298,20 @@
                     message: formData.message
                 });
 
+                // === Enregistrement du fingerprint après succès ===
+                const fp = getFingerprint();
+                localStorage.setItem('lastMessage_' + fp, Date.now().toString());
+
                 successMessage.classList.add('show');
                 contactForm.reset();
-                grecaptcha.reset(); // Reset CAPTCHA
+                grecaptcha.reset();
                 setTimeout(() => successMessage.classList.remove('show'), 5000);
             } catch (error) {
                 console.error('Erreur EmailJS:', error);
                 if (error.text && error.text.includes('rate limit')) {
-                    errorMessage.textContent = "Trop rapide, attends un peu avant de réessayer.";
+                    errorMessage.textContent = "Trop rapide, calme-toi 15 secondes.";
                 } else {
-                    errorMessage.textContent = "Échec de l'envoi. Réessaie.";
+                    errorMessage.textContent = "Échec. Réessaie plus tard.";
                 }
                 errorMessage.classList.add('show');
                 setTimeout(() => errorMessage.classList.remove('show'), 5000);

@@ -935,12 +935,16 @@ function initFontToggle(toggle) {
     const currentFont = localStorage.getItem('font') || 'default';
     if (currentFont === 'luciole') {
         body.classList.add('luciole-mode');
+        toggle.textContent = 'Aa✓';
+    } else {
+        toggle.textContent = 'Aa';
     }
 
     toggle.addEventListener('click', () => {
         body.classList.toggle('luciole-mode');
         const font = body.classList.contains('luciole-mode') ? 'luciole' : 'default';
         localStorage.setItem('font', font);
+        toggle.textContent = font === 'luciole' ? 'Aa✓' : 'Aa';
         toggle.style.transform = 'scale(1.2)';
         setTimeout(() => {
             toggle.style.transform = 'scale(1)';

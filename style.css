@@ -4,6 +4,35 @@
     box-sizing: border-box;
 }
 
+/* Luciole Font */
+@font-face {
+    font-family: 'Luciole';
+    src: url('Fonts/Luciole-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Luciole';
+    src: url('Fonts/Luciole-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Luciole';
+    src: url('Fonts/Luciole-Regular-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Luciole';
+    src: url('Fonts/Luciole-Bold-Italic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;

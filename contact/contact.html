@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Mon Portfolio</title>
     <link rel="stylesheet" href="../style.css" />
+    <!-- reCAPTCHA script -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-
 <body>
     <!-- Navigation -->
     <nav>
@@ -46,7 +46,6 @@
             </div>
         </div>
     </nav>
-
     <!-- Side Menu -->
     <div class="side-menu" id="sideMenu">
         <ul class="side-nav-links">
@@ -78,18 +77,15 @@
             <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
         </div>
     </div>
-
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
             <h1 class="section-title" data-i18n="contact.title">Contactez-moi</h1>
             <p class="section-subtitle" data-i18n="contact.subtitle">Une question ? Un projet ? N'hésitez pas à me contacter !</p>
-
             <div class="contact-grid">
                 <!-- Formulaire de contact -->
                 <div class="contact-form-container">
                     <h3 data-i18n="contact.form.title">📨 Envoyez-moi un message</h3>
-
                     <!-- Message de succès/erreur -->
                     <div class="message success" id="successMessage" data-i18n="contact.form.success">
                         ✅ Message envoyé avec succès ! Je vous répondrai rapidement.
@@ -97,27 +93,32 @@
                     <div class="message error" id="errorMessage" data-i18n="contact.form.error">
                         ❌ Une erreur s'est produite. Veuillez réessayer.
                     </div>
-
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name" data-i18n="contact.form.name.label">Nom complet *</label>
                             <input type="text" id="name" name="name" placeholder="Votre nom" data-i18n-placeholder="contact.form.name.ph" required>
                         </div>
-
                         <div class="form-group">
                             <label for="email" data-i18n="contact.form.email.label">Email *</label>
                             <input type="email" id="email" name="email" placeholder="votre@email.com" data-i18n-placeholder="contact.form.email.ph" required>
                         </div>
-
                         <div class="form-group">
                             <label for="subject" data-i18n="contact.form.subject.label">Sujet *</label>
                             <input type="text" id="subject" name="subject" placeholder="Sujet de votre message" data-i18n-placeholder="contact.form.subject.ph" required>
                         </div>
-
                         <div class="form-group">
                             <label for="message" data-i18n="contact.form.message.label">Message *</label>
                             <textarea id="message" name="message" placeholder="Votre message..." data-i18n-placeholder="contact.form.message.ph" required></textarea>
                         </div>
+
+                        <!-- Honeypot (anti-bot invisible) -->
+                        <div style="display:none;">
+                            <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <!-- reCAPTCHA v2 Checkbox -->
+                        <div class="g-recaptcha" data-sitekey="6Lc5sy8sAAAAAAXVtrcMYWXXPMXYChJ6EQOxykxe"></div>
+                        <br>
 
                         <button type="submit" class="submit-btn" id="submitBtn" data-i18n="contact.form.submit">
                             <span>Envoyer le message</span>
@@ -125,7 +126,6 @@
                         </button>
                     </form>
                 </div>
-
                 <!-- Informations de contact -->
                 <div class="contact-info-container">
                     <!-- Coordonnées -->
@@ -157,7 +157,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Réseaux sociaux -->
                     <div class="contact-info-card">
                         <h4 data-i18n="contact.social.title">🌐 Réseaux sociaux</h4>
@@ -172,7 +171,6 @@
                             </a>
                         </div>
                     </div>
-
                     <!-- Télécharger CV -->
                     <div class="download-cv">
                         <h4 data-i18n="contact.cv.title">📄 Mon CV</h4>
@@ -189,8 +187,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Initialisation EmailJS
-        emailjs.init('t107x92N4c4V7GGX0');
+        (function() {
+            emailjs.init({
+                publicKey: 't107x92N4c4V7GGX0',
+                // Rate limit client-side : max 1 envoi toutes les 15 secondes
+                limitRate: {
+                    throttle: 15000 // 15000 ms = 15 secondes
+                }
+            });
+        })();
 
         const contactForm = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -204,6 +209,23 @@
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Honeypot check
+            if (document.getElementById('honeypot').value !== '') {
+                errorMessage.textContent = "Spam détecté. Va te faire voir.";
+                errorMessage.classList.add('show');
+                setTimeout(() => errorMessage.classList.remove('show'), 5000);
+                return;
+            }
+
+            // reCAPTCHA check
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse.length === 0) {
+                errorMessage.textContent = "Coche la case « Je ne suis pas un robot », connard.";
+                errorMessage.classList.add('show');
+                setTimeout(() => errorMessage.classList.remove('show'), 5000);
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
             successMessage.classList.remove('show');
@@ -213,28 +235,38 @@
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 title: document.getElementById('subject').value,
-                message: document.getElementById('message').value
+                message: document.getElementById('message').value,
+                'g-recaptcha-response': recaptchaResponse
             };
 
             try {
-                // 1. Tu reçois le message
+                // 1. Message reçu par toi
                 await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, {
+                    ...formData
+                });
+
+                // 2. Auto-reply à l'expéditeur
+                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, {
                     name: formData.name,
                     email: formData.email,
                     title: formData.title,
                     message: formData.message
                 });
 
-                // 2. L'expéditeur reçoit l'auto-reply
-                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, formData);
-
                 successMessage.classList.add('show');
                 contactForm.reset();
+                grecaptcha.reset(); // Reset CAPTCHA
                 setTimeout(() => successMessage.classList.remove('show'), 5000);
             } catch (error) {
-                errorMessage.classList.add('show');
                 console.error('Erreur EmailJS:', error);
+                if (error.text && error.text.includes('rate limit')) {
+                    errorMessage.textContent = "Trop rapide, attends un peu avant de réessayer.";
+                } else {
+                    errorMessage.textContent = "Échec de l'envoi. Réessaie.";
+                }
+                errorMessage.classList.add('show');
                 setTimeout(() => errorMessage.classList.remove('show'), 5000);
+                grecaptcha.reset();
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
@@ -248,8 +280,6 @@
         </svg>
         <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
     </button>
-
     <script src="../script.js"></script>
 </body>
-
 </html>

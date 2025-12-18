@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentRect = cvContent.getBoundingClientRect();
             const imageRect = cvImageBox.getBoundingClientRect();
             const rawOffset = topMargin - contentRect.top;
-            const maxOffset = Math.max(0, contentRect.height - imageRect.height);
+            const maxOffset = Math.max(0, contentRect.height - imageRect.height - 100);
             return clamp(rawOffset, 0, maxOffset);
         }
 

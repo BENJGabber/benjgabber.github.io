@@ -11,6 +11,10 @@ body {
     overflow-x: hidden;
 }
 
+body.luciole-mode {
+    font-family: 'Luciole', sans-serif;
+}
+
 
 /* Navigation */
 
@@ -819,6 +823,29 @@ html {
     transform: rotate(0deg) scale(1);
 }
 
+/* Font Toggle Button */
+.font-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.font-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #4500b4;
+    transform: scale(1.1);
+}
+
 /* Light Mode Styles */
 body.light-mode {
     background: #ffffff;
@@ -860,6 +887,16 @@ body.light-mode .theme-toggle .sun-icon {
 body.light-mode .theme-toggle .moon-icon {
     opacity: 0;
     transform: rotate(90deg) scale(0);
+}
+
+body.light-mode .font-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+body.light-mode .font-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode .menu-toggle .bar {

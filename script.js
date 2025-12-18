@@ -947,6 +947,31 @@ function initThemeToggle(toggle) {
 if (themeToggle) initThemeToggle(themeToggle);
 if (themeToggleMobile) initThemeToggle(themeToggleMobile);
 
+// Font Toggle Functionality
+const fontToggle = document.getElementById('fontToggle');
+const fontToggleMobile = document.getElementById('fontToggleMobile');
+
+function initFontToggle(toggle) {
+    if (!toggle) return;
+    const currentFont = localStorage.getItem('font') || 'default';
+    if (currentFont === 'luciole') {
+        body.classList.add('luciole-mode');
+    }
+
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('luciole-mode');
+        const font = body.classList.contains('luciole-mode') ? 'luciole' : 'default';
+        localStorage.setItem('font', font);
+        toggle.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            toggle.style.transform = 'scale(1)';
+        }, 150);
+    });
+}
+
+if (fontToggle) initFontToggle(fontToggle);
+if (fontToggleMobile) initFontToggle(fontToggleMobile);
+
 // ===========================
 // BACK TO TOP BUTTON
 // ===========================

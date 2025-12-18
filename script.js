@@ -851,64 +851,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentLang = localStorage.getItem('selectedLang') || 'fr';
 
-        // Create dropdown
-        const dropdown = document.createElement('select');
-        dropdown.id = 'languageDropdown';
-        dropdown.className = 'lang-toggle language-select';
-
-        // Add options
-        languages.forEach(lang => {
-            const option = document.createElement('option');
-            option.value = lang.code;
-            option.textContent = `${lang.flag} ${lang.name}`;
-            if (lang.code === currentLang) {
-                option.selected = true;
+        // Function to update button text
+        function updateButtonText(button, lang) {
+            const langData = languages.find(l => l.code === lang);
+            if (langData) {
+                button.textContent = langData.flag + ' ' + langData.code.toUpperCase();
             }
-            dropdown.appendChild(option);
-        });
-
-        // Replace button with dropdown for desktop
-        if (languageToggle) {
-            languageToggle.parentNode.replaceChild(dropdown, languageToggle);
         }
 
-        // Also replace for mobile if exists
-        if (languageToggleMobile) {
-            const mobileDropdown = dropdown.cloneNode(true);
-            mobileDropdown.id = 'languageDropdownMobile';
-            languageToggleMobile.parentNode.replaceChild(mobileDropdown, languageToggleMobile);
+        // Initialize button text
+        if (languageToggle) updateButtonText(languageToggle, currentLang);
+        if (languageToggleMobile) updateButtonText(languageToggleMobile, currentLang);
 
-            // Sync the two dropdowns
-            mobileDropdown.addEventListener('change', (e) => {
-                dropdown.value = e.target.value;
-                dropdown.dispatchEvent(new Event('change'));
-            });
-            dropdown.addEventListener('change', (e) => {
-                mobileDropdown.value = e.target.value;
-            });
-        }
+        // Handle language toggle
+        function toggleLanguage(button) {
+            const current = localStorage.getItem('selectedLang') || 'fr';
+            const currentIndex = languages.findIndex(l => l.code === current);
+            const nextIndex = (currentIndex + 1) % languages.length;
+            const newLang = languages[nextIndex].code;
 
-        // Handle language change
-        dropdown.addEventListener('change', async (e) => {
-            const newLang = e.target.value;
             localStorage.setItem('selectedLang', newLang);
+            updateButtonText(button, newLang);
 
-            dropdown.disabled = true;
-            dropdown.style.opacity = '0.5';
-            if (mobileDropdown) {
-                mobileDropdown.disabled = true;
-                mobileDropdown.style.opacity = '0.5';
-            }
+            button.disabled = true;
+            button.style.opacity = '0.5';
 
-            await translatePage(newLang);
+            translatePage(newLang).then(() => {
+                button.disabled = false;
+                button.style.opacity = '1';
+            });
+        }
 
-            dropdown.disabled = false;
-            dropdown.style.opacity = '1';
-            if (mobileDropdown) {
-                mobileDropdown.disabled = false;
-                mobileDropdown.style.opacity = '1';
-            }
-        });
+        if (languageToggle) {
+            languageToggle.addEventListener('click', () => toggleLanguage(languageToggle));
+        }
+        if (languageToggleMobile) {
+            languageToggleMobile.addEventListener('click', () => toggleLanguage(languageToggleMobile));
+        }
 
         // Apply saved language on load
         if (currentLang !== 'fr') {

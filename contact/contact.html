@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - Mon Portfolio</title>
     <link rel="stylesheet" href="../style.css" />
-    <!-- reCAPTCHA script -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -114,9 +112,6 @@
                         <div style="display:none;">
                             <input type="text" name="honeypot" id="honeypot" tabindex="-1" autocomplete="off">
                         </div>
-                        <!-- reCAPTCHA v2 Checkbox -->
-                        <div class="g-recaptcha" data-sitekey="6Lc5vy8sAAAAAOGUpQXYzbhdpc-OGJ0hsBvwYhfK"></div>
-                        <br>
                         <button type="submit" class="submit-btn" id="submitBtn" data-i18n="contact.form.submit">
                             <span>Envoyer le message</span>
                             <span>✉️</span>
@@ -183,7 +178,7 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <script>
     // Simple initialization
         emailjs.init('hJ21pqCbKdeCOCaZD');
@@ -255,18 +250,8 @@
             return;
         }
 
-        // 2. reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (recaptchaResponse.length === 0) {
-            errorMessage.textContent = "Coche le CAPTCHA, trou du cul.";
-            errorMessage.classList.add('show');
-            setTimeout(() => errorMessage.classList.remove('show'), 5000);
-            return;
-        }
-
-        // 3. Fingerprint + cooldown 10 min
+        // 2. Fingerprint + cooldown 10 min
         if (!canSendMessage()) {
-            grecaptcha.reset();
             return;
         }
 
@@ -300,7 +285,6 @@
 
             successMessage.classList.add('show');
             contactForm.reset();
-            grecaptcha.reset();
             setTimeout(() => successMessage.classList.remove('show'), 5000);
         } catch (error) {
             console.error('Erreur EmailJS:', error);
@@ -311,7 +295,6 @@
             }
             errorMessage.classList.add('show');
             setTimeout(() => errorMessage.classList.remove('show'), 5000);
-            grecaptcha.reset();
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';

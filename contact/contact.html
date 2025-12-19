@@ -184,12 +184,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
+    <script>
     // Simple initialization
-    emailjs.init('hJ21pqCbKdeCOCaZD');
+        emailjs.init('hJ21pqCbKdeCOCaZD');
 
     // === Fingerprinting hardcore pour limiter par "appareil" ===
-    function getFingerprint() {
+        function getFingerprint() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         ctx.textBaseline = 'top';
@@ -275,12 +275,13 @@
         successMessage.classList.remove('show');
         errorMessage.classList.remove('show');
 
+        // FIXED: Don't send g-recaptcha-response to EmailJS
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             title: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-            'g-recaptcha-response': recaptchaResponse
+            message: document.getElementById('message').value
+            // REMOVED: 'g-recaptcha-response': recaptchaResponse
         };
 
         try {
@@ -317,6 +318,7 @@
         }
     });
 </script>
+
     <!-- Bouton Retour en haut -->
     <button id="backToTop" class="back-to-top" data-i18n-aria="back.toTop" aria-label="Retour en haut">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

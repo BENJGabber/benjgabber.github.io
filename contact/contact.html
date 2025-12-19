@@ -183,145 +183,140 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init({
-                publicKey: 'hJ21pqCbKdeCOCaZD',
-                limitRate: {
-                    throttle: 15000 // 15 secondes entre chaque tentative
-                }
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Simple initialization
+    emailjs.init('hJ21pqCbKdeCOCaZD');
+
+    // === Fingerprinting hardcore pour limiter par "appareil" ===
+    function getFingerprint() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'top';
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#f60';
+        ctx.fillRect(125, 1, 62, 20);
+        ctx.fillStyle = '#069';
+        ctx.fillText('browser fingerprint 😈', 2, 15);
+        const canvasData = canvas.toDataURL();
+
+        const data = [
+            navigator.userAgent,
+            navigator.language || navigator.userLanguage,
+            screen.width + 'x' + screen.height + 'x' + screen.colorDepth,
+            new Date().getTimezoneOffset(),
+            !!window.sessionStorage,
+            !!window.indexedDB,
+            navigator.hardwareConcurrency || 'unknown',
+            canvasData.substring(canvasData.length - 100)
+        ];
+
+        return btoa(data.join('|||'));
+    }
+
+    // === Check cooldown 10 minutes par fingerprint ===
+    function canSendMessage() {
+        const fp = getFingerprint();
+        const key = 'lastMessage_' + fp;
+        const lastSend = localStorage.getItem(key);
+
+        if (!lastSend) return true;
+
+        const now = Date.now();
+        const timeSinceLast = now - parseInt(lastSend);
+        const cooldown = 10 * 60 * 1000; // 10 minutes
+
+        if (timeSinceLast < cooldown) {
+            const minutesLeft = Math.ceil((cooldown - timeSinceLast) / 60000);
+            errorMessage.textContent = `T'as déjà envoyé un message avec cet appareil. Attends ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}, spammer. 😈`;
+            errorMessage.classList.add('show');
+            setTimeout(() => errorMessage.classList.remove('show'), 8000);
+            return false;
+        }
+        return true;
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const EMAIL_SERVICE_ID = 'service_7n8wk97';
+    const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
+    const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 1. Honeypot
+        if (document.getElementById('honeypot').value !== '') {
+            errorMessage.textContent = "Spam détecté. Dégage.";
+            errorMessage.classList.add('show');
+            setTimeout(() => errorMessage.classList.remove('show'), 5000);
+            return;
+        }
+
+        // 2. reCAPTCHA
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (recaptchaResponse.length === 0) {
+            errorMessage.textContent = "Coche le CAPTCHA, trou du cul.";
+            errorMessage.classList.add('show');
+            setTimeout(() => errorMessage.classList.remove('show'), 5000);
+            return;
+        }
+
+        // 3. Fingerprint + cooldown 10 min
+        if (!canSendMessage()) {
+            grecaptcha.reset();
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
+        successMessage.classList.remove('show');
+        errorMessage.classList.remove('show');
+
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            title: document.getElementById('subject').value,
+            message: document.getElementById('message').value,
+            'g-recaptcha-response': recaptchaResponse
+        };
+
+        try {
+            // Send both emails
+            await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, formData);
+            await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, {
+                name: formData.name,
+                email: formData.email,
+                title: formData.title,
+                message: formData.message
             });
-        })();
 
-        // === Fingerprinting hardcore pour limiter par "appareil" ===
-        function getFingerprint() {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            ctx.textBaseline = 'top';
-            ctx.font = '14px Arial';
-            ctx.fillStyle = '#f60';
-            ctx.fillRect(125, 1, 62, 20);
-            ctx.fillStyle = '#069';
-            ctx.fillText('browser fingerprint 😈', 2, 15);
-            const canvasData = canvas.toDataURL();
-
-            const data = [
-                navigator.userAgent,
-                navigator.language || navigator.userLanguage,
-                screen.width + 'x' + screen.height + 'x' + screen.colorDepth,
-                new Date().getTimezoneOffset(),
-                !!window.sessionStorage,
-                !!window.indexedDB,
-                navigator.hardwareConcurrency || 'unknown',
-                canvasData.substring(canvasData.length - 100) // dernier bout du canvas (assez unique)
-            ];
-
-            // Hash simple en base64 (pas crypto, mais suffisant pour ça)
-            return btoa(data.join('|||'));
-        }
-
-        // === Check cooldown 10 minutes par fingerprint ===
-        function canSendMessage() {
+            // === Enregistrement du fingerprint après succès ===
             const fp = getFingerprint();
-            const key = 'lastMessage_' + fp;
-            const lastSend = localStorage.getItem(key);
+            localStorage.setItem('lastMessage_' + fp, Date.now().toString());
 
-            if (!lastSend) return true;
-
-            const now = Date.now();
-            const timeSinceLast = now - parseInt(lastSend);
-            const cooldown = 10 * 60 * 1000; // 10 minutes
-
-            if (timeSinceLast < cooldown) {
-                const minutesLeft = Math.ceil((cooldown - timeSinceLast) / 60000);
-                errorMessage.textContent = `T’as déjà envoyé un message avec cet appareil. Attends ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}, spammer. 😈`;
-                errorMessage.classList.add('show');
-                setTimeout(() => errorMessage.classList.remove('show'), 8000);
-                return false;
+            successMessage.classList.add('show');
+            contactForm.reset();
+            grecaptcha.reset();
+            setTimeout(() => successMessage.classList.remove('show'), 5000);
+        } catch (error) {
+            console.error('Erreur EmailJS:', error);
+            if (error.text && error.text.includes('rate limit')) {
+                errorMessage.textContent = "Trop rapide, calme-toi 15 secondes.";
+            } else {
+                errorMessage.textContent = "Échec. Réessaie plus tard.";
             }
-            return true;
+            errorMessage.classList.add('show');
+            setTimeout(() => errorMessage.classList.remove('show'), 5000);
+            grecaptcha.reset();
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
         }
-
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const EMAIL_SERVICE_ID = 'service_7n8wk97';
-        const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
-        const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
-
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // 1. Honeypot
-            if (document.getElementById('honeypot').value !== '') {
-                errorMessage.textContent = "Spam détecté. Dégage.";
-                errorMessage.classList.add('show');
-                setTimeout(() => errorMessage.classList.remove('show'), 5000);
-                return;
-            }
-
-            // 2. reCAPTCHA
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (recaptchaResponse.length === 0) {
-                errorMessage.textContent = "Coche le CAPTCHA, trou du cul.";
-                errorMessage.classList.add('show');
-                setTimeout(() => errorMessage.classList.remove('show'), 5000);
-                return;
-            }
-
-            // 3. Fingerprint + cooldown 10 min
-            if (!canSendMessage()) {
-                grecaptcha.reset();
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
-            successMessage.classList.remove('show');
-            errorMessage.classList.remove('show');
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                title: document.getElementById('subject').value,
-                message: document.getElementById('message').value,
-                'g-recaptcha-response': recaptchaResponse
-            };
-
-            try {
-                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, { ...formData });
-                await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, {
-                    name: formData.name,
-                    email: formData.email,
-                    title: formData.title,
-                    message: formData.message
-                });
-
-                // === Enregistrement du fingerprint après succès ===
-                const fp = getFingerprint();
-                localStorage.setItem('lastMessage_' + fp, Date.now().toString());
-
-                successMessage.classList.add('show');
-                contactForm.reset();
-                grecaptcha.reset();
-                setTimeout(() => successMessage.classList.remove('show'), 5000);
-            } catch (error) {
-                console.error('Erreur EmailJS:', error);
-                if (error.text && error.text.includes('rate limit')) {
-                    errorMessage.textContent = "Trop rapide, calme-toi 15 secondes.";
-                } else {
-                    errorMessage.textContent = "Échec. Réessaie plus tard.";
-                }
-                errorMessage.classList.add('show');
-                setTimeout(() => errorMessage.classList.remove('show'), 5000);
-                grecaptcha.reset();
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
-            }
-        });
-    </script>
+    });
+</script>
     <!-- Bouton Retour en haut -->
     <button id="backToTop" class="back-to-top" data-i18n-aria="back.toTop" aria-label="Retour en haut">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

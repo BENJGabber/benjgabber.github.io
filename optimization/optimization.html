@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PC Optimization — Base</title>
+    <title>Optimisation PC - Mon Portfolio</title>
     <link rel="stylesheet" href="../style.css" />
 </head>
 
 <body>
-    <!-- Navigation (same structure as other pages) -->
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo"><a href="../index.html#accueil">Mon Portfolio</a></div>
+            <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
                 <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
@@ -23,8 +23,20 @@
                 <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
                 <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
                 </button>
                 <button class="font-toggle" id="fontToggle" aria-label="Changer de police">Aa</button>
             </ul>
@@ -42,62 +54,253 @@
             <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
             <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
             <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Expériences</a></li>
-            <li><a href="#" aria-current="page" data-i18n="nav.optimization">Optimisation PC</a></li>
             <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
             <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="#" aria-current="page" data-i18n="nav.optimization">Optimisation PC</a></li>
             <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
         <div class="side-menu-toggles">
             <button class="lang-toggle" id="languageToggleMobile" aria-label="Changer de langue">EN</button>
             <button class="theme-toggle" id="themeToggleMobile" aria-label="Changer de thème">
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
             </button>
             <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
         </div>
     </div>
 
-    <main class="container">
-        <header class="section-title" style="margin-top:2rem;" data-i18n="optimization.title">Optimisation PC — Base</header>
-        <p class="section-subtitle" data-i18n="optimization.subtitle">Page de base pour rassembler des astuces, outils et guides d'optimisation PC.</p>
+    <!-- Optimization Section -->
+    <section class="optimization-section">
+        <div class="container">
+            <h1 class="section-title" data-i18n="optimization.title">Optimisation PC</h1>
+            <p class="section-subtitle" data-i18n="optimization.subtitle">Guide complet pour optimiser votre PC sous Windows et Linux</p>
 
-        <section id="overview">
-            <h2 data-i18n="optimization.overview">Aperçu</h2>
-            <p data-i18n="optimization.overview.desc">Cette page sert de base pour rassembler des notes, astuces et outils recommandés pour optimiser les PC sous Windows et Linux. Utilisez les sections ci-dessous pour ajouter des guides, scripts, résultats de benchmarks ou snippets de configuration.</p>
-        </section>
+            <!-- Overview Card -->
+            <div class="optimization-intro">
+                <div class="intro-icon">⚡</div>
+                <h2 data-i18n="optimization.overview">Aperçu</h2>
+                <p data-i18n="optimization.overview.desc">Cette page regroupe mes connaissances et recommandations pour optimiser les performances de votre PC. Que vous soyez sous Windows ou Linux, vous trouverez ici des outils, astuces et guides pratiques pour améliorer la réactivité, la stabilité et l'efficacité de votre système.</p>
+            </div>
 
-        <section id="tools" style="margin-top:1.5rem;">
-            <h2 data-i18n="optimization.tools">Outils et utilitaires</h2>
-            <ul>
-                <li data-i18n="optimization.tools.item1">Nettoyage système : CCleaner / BleachBit</li>
-                <li data-i18n="optimization.tools.item2">Gestionnaires de démarrage et audit des services</li>
-                <li data-i18n="optimization.tools.item3">Checklist pilotes et firmware</li>
-                <li data-i18n="optimization.tools.item4">Benchmarks et outils de surveillance (HWInfo, CrystalDiskMark)</li>
-            </ul>
-        </section>
+            <!-- Tools Grid -->
+            <h2 class="section-subtitle" data-i18n="optimization.tools">Outils et Utilitaires Recommandés</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🧹</div>
+                    <h3 data-i18n="optimization.tools.cleaning">Nettoyage Système</h3>
+                    <p data-i18n="optimization.tools.cleaning.desc">Supprimez les fichiers temporaires, le cache et les données inutiles pour libérer de l'espace disque.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">CCleaner</span>
+                        <span class="tool-badge">BleachBit</span>
+                        <span class="tool-badge">Disk Cleanup</span>
+                    </div>
+                </div>
 
-        <section id="guides" style="margin-top:1.5rem;">
-            <h2 data-i18n="optimization.guides">Guides (emplacements réservés)</h2>
-            <ol>
-                <li data-i18n="optimization.guides.item1">Optimiser le démarrage de Windows</li>
-                <li data-i18n="optimization.guides.item2">Optimisation des SSD et disques</li>
-                <li data-i18n="optimization.guides.item3">Optimisation réseau et latence</li>
-                <li data-i18n="optimization.guides.item4">Thermique et réglage des courbes de ventilateurs</li>
-            </ol>
-        </section>
+                <div class="tool-card">
+                    <div class="tool-icon">🚀</div>
+                    <h3 data-i18n="optimization.tools.startup">Gestion du Démarrage</h3>
+                    <p data-i18n="optimization.tools.startup.desc">Contrôlez les programmes qui se lancent au démarrage pour accélérer le boot de votre PC.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">Task Manager</span>
+                        <span class="tool-badge">MSConfig</span>
+                        <span class="tool-badge">Autoruns</span>
+                    </div>
+                </div>
 
-        <section id="notes" style="margin-top:1.5rem;">
-            <h2 data-i18n="optimization.notes">Notes et extraits</h2>
-            <p data-i18n="optimization.notes.desc">Collez des commandes, snippets PowerShell ou fichiers de configuration ici pour un accès rapide.</p>
-            <pre style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px;"># Exemple PowerShell : désactiver des services inutiles (placeholder)
-# Get-Service | Where-Object { $_.Status -eq 'Running' } | Select-Object -First 10</pre>
-        </section>
+                <div class="tool-card">
+                    <div class="tool-icon">🔧</div>
+                    <h3 data-i18n="optimization.tools.drivers">Pilotes et Firmware</h3>
+                    <p data-i18n="optimization.tools.drivers.desc">Maintenez vos pilotes à jour pour garantir compatibilité et performances optimales.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">Device Manager</span>
+                        <span class="tool-badge">Driver Booster</span>
+                        <span class="tool-badge">GeForce Experience</span>
+                    </div>
+                </div>
 
-    </main>
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3 data-i18n="optimization.tools.monitoring">Surveillance et Benchmarks</h3>
+                    <p data-i18n="optimization.tools.monitoring.desc">Surveillez les performances de votre système et testez vos composants.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">HWInfo</span>
+                        <span class="tool-badge">CrystalDiskMark</span>
+                        <span class="tool-badge">CPU-Z</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌡️</div>
+                    <h3 data-i18n="optimization.tools.thermal">Gestion Thermique</h3>
+                    <p data-i18n="optimization.tools.thermal.desc">Surveillez les températures et optimisez les courbes de ventilateurs.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">MSI Afterburner</span>
+                        <span class="tool-badge">SpeedFan</span>
+                        <span class="tool-badge">HWMonitor</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌐</div>
+                    <h3 data-i18n="optimization.tools.network">Optimisation Réseau</h3>
+                    <p data-i18n="optimization.tools.network.desc">Améliorez la latence et la stabilité de votre connexion réseau.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">TCP Optimizer</span>
+                        <span class="tool-badge">Wireshark</span>
+                        <span class="tool-badge">NetLimiter</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guides Section -->
+            <h2 class="section-subtitle" data-i18n="optimization.guides">Guides d'Optimisation</h2>
+            <div class="guides-container">
+                <div class="guide-card">
+                    <div class="guide-number">01</div>
+                    <div class="guide-content">
+                        <h3 data-i18n="optimization.guide1.title">Optimiser le Démarrage Windows</h3>
+                        <p data-i18n="optimization.guide1.desc">Désactivez les programmes inutiles au démarrage, nettoyez les services et améliorez le temps de boot de votre système.</p>
+                        <ul class="guide-steps">
+                            <li data-i18n="optimization.guide1.step1">Ouvrir le Gestionnaire des tâches (Ctrl+Shift+Esc)</li>
+                            <li data-i18n="optimization.guide1.step2">Onglet "Démarrage" → Désactiver les applications inutiles</li>
+                            <li data-i18n="optimization.guide1.step3">Utiliser MSConfig pour optimiser les services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">02</div>
+                    <div class="guide-content">
+                        <h3 data-i18n="optimization.guide2.title">Optimisation SSD et Disques Durs</h3>
+                        <p data-i18n="optimization.guide2.desc">Activez TRIM pour les SSD, défragmentez les HDD et configurez correctement vos disques pour des performances maximales.</p>
+                        <ul class="guide-steps">
+                            <li data-i18n="optimization.guide2.step1">Vérifier que TRIM est activé : <code>fsutil behavior query DisableDeleteNotify</code></li>
+                            <li data-i18n="optimization.guide2.step2">Défragmenter les HDD (pas les SSD !)</li>
+                            <li data-i18n="optimization.guide2.step3">Désactiver l'indexation sur les SSD si nécessaire</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">03</div>
+                    <div class="guide-content">
+                        <h3 data-i18n="optimization.guide3.title">Réduction de la Latence Réseau</h3>
+                        <p data-i18n="optimization.guide3.desc">Optimisez les paramètres TCP/IP, réduisez le bufferbloat et améliorez votre ping pour le gaming ou le télétravail.</p>
+                        <ul class="guide-steps">
+                            <li data-i18n="optimization.guide3.step1">Utiliser une connexion Ethernet plutôt que Wi-Fi</li>
+                            <li data-i18n="optimization.guide3.step2">Configurer les serveurs DNS (1.1.1.1 ou 8.8.8.8)</li>
+                            <li data-i18n="optimization.guide3.step3">Appliquer les optimisations TCP avec TCP Optimizer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">04</div>
+                    <div class="guide-content">
+                        <h3 data-i18n="optimization.guide4.title">Gestion Thermique et Ventilateurs</h3>
+                        <p data-i18n="optimization.guide4.desc">Surveillez les températures de vos composants et ajustez les courbes de ventilateurs pour un équilibre optimal entre bruit et refroidissement.</p>
+                        <ul class="guide-steps">
+                            <li data-i18n="optimization.guide4.step1">Surveiller les températures avec HWMonitor</li>
+                            <li data-i18n="optimization.guide4.step2">Nettoyer régulièrement les ventilateurs et radiateurs</li>
+                            <li data-i18n="optimization.guide4.step3">Ajuster les courbes dans le BIOS ou avec MSI Afterburner</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Snippets Section -->
+            <h2 class="section-subtitle" data-i18n="optimization.notes">Commandes et Scripts Utiles</h2>
+            <div class="snippets-container">
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>🪟 PowerShell - Services Windows</h3>
+                        <span class="snippet-lang">PowerShell</span>
+                    </div>
+                    <div class="snippet-desc">Lister les services en cours d'exécution triés par utilisation mémoire</div>
+                    <pre class="snippet-code"><code>Get-Service | Where-Object {$_.Status -eq 'Running'} | 
+Select-Object DisplayName, Status | 
+Format-Table -AutoSize</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>🐧 Linux - Nettoyage Système</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Nettoyer le cache des paquets et les fichiers orphelins</div>
+                    <pre class="snippet-code"><code># Pour Debian/Ubuntu
+sudo apt-get clean
+sudo apt-get autoremove
+
+# Pour Arch Linux
+sudo pacman -Sc
+sudo pacman -Rns $(pacman -Qtdq)</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>⚡ Optimisation RAM Windows</h3>
+                        <span class="snippet-lang">CMD</span>
+                    </div>
+                    <div class="snippet-desc">Vider le cache RAM et optimiser la mémoire</div>
+                    <pre class="snippet-code"><code>REM Vider le cache DNS
+ipconfig /flushdns
+
+REM Vider le cache des fichiers système
+%windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks</code></pre>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h2 class="section-subtitle" data-i18n="optimization.tips.title">💡 Conseils Rapides</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip1">Redémarrez votre PC régulièrement pour vider la RAM et fermer les processus zombies</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip2">Gardez toujours 15-20% d'espace libre sur votre disque système</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip3">Mettez à jour Windows/Linux et vos pilotes régulièrement</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip4">Désactivez les effets visuels inutiles pour gagner en performances</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip5">Utilisez un SSD pour votre système d'exploitation</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p data-i18n="optimization.tip6">Surveillez les températures, surtout en été !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Back to top button -->
     <button id="backToTop" class="back-to-top" aria-label="Retour en haut" data-i18n-aria="back.toTop">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
         <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
     </button>
 

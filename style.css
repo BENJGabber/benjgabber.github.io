@@ -2616,3 +2616,365 @@ body.light-mode .back-to-top:hover {
         height: 20px;
     }
 }
+
+        /* Optimization Section Styles */
+        .optimization-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+        }
+
+        .optimization-intro {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .intro-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .optimization-intro h2 {
+            color: #f8fafc;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .optimization-intro p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .tool-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h3 {
+            color: #f8fafc;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tool-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            font-weight: 500;
+        }
+
+        /* Guides */
+        .guides-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .guide-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            display: flex;
+            gap: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .guide-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateX(5px);
+        }
+
+        .guide-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #a855f7;
+            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+
+        .guide-content h3 {
+            color: #f8fafc;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .guide-content p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .guide-steps {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guide-steps li {
+            color: #cbd5e1;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .guide-steps li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-weight: bold;
+        }
+
+        .guide-steps code {
+            background: rgba(51, 65, 85, 0.5);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #c4b5fd;
+            font-size: 0.9rem;
+        }
+
+        /* Code Snippets */
+        .snippets-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .snippet-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .snippet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .snippet-header h3 {
+            color: #f8fafc;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .snippet-lang {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .snippet-desc {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .snippet-code {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .snippet-code code {
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            margin-top: 4rem;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .tip-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .tip-card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Light Mode */
+        body.light-mode .optimization-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+        }
+
+        body.light-mode .optimization-intro,
+        body.light-mode .tool-card,
+        body.light-mode .guide-card,
+        body.light-mode .snippet-card,
+        body.light-mode .tip-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(69, 0, 180, 0.2);
+        }
+
+        body.light-mode .optimization-intro h2,
+        body.light-mode .tool-card h3,
+        body.light-mode .guide-content h3,
+        body.light-mode .snippet-header h3 {
+            color: #333;
+        }
+
+        body.light-mode .optimization-intro p,
+        body.light-mode .tool-card p,
+        body.light-mode .guide-content p,
+        body.light-mode .guide-steps li,
+        body.light-mode .snippet-desc,
+        body.light-mode .tip-card p {
+            color: #555;
+        }
+
+        body.light-mode .tool-badge,
+        body.light-mode .snippet-lang {
+            background: rgba(69, 0, 180, 0.1);
+            color: #4500b4;
+            border-color: rgba(69, 0, 180, 0.2);
+        }
+
+        body.light-mode .guide-number {
+            color: #4500b4;
+            background: rgba(69, 0, 180, 0.1);
+        }
+
+        body.light-mode .snippet-code {
+            background: rgba(245, 247, 250, 0.8);
+            border-color: rgba(69, 0, 180, 0.2);
+        }
+
+        body.light-mode .snippet-code code {
+            color: #333;
+        }
+
+        body.light-mode .guide-steps code {
+            background: rgba(245, 247, 250, 0.8);
+            color: #4500b4;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .optimization-intro {
+                padding: 1.5rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-card {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .guide-number {
+                min-width: auto;
+                width: fit-content;
+                padding: 0.5rem 1rem;
+                font-size: 2rem;
+            }
+
+            .snippet-code {
+                padding: 1rem;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }

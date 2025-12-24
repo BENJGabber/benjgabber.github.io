@@ -970,8 +970,7 @@ if (backToTopButton) {
         }
     });
 
-    // Smooth scroll helper (works as a reliable fallback when native
-    // `behavior: 'smooth'` isn't supported or for finer control)
+    // Smooth scroll helper (uses JS-driven animation for consistent behavior)
     function smoothScrollToTop(duration = 600) {
         const start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         if (start <= 0) return;
@@ -989,30 +988,46 @@ if (backToTopButton) {
             window.scrollTo(0, y);
             if (progress < 1) {
                 requestAnimationFrame(step);
+            } else {
+                // Ensure we end exactly at the top
+                window.scrollTo(0, 0);
             }
         }
 
         requestAnimationFrame(step);
     }
 
-    // Scroll to top on click — prefer native smooth when available
+    // Scroll to top on click — use our JS scroller for consistent smoothness
     backToTopButton.addEventListener('click', (e) => {
         e.preventDefault();
-
-        const supportsNativeSmooth = (function() {
-            try {
-                if (typeof CSS !== 'undefined' && CSS.supports) {
-                    return CSS.supports('scroll-behavior', 'smooth');
-                }
-            } catch (err) {}
-            return 'scrollBehavior' in document.documentElement.style;
-        })();
-
-        if (supportsNativeSmooth) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            // Fallback animation for older browsers
-            smoothScrollToTop(600);
-        }
+        smoothScrollToTop(600);
     });
+
+    // Project cards: animate when they enter the viewport
+    (function setupProjectCardObserver() {
+        const cards = document.querySelectorAll('.project-card');
+        if (!cards.length) return;
+
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            cards.forEach(card => observer.observe(card));
+        } else {
+            // Fallback for older browsers: reveal immediately
+            cards.forEach(card => card.classList.add('in-view'));
+        }
+    })();
 }

@@ -414,7 +414,24 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.noresults.title': 'No discussion found',
             'forum.noresults.desc': 'Try another search or refresh the page'
                 ,
-                'back.toTop': 'Back to top'
+                'back.toTop': 'Back to top',
+            'nav.optimization': 'PC Optimization',
+            'optimization.title': 'PC Optimization — Base',
+            'optimization.subtitle': 'A lightweight starter page to collect tips, tools and guides about PC optimization.',
+            'optimization.overview': 'Overview',
+            'optimization.overview.desc': 'This page is a base to gather notes, tweaks, and recommended tools for optimizing Windows/Linux PCs.',
+            'optimization.tools': 'Tools & Utilities',
+            'optimization.tools.item1': 'System cleanup: CCleaner / BleachBit',
+            'optimization.tools.item2': 'Startup managers & services audit',
+            'optimization.tools.item3': 'Drivers & firmware checklist',
+            'optimization.tools.item4': 'Benchmark & monitoring tools (HWInfo, CrystalDiskMark)',
+            'optimization.guides': 'Guides (placeholders)',
+            'optimization.guides.item1': 'Optimizing Windows startup',
+            'optimization.guides.item2': 'SSD & disk optimization',
+            'optimization.guides.item3': 'Network & latency tuning',
+            'optimization.guides.item4': 'Thermals & fan curve tuning',
+            'optimization.notes': 'Notes & Snippets',
+            'optimization.notes.desc': 'Paste commands, PowerShell snippets, or config files here for easy access.'
         }
 
             ,
@@ -518,7 +535,24 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.loading': 'Cargando discusiones...',
             'forum.retry': 'Reintentar',
             'forum.noresults.title': 'No se encontró ninguna discusión',
-            'forum.noresults.desc': 'Intenta otra búsqueda o actualiza la página'
+            'forum.noresults.desc': 'Intenta otra búsqueda o actualiza la página',
+            'nav.optimization': 'Optimización PC',
+            'optimization.title': 'Optimización de PC — Base',
+            'optimization.subtitle': 'Página base para recopilar consejos, herramientas y guías de optimización de PC.',
+            'optimization.overview': 'Resumen',
+            'optimization.overview.desc': 'Esta página sirve como base para recopilar notas, ajustes y herramientas recomendadas para optimizar PC con Windows y Linux.',
+            'optimization.tools': 'Herramientas y utilidades',
+            'optimization.tools.item1': 'Limpieza del sistema: CCleaner / BleachBit',
+            'optimization.tools.item2': 'Gestores de inicio y auditoría de servicios',
+            'optimization.tools.item3': 'Checklist de controladores y firmware',
+            'optimization.tools.item4': 'Benchmarks y herramientas de monitorización (HWInfo, CrystalDiskMark)',
+            'optimization.guides': 'Guías (placeholders)',
+            'optimization.guides.item1': 'Optimizar el inicio de Windows',
+            'optimization.guides.item2': 'Optimización de SSD y discos',
+            'optimization.guides.item3': 'Optimización de red y latencia',
+            'optimization.guides.item4': 'Térmica y ajuste de curvas de ventilador',
+            'optimization.notes': 'Notas y fragmentos',
+            'optimization.notes.desc': 'Pega comandos, snippets PowerShell o archivos de configuración aquí para acceso rápido.'
         }
     };
 

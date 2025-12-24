@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC Optimization — Base</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <!-- Navigation (same structure as other pages) -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="../index.html#accueil">Mon Portfolio</a></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Expériences</a></li>
+                <li><a href="#" aria-current="page" data-i18n="nav.optimization">Optimisation PC</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <button class="font-toggle" id="fontToggle" aria-label="Changer de police">Aa</button>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="side-nav-links">
+            <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+            <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Expériences</a></li>
+            <li><a href="#" aria-current="page" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="side-menu-toggles">
+            <button class="lang-toggle" id="languageToggleMobile" aria-label="Changer de langue">EN</button>
+            <button class="theme-toggle" id="themeToggleMobile" aria-label="Changer de thème">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
+            <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <header class="section-title" style="margin-top:2rem;" data-i18n="optimization.title">Optimisation PC — Base</header>
+        <p class="section-subtitle" data-i18n="optimization.subtitle">Page de base pour rassembler des astuces, outils et guides d'optimisation PC.</p>
+
+        <section id="overview">
+            <h2 data-i18n="optimization.overview">Aperçu</h2>
+            <p data-i18n="optimization.overview.desc">Cette page sert de base pour rassembler des notes, astuces et outils recommandés pour optimiser les PC sous Windows et Linux. Utilisez les sections ci-dessous pour ajouter des guides, scripts, résultats de benchmarks ou snippets de configuration.</p>
+        </section>
+
+        <section id="tools" style="margin-top:1.5rem;">
+            <h2 data-i18n="optimization.tools">Outils et utilitaires</h2>
+            <ul>
+                <li data-i18n="optimization.tools.item1">Nettoyage système : CCleaner / BleachBit</li>
+                <li data-i18n="optimization.tools.item2">Gestionnaires de démarrage et audit des services</li>
+                <li data-i18n="optimization.tools.item3">Checklist pilotes et firmware</li>
+                <li data-i18n="optimization.tools.item4">Benchmarks et outils de surveillance (HWInfo, CrystalDiskMark)</li>
+            </ul>
+        </section>
+
+        <section id="guides" style="margin-top:1.5rem;">
+            <h2 data-i18n="optimization.guides">Guides (emplacements réservés)</h2>
+            <ol>
+                <li data-i18n="optimization.guides.item1">Optimiser le démarrage de Windows</li>
+                <li data-i18n="optimization.guides.item2">Optimisation des SSD et disques</li>
+                <li data-i18n="optimization.guides.item3">Optimisation réseau et latence</li>
+                <li data-i18n="optimization.guides.item4">Thermique et réglage des courbes de ventilateurs</li>
+            </ol>
+        </section>
+
+        <section id="notes" style="margin-top:1.5rem;">
+            <h2 data-i18n="optimization.notes">Notes et extraits</h2>
+            <p data-i18n="optimization.notes.desc">Collez des commandes, snippets PowerShell ou fichiers de configuration ici pour un accès rapide.</p>
+            <pre style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px;"># Exemple PowerShell : désactiver des services inutiles (placeholder)
+# Get-Service | Where-Object { $_.Status -eq 'Running' } | Select-Object -First 10</pre>
+        </section>
+
+    </main>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="back-to-top" aria-label="Retour en haut" data-i18n-aria="back.toTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
+    </button>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

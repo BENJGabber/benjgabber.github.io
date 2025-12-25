@@ -1065,3 +1065,31 @@ if (backToTopButton) {
         }
     })();
 }
+
+// OS Section Switching for Optimization Page
+document.addEventListener('DOMContentLoaded', () => {
+    const windowsTab = document.getElementById('windowsTab');
+    const linuxTab = document.getElementById('linuxTab');
+    const windowsSection = document.getElementById('windowsSection');
+    const linuxSection = document.getElementById('linuxSection');
+
+    if (windowsTab && linuxTab && windowsSection && linuxSection) {
+        windowsTab.addEventListener('click', () => {
+            windowsSection.style.display = 'block';
+            linuxSection.style.display = 'none';
+            windowsTab.style.background = 'var(--primary-color)';
+            windowsTab.style.color = 'white';
+            linuxTab.style.background = 'transparent';
+            linuxTab.style.color = 'var(--primary-color)';
+        });
+
+        linuxTab.addEventListener('click', () => {
+            windowsSection.style.display = 'none';
+            linuxSection.style.display = 'block';
+            windowsTab.style.background = 'transparent';
+            windowsTab.style.color = 'var(--primary-color)';
+            linuxTab.style.background = 'var(--primary-color)';
+            linuxTab.style.color = 'white';
+        });
+    }
+});

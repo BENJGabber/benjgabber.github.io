@@ -94,8 +94,17 @@
                 <p data-i18n="optimization.overview.desc">Cette page regroupe mes connaissances et recommandations pour optimiser les performances de votre PC. Que vous soyez sous Windows ou Linux, vous trouverez ici des outils, astuces et guides pratiques pour améliorer la réactivité, la stabilité et l'efficacité de votre système.</p>
             </div>
 
+            <!-- OS Selection -->
+            <div style="display: flex; gap: 15px; margin: 40px 0; justify-content: center;">
+                <button id="windowsTab" class="os-tab active" style="padding: 12px 30px; font-size: 16px; border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s;">🪟 Windows</button>
+                <button id="linuxTab" class="os-tab" style="padding: 12px 30px; font-size: 16px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 8px; cursor: pointer; transition: all 0.3s;">🐧 Linux (Debian/Ubuntu)</button>
+            </div>
+
+            <!-- WINDOWS SECTION -->
+            <div id="windowsSection" class="os-section" style="display: block;">
+            
             <!-- Tools Grid -->
-            <h2 class="section-subtitle" data-i18n="optimization.tools">Outils et Utilitaires Recommandés (Windows)</h2>
+            <h2 class="section-subtitle" data-i18n="optimization.tools">Outils et Utilitaires Recommandés</h2>
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-icon">🧹</div>
@@ -165,7 +174,7 @@
             </div>
 
             <!-- Guides Section -->
-            <h2 class="section-subtitle" data-i18n="optimization.guides">Guides d'Optimisation</h2>
+            <h2 class="section-subtitle" data-i18n="optimization.guides">Guides d'Optimisation Windows</h2>
             <div class="guides-container">
                 <div class="guide-card">
                     <div class="guide-number">01</div>
@@ -220,8 +229,8 @@
                 </div>
             </div>
 
-            <!-- Code Snippets Section -->
-            <h2 class="section-subtitle" data-i18n="optimization.notes">Commandes et Scripts Utiles</h2>
+            <!-- Code Snippets Section Windows -->
+            <h2 class="section-subtitle" data-i18n="optimization.notes">Commandes et Scripts Utiles - Windows</h2>
             <div class="snippets-container">
                 <div class="snippet-card">
                     <div class="snippet-header">
@@ -236,21 +245,6 @@ Format-Table -AutoSize</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>🐧 Linux - Nettoyage Système</h3>
-                        <span class="snippet-lang">Bash</span>
-                    </div>
-                    <div class="snippet-desc">Nettoyer le cache des paquets et les fichiers orphelins</div>
-                    <pre class="snippet-code"><code># Pour Debian/Ubuntu
-sudo apt-get clean
-sudo apt-get autoremove
-
-# Pour Arch Linux
-sudo pacman -Sc
-sudo pacman -Rns $(pacman -Qtdq)</code></pre>
-                </div>
-
-                <div class="snippet-card">
-                    <div class="snippet-header">
                         <h3>⚡ Optimisation RAM Windows</h3>
                         <span class="snippet-lang">CMD</span>
                     </div>
@@ -261,40 +255,328 @@ ipconfig /flushdns
 REM Vider le cache des fichiers système
 %windir%\system32\rundll32.exe advapi32.dll,ProcessIdleTasks</code></pre>
                 </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>💾 Gestion des Disques</h3>
+                        <span class="snippet-lang">PowerShell</span>
+                    </div>
+                    <div class="snippet-desc">Analyser l'utilisation des disques et lister les plus gros fichiers</div>
+                    <pre class="snippet-code"><code># Afficher l'utilisation disque par lecteur
+Get-Volume | Format-Table -AutoSize
+
+# Trouver les plus gros fichiers (C:\ root)
+Get-ChildItem -Path C:\ -Recurse -File | 
+Sort-Object -Property Length -Descending | 
+Select-Object -First 20 @{Name='Size(MB)'; Expression={[math]::Round($_.Length/1MB, 2)}}, FullName</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>🔍 Surveillance des Processus</h3>
+                        <span class="snippet-lang">PowerShell</span>
+                    </div>
+                    <div class="snippet-desc">Afficher les processus qui consomment le plus de RAM</div>
+                    <pre class="snippet-code"><code>Get-Process | Sort-Object -Property WS -Descending | 
+Select-Object -First 10 @{Name='Process'; Expression={$_.Name}}, @{Name='RAM(MB)'; Expression={[math]::Round($_.WS/1MB, 2)}} | 
+Format-Table -AutoSize</code></pre>
+                </div>
             </div>
 
-            <!-- Tips Section -->
+            <!-- Tips Section Windows -->
             <div class="tips-section">
-                <h2 class="section-subtitle" data-i18n="optimization.tips.title">💡 Conseils Rapides</h2>
+                <h2 class="section-subtitle" data-i18n="optimization.tips.title">💡 Conseils Rapides - Windows</h2>
                 <div class="tips-grid">
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip1">Redémarrez votre PC régulièrement pour vider la RAM et fermer les processus zombies</p>
+                        <p>Redémarrez votre PC régulièrement pour vider la RAM et fermer les processus zombies</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip2">Gardez toujours 15-20% d'espace libre sur votre disque système</p>
+                        <p>Gardez toujours 15-20% d'espace libre sur votre disque système</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip3">Mettez à jour Windows/Linux et vos pilotes régulièrement</p>
+                        <p>Mettez à jour Windows et vos pilotes régulièrement</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip4">Désactivez les effets visuels inutiles pour gagner en performances</p>
+                        <p>Désactivez les effets visuels inutiles pour gagner en performances</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip5">Utilisez un SSD pour votre système d'exploitation</p>
+                        <p>Utilisez un SSD pour votre système d'exploitation</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p data-i18n="optimization.tip6">Surveillez les températures, surtout en été !</p>
+                        <p>Surveillez les températures, surtout en été !</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+
+            </div> <!-- End Windows Section -->
+
+            <!-- LINUX SECTION -->
+            <div id="linuxSection" class="os-section" style="display: none;">
+            
+            <!-- Tools Grid Linux -->
+            <h2 class="section-subtitle">Outils et Utilitaires Recommandés</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🧹</div>
+                    <h3>Nettoyage Système</h3>
+                    <p>Supprimez les fichiers temporaires, les caches orphelins et les paquets inutiles. Sous Debian/Ubuntu, utilisez les outils natifs du gestionnaire de paquets pour un nettoyage sûr.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">apt-get clean/autoremove</span>
+                        <span class="tool-badge">BleachBit</span>
+                        <span class="tool-badge">Stacer</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🚀</div>
+                    <h3>Gestion du Démarrage</h3>
+                    <p>Contrôlez les services et les applications qui se lancent au démarrage. Systemd est le système d'initialisation standard de Debian/Ubuntu.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">systemctl</span>
+                        <span class="tool-badge">systemd-analyze</span>
+                        <span class="tool-badge">GNOME Startup Applications</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🔧</div>
+                    <h3>Pilotes et Firmware</h3>
+                    <p>Maintenez vos pilotes à jour, particulièrement pour les GPU. Linux détecte généralement automatiquement les pilotes open-source.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">ubuntu-drivers</span>
+                        <span class="tool-badge">fwupd</span>
+                        <span class="tool-badge">NVIDIA/AMD Drivers</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">📊</div>
+                    <h3>Surveillance et Benchmarks</h3>
+                    <p>Surveillez les performances du système avec des outils ligne de commande ou graphiques.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">htop/top</span>
+                        <span class="tool-badge">iotop</span>
+                        <span class="tool-badge">Sysbench</span>
+                        <span class="tool-badge">CPU-Z pour Linux</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌡️</div>
+                    <h3>Gestion Thermique</h3>
+                    <p>Surveillez et contrôlez les températures des composants sur Linux.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">lm-sensors</span>
+                        <span class="tool-badge">psensor</span>
+                        <span class="tool-badge">cpufrequtils</span>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">🌐</div>
+                    <h3>Optimisation Réseau</h3>
+                    <p>Optimisez votre connexion réseau avec les outils Linux natifs.</p>
+                    <div class="tool-list">
+                        <span class="tool-badge">netplan</span>
+                        <span class="tool-badge">ethtool</span>
+                        <span class="tool-badge">Wireshark</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guides Section Linux -->
+            <h2 class="section-subtitle">Guides d'Optimisation Linux (Debian/Ubuntu)</h2>
+            <div class="guides-container">
+                <div class="guide-card">
+                    <div class="guide-number">01</div>
+                    <div class="guide-content">
+                        <h3>Optimiser le Démarrage Linux</h3>
+                        <p>Analysez le temps de démarrage et désactivez les services inutiles pour accélérer le boot.</p>
+                        <ul class="guide-steps">
+                            <li>Analyser le temps de démarrage : <code>systemd-analyze</code></li>
+                            <li>Voir les services lents : <code>systemd-analyze blame</code></li>
+                            <li>Désactiver les services inutiles : <code>sudo systemctl disable service-name</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">02</div>
+                    <div class="guide-content">
+                        <h3>Nettoyage Système Complet</h3>
+                        <p>Supprimez les paquets orphelins, les caches inutiles et les fichiers temporaires en toute sécurité.</p>
+                        <ul class="guide-steps">
+                            <li>Mettre à jour la liste des paquets : <code>sudo apt update</code></li>
+                            <li>Supprimer les paquets orphelins : <code>sudo apt autoremove</code></li>
+                            <li>Nettoyer le cache apt : <code>sudo apt clean</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">03</div>
+                    <div class="guide-content">
+                        <h3>Optimisation I/O et Disques</h3>
+                        <p>Configurez le planificateur de disque et optimisez les paramètres d'I/O pour de meilleures performances.</p>
+                        <ul class="guide-steps">
+                            <li>Vérifier le planificateur actuel : <code>cat /sys/block/sda/queue/scheduler</code></li>
+                            <li>Changer pour le planificateur mq-deadline : <code>echo mq-deadline | sudo tee /sys/block/sda/queue/scheduler</code></li>
+                            <li>Surveiller l'I/O : <code>iotop</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="guide-number">04</div>
+                    <div class="guide-content">
+                        <h3>Gestion de la Mémoire et du Swap</h3>
+                        <p>Optimisez l'utilisation de la RAM et configurez le swap de manière appropriée.</p>
+                        <ul class="guide-steps">
+                            <li>Voir l'utilisation de la mémoire : <code>free -h</code></li>
+                            <li>Voir la valeur de swappiness : <code>cat /proc/sys/vm/swappiness</code></li>
+                            <li>Réduire swappiness pour les systèmes avec beaucoup de RAM : <code>sudo sysctl -w vm.swappiness=10</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Snippets Section Linux -->
+            <h2 class="section-subtitle">Commandes et Scripts Utiles - Linux</h2>
+            <div class="snippets-container">
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>🐧 Nettoyage Système Complet</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Nettoyer le cache des paquets, les fichiers orphelins et les fichiers temporaires</div>
+                    <pre class="snippet-code"><code># Pour Debian/Ubuntu
+sudo apt update
+sudo apt upgrade
+sudo apt autoremove
+sudo apt clean
+sudo apt autoclean
+
+# Nettoyer le cache snap (si utilisé)
+sudo snap set system refresh.retain=2</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>📊 Analyse des Disques</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Trouver les plus gros fichiers et dossiers</div>
+                    <pre class="snippet-code"><code># Voir l'utilisation disque des dossiers
+du -sh /* | sort -rh
+
+# Trouver les 20 plus gros fichiers
+find / -type f -exec du -h {} + 2>/dev/null | sort -rh | head -20
+
+# Voir l'utilisation en temps réel
+iotop</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>⚙️ Optimisation des Services</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Analyser et optimiser les services au démarrage</div>
+                    <pre class="snippet-code"><code># Voir les services les plus lents au démarrage
+systemd-analyze blame | head -10
+
+# Voir le graphique de démarrage
+systemd-analyze plot > boot.svg
+
+# Désactiver un service inutile
+sudo systemctl disable service-name
+sudo systemctl stop service-name
+
+# Voir les services actifs
+systemctl list-units --type service --state running</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>💾 Surveillance Système en Temps Réel</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Monitorer les ressources système et les processus</div>
+                    <pre class="snippet-code"><code># Afficher les processus par utilisation CPU/RAM
+htop
+
+# Voir les processus par utilisation disque I/O
+iotop
+
+# Afficher les informations CPU
+lscpu
+
+# Voir la température des composants
+sensors</code></pre>
+                </div>
+
+                <div class="snippet-card">
+                    <div class="snippet-header">
+                        <h3>🔍 Optimisation Réseau</h3>
+                        <span class="snippet-lang">Bash</span>
+                    </div>
+                    <div class="snippet-desc">Configurer et optimiser la connexion réseau</div>
+                    <pre class="snippet-code"><code># Voir les interfaces réseau
+ip link show
+
+# Afficher la configuration actuelle
+ip addr show
+
+# Tester la latence réseau
+ping -c 4 8.8.8.8
+
+# Voir les connexions réseau actives
+netstat -tupln
+
+# Configuration DNS dans /etc/netplan/
+sudo nano /etc/netplan/00-installer-config.yaml</code></pre>
+                </div>
+            </div>
+
+            <!-- Tips Section Linux -->
+            <div class="tips-section">
+                <h2 class="section-subtitle">💡 Conseils Rapides - Linux</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Utilisez <code>htop</code> au lieu de <code>top</code> pour une meilleure expérience de monitoring</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Gardez toujours 15-20% d'espace libre sur votre disque système</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Mettez à jour votre système régulièrement avec <code>apt update && apt upgrade</code></p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Réduisez la valeur de swappiness pour un système plus réactif (valeur idéale : 10)</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Utilisez un SSD pour votre système d'exploitation</p>
+                    </div>
+                    <div class="tip-card">
+                        <span class="tip-icon">✅</span>
+                        <p>Surveillez les températures avec <code>sensors</code> ou <code>psensor</code></p>
+                    </div>
+                </div>
+            </div>
+
+            </div> <!-- End Linux Section -->
+
 
     <!-- Back to top button -->
     <button id="backToTop" class="back-to-top" aria-label="Retour en haut" data-i18n-aria="back.toTop">

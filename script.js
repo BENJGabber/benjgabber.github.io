@@ -412,26 +412,91 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.loading': 'Loading discussions...',
             'forum.retry': 'Retry',
             'forum.noresults.title': 'No discussion found',
-            'forum.noresults.desc': 'Try another search or refresh the page'
-                ,
-                'back.toTop': 'Back to top',
+            'forum.noresults.desc': 'Try another search or refresh the page',
             'nav.optimization': 'PC Optimization',
-            'optimization.title': 'PC Optimization — Base',
-            'optimization.subtitle': 'A lightweight starter page to collect tips, tools and guides about PC optimization.',
+            'optimization.title': 'PC Optimization',
+            'optimization.subtitle': 'Complete guide to optimize your PC on Windows and Linux',
             'optimization.overview': 'Overview',
-            'optimization.overview.desc': 'This page is a base to gather notes, tweaks, and recommended tools for optimizing Windows/Linux PCs.',
-            'optimization.tools': 'Tools & Utilities',
-            'optimization.tools.item1': 'System cleanup: CCleaner / BleachBit',
-            'optimization.tools.item2': 'Startup managers & services audit',
-            'optimization.tools.item3': 'Drivers & firmware checklist',
-            'optimization.tools.item4': 'Benchmark & monitoring tools (HWInfo, CrystalDiskMark)',
-            'optimization.guides': 'Guides (placeholders)',
-            'optimization.guides.item1': 'Optimizing Windows startup',
-            'optimization.guides.item2': 'SSD & disk optimization',
-            'optimization.guides.item3': 'Network & latency tuning',
-            'optimization.guides.item4': 'Thermals & fan curve tuning',
-            'optimization.notes': 'Notes & Snippets',
-            'optimization.notes.desc': 'Paste commands, PowerShell snippets, or config files here for easy access.'
+            'optimization.overview.desc': 'This page brings together my knowledge and recommendations for optimizing your PC performance. Whether you are on Windows or Linux, you will find here tools, tips and practical guides to improve the responsiveness, stability and efficiency of your system.',
+            'optimization.tab.windows': '🪟 Windows',
+            'optimization.tab.linux': '🐧 Linux (Debian/Ubuntu)',
+            'optimization.tab.upgrade': '⬆️ Upgrade',
+            'optimization.tools': 'Tools and Utilities',
+            'optimization.guides': 'Optimization Guides',
+            'optimization.notes': 'Useful Commands and Scripts',
+            'optimization.tips.title': '💡 Quick Tips',
+            'upgrade.overview': 'Upgrade Your Computer',
+            'upgrade.overview.desc': 'Planning to upgrade your computer? This guide will help you understand compatibility, wattage requirements, part selection, and the upgrade process itself.',
+            'upgrade.tools': 'Tools & Resources',
+            'upgrade.tools.psu': 'Power Supply Calculator',
+            'upgrade.tools.psu.desc': 'Determine the required wattage for your system based on components.',
+            'upgrade.tools.compatibility': 'Compatibility Checkers',
+            'upgrade.tools.compatibility.desc': 'Verify component compatibility before purchasing.',
+            'upgrade.tools.specs': 'System Information Tools',
+            'upgrade.tools.specs.desc': 'Check your current system specifications.',
+            'upgrade.tools.price': 'Price Comparison',
+            'upgrade.tools.price.desc': 'Find the best deals on components.',
+            'upgrade.tools.guides': 'Installation Guides',
+            'upgrade.tools.guides.desc': 'Step-by-step tutorials for installing components.',
+            'upgrade.tools.benchmark': 'Benchmark Tools',
+            'upgrade.tools.benchmark.desc': 'Test performance before and after upgrades.',
+            'upgrade.guides': 'Upgrade Planning Guides',
+            'upgrade.guide1.title': 'Assess Your Current System',
+            'upgrade.guide1.desc': 'Know what you have before planning upgrades. Identify bottlenecks and compatibility requirements.',
+            'upgrade.guide1.step1': 'Use CPU-Z/GPU-Z to identify your components',
+            'upgrade.guide1.step2': 'Check motherboard model for upgrade support',
+            'upgrade.guide1.step3': 'Note RAM type (DDR3/DDR4/DDR5) and slots',
+            'upgrade.guide1.step4': 'Verify storage interface (SATA/NVMe)',
+            'upgrade.guide2.title': 'Calculate Power Requirements',
+            'upgrade.guide2.desc': 'Ensure your PSU can handle the new components. Undersized PSUs can damage hardware.',
+            'upgrade.guide2.step1': 'Add CPU TDP + GPU TDP + other components',
+            'upgrade.guide2.step2': 'Multiply by 1.25-1.5 for headroom',
+            'upgrade.guide2.step3': 'Use PSU calculators for accuracy',
+            'upgrade.guide2.step4': 'Consider 80+ Gold efficiency rating',
+            'upgrade.guide3.title': 'Check Compatibility',
+            'upgrade.guide3.desc': 'Verify socket compatibility, BIOS support, and physical space before buying.',
+            'upgrade.guide3.step1': 'CPU socket must match motherboard (AM5, LGA1700, etc.)',
+            'upgrade.guide3.step2': 'Check BIOS compatibility for newer CPUs',
+            'upgrade.guide3.step3': 'Verify cooler clearance with RAM/case',
+            'upgrade.guide3.step4': 'Ensure GPU fits in case (check PCIe clearance)',
+            'upgrade.guide4.title': 'Safe Installation Process',
+            'upgrade.guide4.desc': 'Follow proper procedures to avoid ESD damage and component failure.',
+            'upgrade.guide4.step1': 'Power off and unplug the system completely',
+            'upgrade.guide4.step2': 'Ground yourself with an ESD wrist strap',
+            'upgrade.guide4.step3': 'Remove old components carefully',
+            'upgrade.guide4.step4': 'Install new parts following manufacturer guides',
+            'upgrade.tips.title': 'Upgrade Tips & Best Practices',
+            'upgrade.tip1': 'Always upgrade RAM in pairs for dual-channel performance',
+            'upgrade.tip2': 'Update BIOS before installing new CPU generation',
+            'upgrade.tip3': 'Keep original packaging for warranty/returns',
+            'upgrade.tip4': 'Test new components immediately to catch defects',
+            'upgrade.tip5': 'Use thermal paste for CPU installation (check if pre-applied)',
+            'upgrade.tip6': "Don't upgrade just for benchmarks—upgrade for your needs",
+            'upgrade.common': 'Common Upgrade Scenarios',
+            'upgrade.scenario.ram': 'More RAM',
+            'upgrade.scenario.ram.desc': 'Cost-effective upgrade for multitasking and apps.',
+            'upgrade.scenario.ram.step1': 'Identify: DDR3 vs DDR4 vs DDR5 (Check System Info)',
+            'upgrade.scenario.ram.step2': 'Recommend: 16GB minimum, 32GB for content creation',
+            'upgrade.scenario.ram.step3': 'Check: Available DIMM slots (usually 2-4)',
+            'upgrade.scenario.ram.step4': 'Install: Power off, unlock clips, insert at 45°, press down',
+            'upgrade.scenario.ssd': 'NVMe SSD Upgrade',
+            'upgrade.scenario.ssd.desc': 'Dramatically improve boot and load times.',
+            'upgrade.scenario.ssd.step1': 'Check: M.2 slot availability (usually 2-4 slots)',
+            'upgrade.scenario.ssd.step2': 'Verify: NVMe Gen 4 or Gen 5 support',
+            'upgrade.scenario.ssd.step3': 'Recommend: 1TB minimum for OS + programs',
+            'upgrade.scenario.ssd.step4': 'Install: Remove sticker, insert at 30°, press down',
+            'upgrade.scenario.gpu': 'GPU/Video Card',
+            'upgrade.scenario.gpu.desc': 'For gaming, 3D rendering, and compute tasks.',
+            'upgrade.scenario.gpu.step1': 'Check: PCIe generation and physical space',
+            'upgrade.scenario.gpu.step2': 'Verify: PSU wattage (use calculator)',
+            'upgrade.scenario.gpu.step3': 'Ensure: Power connectors (8-pin or 16-pin)',
+            'upgrade.scenario.gpu.step4': 'Install: Remove old driver, uninstall GPU, insert new one',
+            'upgrade.scenario.cpu': 'CPU Upgrade',
+            'upgrade.scenario.cpu.desc': 'Most impactful upgrade for performance.',
+            'upgrade.scenario.cpu.step1': 'Check: Socket compatibility (AM5, LGA1700, etc.)',
+            'upgrade.scenario.cpu.step2': 'Verify: BIOS support for newer generation',
+            'upgrade.scenario.cpu.step3': 'Check: Cooler compatibility and mounting',
+            'upgrade.scenario.cpu.step4': 'Install: Follow manufacturer steps carefully'
         }
 
             ,
@@ -537,22 +602,89 @@ document.addEventListener('DOMContentLoaded', () => {
             'forum.noresults.title': 'No se encontró ninguna discusión',
             'forum.noresults.desc': 'Intenta otra búsqueda o actualiza la página',
             'nav.optimization': 'Optimización PC',
-            'optimization.title': 'Optimización de PC — Base',
-            'optimization.subtitle': 'Página base para recopilar consejos, herramientas y guías de optimización de PC.',
+            'optimization.title': 'Optimización de PC',
+            'optimization.subtitle': 'Guía completa para optimizar tu PC en Windows y Linux',
             'optimization.overview': 'Resumen',
-            'optimization.overview.desc': 'Esta página sirve como base para recopilar notas, ajustes y herramientas recomendadas para optimizar PC con Windows y Linux.',
+            'optimization.overview.desc': 'Esta página reúne mis conocimientos y recomendaciones para optimizar el rendimiento de tu PC. Ya sea que uses Windows o Linux, aquí encontrarás herramientas, consejos y guías prácticas para mejorar la capacidad de respuesta, estabilidad y eficiencia de tu sistema.',
+            'optimization.tab.windows': '🪟 Windows',
+            'optimization.tab.linux': '🐧 Linux (Debian/Ubuntu)',
+            'optimization.tab.upgrade': '⬆️ Actualización',
             'optimization.tools': 'Herramientas y utilidades',
-            'optimization.tools.item1': 'Limpieza del sistema: CCleaner / BleachBit',
-            'optimization.tools.item2': 'Gestores de inicio y auditoría de servicios',
-            'optimization.tools.item3': 'Checklist de controladores y firmware',
-            'optimization.tools.item4': 'Benchmarks y herramientas de monitorización (HWInfo, CrystalDiskMark)',
-            'optimization.guides': 'Guías (placeholders)',
-            'optimization.guides.item1': 'Optimizar el inicio de Windows',
-            'optimization.guides.item2': 'Optimización de SSD y discos',
-            'optimization.guides.item3': 'Optimización de red y latencia',
-            'optimization.guides.item4': 'Térmica y ajuste de curvas de ventilador',
-            'optimization.notes': 'Notas y fragmentos',
-            'optimization.notes.desc': 'Pega comandos, snippets PowerShell o archivos de configuración aquí para acceso rápido.'
+            'optimization.guides': 'Guías de optimización',
+            'optimization.notes': 'Comandos y scripts útiles',
+            'optimization.tips.title': '💡 Consejos rápidos',
+            'upgrade.overview': 'Actualiza tu computadora',
+            'upgrade.overview.desc': '¿Planeas actualizar tu computadora? Esta guía te ayudará a entender compatibilidad, requisitos de vatios, selección de piezas y el proceso de actualización en sí.',
+            'upgrade.tools': 'Herramientas y recursos',
+            'upgrade.tools.psu': 'Calculadora de fuente de alimentación',
+            'upgrade.tools.psu.desc': 'Determina la potencia requerida para tu sistema basado en componentes.',
+            'upgrade.tools.compatibility': 'Comprobadores de compatibilidad',
+            'upgrade.tools.compatibility.desc': 'Verifica la compatibilidad de componentes antes de comprar.',
+            'upgrade.tools.specs': 'Herramientas de información del sistema',
+            'upgrade.tools.specs.desc': 'Comprueba las especificaciones actuales de tu sistema.',
+            'upgrade.tools.price': 'Comparación de precios',
+            'upgrade.tools.price.desc': 'Encuentra las mejores ofertas en componentes.',
+            'upgrade.tools.guides': 'Guías de instalación',
+            'upgrade.tools.guides.desc': 'Tutoriales paso a paso para instalar componentes.',
+            'upgrade.tools.benchmark': 'Herramientas de prueba',
+            'upgrade.tools.benchmark.desc': 'Prueba el rendimiento antes y después de las actualizaciones.',
+            'upgrade.guides': 'Guías de planificación de actualización',
+            'upgrade.guide1.title': 'Evalúa tu sistema actual',
+            'upgrade.guide1.desc': 'Sabe lo que tienes antes de planificar actualizaciones. Identifica cuellos de botella y requisitos de compatibilidad.',
+            'upgrade.guide1.step1': 'Usa CPU-Z/GPU-Z para identificar tus componentes',
+            'upgrade.guide1.step2': 'Verifica el modelo de la placa base para soporte de actualización',
+            'upgrade.guide1.step3': 'Anota el tipo de RAM (DDR3/DDR4/DDR5) y ranuras',
+            'upgrade.guide1.step4': 'Verifica la interfaz de almacenamiento (SATA/NVMe)',
+            'upgrade.guide2.title': 'Calcula los requisitos de potencia',
+            'upgrade.guide2.desc': 'Asegúrate de que tu PSU pueda manejar los nuevos componentes. Las PSU insuficientes pueden dañar el hardware.',
+            'upgrade.guide2.step1': 'Suma TDP de CPU + TDP de GPU + otros componentes',
+            'upgrade.guide2.step2': 'Multiplica por 1.25-1.5 para margen',
+            'upgrade.guide2.step3': 'Usa calculadoras de PSU para mayor precisión',
+            'upgrade.guide2.step4': 'Considera una clasificación 80+ Gold',
+            'upgrade.guide3.title': 'Verifica compatibilidad',
+            'upgrade.guide3.desc': 'Verifica la compatibilidad del zócalo, compatibilidad de BIOS y espacio físico antes de comprar.',
+            'upgrade.guide3.step1': 'El zócalo de CPU debe coincidir con la placa base (AM5, LGA1700, etc.)',
+            'upgrade.guide3.step2': 'Verifica la compatibilidad de BIOS para CPUs más nuevas',
+            'upgrade.guide3.step3': 'Verifica el espacio libre del refrigerador con RAM/carcasa',
+            'upgrade.guide3.step4': 'Asegúrate de que la GPU encaje en la carcasa (verifica el espacio PCIe)',
+            'upgrade.guide4.title': 'Proceso de instalación segura',
+            'upgrade.guide4.desc': 'Sigue los procedimientos adecuados para evitar daños por ESD y falla de componentes.',
+            'upgrade.guide4.step1': 'Apaga y desenchufa el sistema completamente',
+            'upgrade.guide4.step2': 'Cárgate con una correa antiestática',
+            'upgrade.guide4.step3': 'Retira los componentes antiguos con cuidado',
+            'upgrade.guide4.step4': 'Instala nuevas piezas siguiendo las guías del fabricante',
+            'upgrade.tips.title': 'Consejos de actualización y mejores prácticas',
+            'upgrade.tip1': 'Siempre actualiza RAM en pares para rendimiento de doble canal',
+            'upgrade.tip2': 'Actualiza BIOS antes de instalar una nueva generación de CPU',
+            'upgrade.tip3': 'Guarda el empaque original para garantía/devoluciones',
+            'upgrade.tip4': 'Prueba nuevos componentes inmediatamente para detectar defectos',
+            'upgrade.tip5': 'Usa pasta térmica para la instalación de CPU (verifica si viene preaplicada)',
+            'upgrade.tip6': 'No actualices solo para puntos de referencia, actualiza según tus necesidades',
+            'upgrade.common': 'Escenarios de actualización comunes',
+            'upgrade.scenario.ram': 'Más RAM',
+            'upgrade.scenario.ram.desc': 'Actualización rentable para multitarea y aplicaciones.',
+            'upgrade.scenario.ram.step1': 'Identifica: DDR3 vs DDR4 vs DDR5 (Verifica Información del sistema)',
+            'upgrade.scenario.ram.step2': 'Recomendación: 16GB mínimo, 32GB para creación de contenido',
+            'upgrade.scenario.ram.step3': 'Verifica: Ranuras DIMM disponibles (generalmente 2-4)',
+            'upgrade.scenario.ram.step4': 'Instala: Apaga, desbloquea clips, inserta a 45°, presiona hacia abajo',
+            'upgrade.scenario.ssd': 'Actualización de SSD NVMe',
+            'upgrade.scenario.ssd.desc': 'Mejora dramáticamente el tiempo de arranque y carga.',
+            'upgrade.scenario.ssd.step1': 'Verifica: Disponibilidad de ranura M.2 (generalmente 2-4 ranuras)',
+            'upgrade.scenario.ssd.step2': 'Verifica: Soporte NVMe Gen 4 o Gen 5',
+            'upgrade.scenario.ssd.step3': 'Recomendación: 1TB mínimo para OS + programas',
+            'upgrade.scenario.ssd.step4': 'Instala: Retira etiqueta, inserta a 30°, presiona hacia abajo',
+            'upgrade.scenario.gpu': 'GPU/Tarjeta de video',
+            'upgrade.scenario.gpu.desc': 'Para juegos, renderizado 3D y tareas de cálculo.',
+            'upgrade.scenario.gpu.step1': 'Verifica: Generación de PCIe y espacio físico',
+            'upgrade.scenario.gpu.step2': 'Verifica: Vatios de PSU (usa calculadora)',
+            'upgrade.scenario.gpu.step3': 'Asegúrate: Conectores de poder (8-pin o 16-pin)',
+            'upgrade.scenario.gpu.step4': 'Instala: Retira controlador antiguo, desinstala GPU, inserta una nueva',
+            'upgrade.scenario.cpu': 'Actualización de CPU',
+            'upgrade.scenario.cpu.desc': 'Actualización más impactante para rendimiento.',
+            'upgrade.scenario.cpu.step1': 'Verifica: Compatibilidad de zócalo (AM5, LGA1700, etc.)',
+            'upgrade.scenario.cpu.step2': 'Verifica: Soporte de BIOS para nueva generación',
+            'upgrade.scenario.cpu.step3': 'Verifica: Compatibilidad de refrigerador y montaje',
+            'upgrade.scenario.cpu.step4': 'Instala: Sigue cuidadosamente los pasos del fabricante'
         }
     };
 
@@ -1070,26 +1202,49 @@ if (backToTopButton) {
 document.addEventListener('DOMContentLoaded', () => {
     const windowsTab = document.getElementById('windowsTab');
     const linuxTab = document.getElementById('linuxTab');
+    const upgradeTab = document.getElementById('upgradeTab');
     const windowsSection = document.getElementById('windowsSection');
     const linuxSection = document.getElementById('linuxSection');
+    const upgradeSection = document.getElementById('upgradeSection');
 
-    if (windowsTab && linuxTab && windowsSection && linuxSection) {
-        windowsTab.addEventListener('click', () => {
-            windowsSection.style.display = 'block';
-            linuxSection.style.display = 'none';
-            windowsTab.style.background = 'var(--primary-color)';
-            windowsTab.style.color = 'white';
+    function resetAllTabs() {
+        if (windowsSection) windowsSection.style.display = 'none';
+        if (linuxSection) linuxSection.style.display = 'none';
+        if (upgradeSection) upgradeSection.style.display = 'none';
+        if (windowsTab) {
+            windowsTab.style.background = 'transparent';
+            windowsTab.style.color = 'var(--primary-color)';
+        }
+        if (linuxTab) {
             linuxTab.style.background = 'transparent';
             linuxTab.style.color = 'var(--primary-color)';
+        }
+        if (upgradeTab) {
+            upgradeTab.style.background = 'transparent';
+            upgradeTab.style.color = 'var(--primary-color)';
+        }
+    }
+
+    if (windowsTab && linuxTab && upgradeTab && windowsSection && linuxSection && upgradeSection) {
+        windowsTab.addEventListener('click', () => {
+            resetAllTabs();
+            windowsSection.style.display = 'block';
+            windowsTab.style.background = 'var(--primary-color)';
+            windowsTab.style.color = 'white';
         });
 
         linuxTab.addEventListener('click', () => {
-            windowsSection.style.display = 'none';
+            resetAllTabs();
             linuxSection.style.display = 'block';
-            windowsTab.style.background = 'transparent';
-            windowsTab.style.color = 'var(--primary-color)';
             linuxTab.style.background = 'var(--primary-color)';
             linuxTab.style.color = 'white';
+        });
+
+        upgradeTab.addEventListener('click', () => {
+            resetAllTabs();
+            upgradeSection.style.display = 'block';
+            upgradeTab.style.background = 'var(--primary-color)';
+            upgradeTab.style.color = 'white';
         });
     }
 });

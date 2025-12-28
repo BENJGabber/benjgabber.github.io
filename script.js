@@ -1211,40 +1211,28 @@ document.addEventListener('DOMContentLoaded', () => {
         if (windowsSection) windowsSection.style.display = 'none';
         if (linuxSection) linuxSection.style.display = 'none';
         if (upgradeSection) upgradeSection.style.display = 'none';
-        if (windowsTab) {
-            windowsTab.style.background = 'transparent';
-            windowsTab.style.color = 'var(--primary-color)';
-        }
-        if (linuxTab) {
-            linuxTab.style.background = 'transparent';
-            linuxTab.style.color = 'var(--primary-color)';
-        }
-        if (upgradeTab) {
-            upgradeTab.style.background = 'transparent';
-            upgradeTab.style.color = 'var(--primary-color)';
-        }
+        if (windowsTab) windowsTab.classList.remove('active');
+        if (linuxTab) linuxTab.classList.remove('active');
+        if (upgradeTab) upgradeTab.classList.remove('active');
     }
 
     if (windowsTab && linuxTab && upgradeTab && windowsSection && linuxSection && upgradeSection) {
         windowsTab.addEventListener('click', () => {
             resetAllTabs();
             windowsSection.style.display = 'block';
-            windowsTab.style.background = 'var(--primary-color)';
-            windowsTab.style.color = 'white';
+            windowsTab.classList.add('active');
         });
 
         linuxTab.addEventListener('click', () => {
             resetAllTabs();
             linuxSection.style.display = 'block';
-            linuxTab.style.background = 'var(--primary-color)';
-            linuxTab.style.color = 'white';
+            linuxTab.classList.add('active');
         });
 
         upgradeTab.addEventListener('click', () => {
             resetAllTabs();
             upgradeSection.style.display = 'block';
-            upgradeTab.style.background = 'var(--primary-color)';
-            upgradeTab.style.color = 'white';
+            upgradeTab.classList.add('active');
         });
     }
 });

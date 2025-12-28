@@ -2112,6 +2112,113 @@ body.light-mode .tag {
     }
 }
 
+/* =========================================== */
+   /* OPTIMIZATION PAGE - OS SELECTOR */
+/* =========================================== */
+.os-selector-container {
+    display: flex;
+    gap: 20px;
+    margin: 40px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.os-tab {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.os-icon {
+    font-size: 20px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Default hover state */
+.os-tab:hover:not(.active) {
+    background: rgba(var(--primary-color-rgb), 0.1);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.os-tab:hover:not(.active) .os-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Active state */
+.os-tab.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 8px 24px rgba(var(--primary-color-rgb), 0.4);
+    transform: translateY(-3px);
+}
+
+.os-tab.active .os-icon {
+    transform: scale(1.15);
+    animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+/* Light mode adjustments */
+body.light-mode .os-tab {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+body.light-mode .os-tab:hover:not(.active) {
+    background: rgba(var(--primary-color-rgb), 0.08);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .os-tab.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 8px 24px rgba(var(--primary-color-rgb), 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .os-selector-container {
+        gap: 12px;
+        margin: 30px 0;
+    }
+
+    .os-tab {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .os-icon {
+        font-size: 18px;
+    }
+}
+
 /* Contact Form */
 .contact-form-container {
     background: rgba(30, 41, 59, 0.8);

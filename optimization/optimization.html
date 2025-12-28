@@ -95,10 +95,10 @@
             </div>
 
             <!-- OS Selection -->
-            <div style="display: flex; gap: 15px; margin: 40px 0; justify-content: center; flex-wrap: wrap;">
-                <button id="windowsTab" class="os-tab active" style="padding: 12px 30px; font-size: 16px; border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: 8px; cursor: pointer; transition: all 0.3s;" data-i18n="optimization.tab.windows">🪟 Windows</button>
-                <button id="linuxTab" class="os-tab" style="padding: 12px 30px; font-size: 16px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 8px; cursor: pointer; transition: all 0.3s;" data-i18n="optimization.tab.linux">🐧 Linux (Debian/Ubuntu)</button>
-                <button id="upgradeTab" class="os-tab" style="padding: 12px 30px; font-size: 16px; border: 2px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 8px; cursor: pointer; transition: all 0.3s;" data-i18n="optimization.tab.upgrade">⬆️ Amélioration</button>
+            <div class="os-selector-container">
+                <button id="windowsTab" class="os-tab active" data-i18n="optimization.tab.windows"><span class="os-icon">🪟</span> Windows</button>
+                <button id="linuxTab" class="os-tab" data-i18n="optimization.tab.linux"><span class="os-icon">🐧</span> Linux (Debian/Ubuntu)</button>
+                <button id="upgradeTab" class="os-tab" data-i18n="optimization.tab.upgrade"><span class="os-icon">⬆️</span> Amélioration</button>
             </div>
 
             <!-- WINDOWS SECTION -->

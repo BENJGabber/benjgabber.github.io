@@ -496,7 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'upgrade.scenario.cpu.step1': 'Check: Socket compatibility (AM5, LGA1700, etc.)',
             'upgrade.scenario.cpu.step2': 'Verify: BIOS support for newer generation',
             'upgrade.scenario.cpu.step3': 'Check: Cooler compatibility and mounting',
-            'upgrade.scenario.cpu.step4': 'Install: Follow manufacturer steps carefully'
+            'upgrade.scenario.cpu.step4': 'Install: Follow manufacturer steps carefully',
+            'optimization.ssd.warning': 'Important: Never defragment SSDs - this can reduce their lifespan!'
         }
 
             ,
@@ -684,7 +685,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'upgrade.scenario.cpu.step1': 'Verifica: Compatibilidad de zócalo (AM5, LGA1700, etc.)',
             'upgrade.scenario.cpu.step2': 'Verifica: Soporte de BIOS para nueva generación',
             'upgrade.scenario.cpu.step3': 'Verifica: Compatibilidad de refrigerador y montaje',
-            'upgrade.scenario.cpu.step4': 'Instala: Sigue cuidadosamente los pasos del fabricante'
+            'upgrade.scenario.cpu.step4': 'Instala: Sigue cuidadosamente los pasos del fabricante',
+            'optimization.ssd.warning': '¡Importante: Nunca desfragmentes SSDs - ¡esto puede reducir su vida útil!'
         }
     };
 

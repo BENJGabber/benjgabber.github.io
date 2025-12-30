@@ -3220,3 +3220,50 @@ body.light-mode .back-to-top:hover {
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Light Mode for Resources Section */
+        body.light-mode .resources-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+        }
+
+        body.light-mode .resource-tab {
+            background: rgba(245, 247, 250, 0.8);
+            border: 2px solid rgba(69, 0, 180, 0.2);
+            color: #333;
+        }
+
+        body.light-mode .resource-tab:hover {
+            border-color: rgba(69, 0, 180, 0.5);
+            background: rgba(245, 247, 250, 1);
+        }
+
+        body.light-mode .resource-tab.active {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        body.light-mode .resource-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(69, 0, 180, 0.2);
+        }
+
+        body.light-mode .resource-card:hover {
+            border-color: rgba(69, 0, 180, 0.4);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        body.light-mode .resource-card h3 {
+            color: #333;
+        }
+
+        body.light-mode .resource-card p {
+            color: #666;
+        }
+
+        body.light-mode .resource-type,
+        body.light-mode .resource-lang {
+            background: rgba(69, 0, 180, 0.1);
+            color: #7c3aed;
+            border: 1px solid rgba(69, 0, 180, 0.2);
+        }

@@ -1236,3 +1236,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// ===========================
+// COPY BUTTON FOR CODE SNIPPETS
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.snippet-code').forEach(block => {
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = '📋 Copy';
+        btn.onclick = () => {
+            navigator.clipboard.writeText(block.textContent);
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => btn.textContent = '📋 Copy', 2000);
+        };
+        block.parentElement.style.position = 'relative';
+        btn.style.cssText = 'position:absolute;top:1rem;right:1rem;padding:0.5rem 1rem;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.3);border-radius:8px;cursor:pointer;color:#c4b5fd;';
+        block.parentElement.appendChild(btn);
+    });
+});

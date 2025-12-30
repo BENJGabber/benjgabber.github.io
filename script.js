@@ -1257,3 +1257,27 @@ document.addEventListener('DOMContentLoaded', () => {
         block.parentElement.appendChild(btn);
     });
 });
+
+// ===========================
+// RESOURCES PAGE TAB SWITCHING
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.resource-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const category = tab.dataset.category;
+            
+            // Update active tab
+            document.querySelectorAll('.resource-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Show corresponding grid
+            document.querySelectorAll('.resource-grid').forEach(grid => {
+                if (grid.dataset.category === category) {
+                    grid.classList.remove('hidden');
+                } else {
+                    grid.classList.add('hidden');
+                }
+            });
+        });
+    });
+});

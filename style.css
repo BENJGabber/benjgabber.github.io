@@ -3071,6 +3071,12 @@ body.light-mode .back-to-top:hover {
            RESOURCES SECTION STYLES
            =========================== */
 
+        .resources-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+        }
+
         .resource-categories {
             display: flex;
             gap: 1rem;

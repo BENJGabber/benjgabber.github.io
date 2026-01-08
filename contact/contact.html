@@ -189,8 +189,8 @@
     // Simple initialization
         emailjs.init('hJ21pqCbKdeCOCaZD');
 
-    // === Fingerprinting hardcore pour limiter par "appareil" ===
-        function getFingerprint() {
+    // ===== SUPER FINGERPRINTING MULTI-COUCHES =====
+    async function getSuperFingerprint() {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         ctx.textBaseline = 'top';
@@ -198,40 +198,230 @@
         ctx.fillStyle = '#f60';
         ctx.fillRect(125, 1, 62, 20);
         ctx.fillStyle = '#069';
-        ctx.fillText('browser fingerprint 😈', 2, 15);
+        ctx.fillText('anti-spam fingerprint', 2, 15);
         const canvasData = canvas.toDataURL();
+
+        // Audio fingerprinting
+        let audioHash = 'none';
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioCtx.createOscillator();
+            const analyser = audioCtx.createAnalyser();
+            const gainNode = audioCtx.createGain();
+            const scriptProcessor = audioCtx.createScriptProcessor(4096, 1, 1);
+            
+            gainNode.gain.value = 0;
+            oscillator.connect(analyser);
+            analyser.connect(scriptProcessor);
+            scriptProcessor.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            scriptProcessor.onaudioprocess = function(bins) {
+                const output = bins.outputBuffer.getChannelData(0);
+                audioHash = output.slice(0, 30).join('');
+            };
+            
+            oscillator.start(0);
+            await new Promise(resolve => setTimeout(resolve, 100));
+            oscillator.stop();
+            audioCtx.close();
+        } catch(e) {
+            audioHash = 'error';
+        }
+
+        // WebGL fingerprinting
+        let webglHash = 'none';
+        try {
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+            webglHash = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+        } catch(e) {
+            webglHash = 'error';
+        }
+
+        // Fonts detection
+        const fonts = ['monospace', 'sans-serif', 'serif'];
+        const testString = 'mmmmmmmmmmlli';
+        const testSize = '72px';
+        const h = document.getElementsByTagName('body')[0];
+        const s = document.createElement('span');
+        s.style.fontSize = testSize;
+        s.innerHTML = testString;
+        const defaultWidth = {};
+        const defaultHeight = {};
+        
+        for (const font of fonts) {
+            s.style.fontFamily = font;
+            h.appendChild(s);
+            defaultWidth[font] = s.offsetWidth;
+            defaultHeight[font] = s.offsetHeight;
+            h.removeChild(s);
+        }
+        
+        const fontList = ['Arial', 'Verdana', 'Times New Roman', 'Courier New'];
+        const fontsDetected = fontList.filter(font => {
+            for (const baseFont of fonts) {
+                s.style.fontFamily = `${font},${baseFont}`;
+                h.appendChild(s);
+                const matched = s.offsetWidth !== defaultWidth[baseFont] || 
+                               s.offsetHeight !== defaultHeight[baseFont];
+                h.removeChild(s);
+                if (matched) return true;
+            }
+            return false;
+        });
 
         const data = [
             navigator.userAgent,
             navigator.language || navigator.userLanguage,
             screen.width + 'x' + screen.height + 'x' + screen.colorDepth,
+            screen.availWidth + 'x' + screen.availHeight,
             new Date().getTimezoneOffset(),
             !!window.sessionStorage,
+            !!window.localStorage,
             !!window.indexedDB,
+            typeof(window.openDatabase),
+            navigator.cpuClass || 'unknown',
+            navigator.platform || 'unknown',
             navigator.hardwareConcurrency || 'unknown',
-            canvasData.substring(canvasData.length - 100)
+            navigator.deviceMemory || 'unknown',
+            navigator.maxTouchPoints || 0,
+            !!window.ActiveXObject || "ActiveXObject" in window,
+            canvasData.substring(canvasData.length - 100),
+            audioHash.substring(0, 50),
+            webglHash,
+            fontsDetected.join(','),
+            navigator.plugins.length,
+            navigator.languages ? navigator.languages.join(',') : ''
         ];
 
-        return btoa(data.join('|||'));
+        const fingerprint = btoa(data.join('|||'));
+        
+        // Hash supplémentaire avec crypto
+        const encoder = new TextEncoder();
+        const dataBuffer = encoder.encode(fingerprint);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        return hashHex;
     }
 
-    // === Check cooldown 10 minutes par fingerprint ===
-    function canSendMessage() {
-        const fp = getFingerprint();
+    // ===== SYSTÈME DE POINTS DE SUSPICION =====
+    let suspicionScore = 0;
+    const MAX_SUSPICION = 100;
+
+    function addSuspicion(points, reason) {
+        suspicionScore += points;
+        console.log(`⚠️ +${points} suspicion: ${reason} (Total: ${suspicionScore})`);
+        
+        if (suspicionScore >= MAX_SUSPICION) {
+            lockoutUser('Score de suspicion trop élevé');
+            return true;
+        }
+        return false;
+    }
+
+    // Détecter comportement bot
+    let mouseMovements = 0;
+    let keyPresses = 0;
+    let formFocusTime = 0;
+    let lastInteraction = Date.now();
+
+    document.addEventListener('mousemove', () => {
+        mouseMovements++;
+        lastInteraction = Date.now();
+    });
+
+    document.addEventListener('keydown', () => {
+        keyPresses++;
+        lastInteraction = Date.now();
+    });
+
+    contactForm.addEventListener('focus', () => {
+        formFocusTime = Date.now();
+    }, true);
+
+    // ===== LOCKOUT SYSTEM =====
+    function lockoutUser(reason) {
+        const lockoutKey = 'contact_lockout';
+        const lockoutData = {
+            until: Date.now() + (24 * 60 * 60 * 1000), // 24h
+            reason: reason
+        };
+        localStorage.setItem(lockoutKey, JSON.stringify(lockoutData));
+        
+        errorMessage.textContent = `🚫 Accès bloqué pour 24h. Raison: ${reason}`;
+        errorMessage.classList.add('show');
+        submitBtn.disabled = true;
+        contactForm.style.opacity = '0.5';
+        contactForm.style.pointerEvents = 'none';
+    }
+
+    function checkLockout() {
+        const lockoutKey = 'contact_lockout';
+        const lockoutData = localStorage.getItem(lockoutKey);
+        
+        if (lockoutData) {
+            try {
+                const data = JSON.parse(lockoutData);
+                if (Date.now() < data.until) {
+                    const hoursLeft = Math.ceil((data.until - Date.now()) / (60 * 60 * 1000));
+                    lockoutUser(`${data.reason} (${hoursLeft}h restantes)`);
+                    return true;
+                } else {
+                    localStorage.removeItem(lockoutKey);
+                }
+            } catch(e) {
+                localStorage.removeItem(lockoutKey);
+            }
+        }
+        return false;
+    }
+
+    // ===== RATE LIMITING MULTI-NIVEAUX =====
+    async function canSendMessage() {
+        // Check lockout first
+        if (checkLockout()) return false;
+
+        const fp = await getSuperFingerprint();
         const key = 'lastMessage_' + fp;
+        const countKey = 'messageCount_' + fp;
+        const attemptsKey = 'failedAttempts_' + fp;
+        
         const lastSend = localStorage.getItem(key);
+        const messageCount = parseInt(localStorage.getItem(countKey) || '0');
+        const failedAttempts = parseInt(localStorage.getItem(attemptsKey) || '0');
+
+        // Trop de tentatives échouées = lockout
+        if (failedAttempts >= 5) {
+            lockoutUser('Trop de tentatives suspectes');
+            return false;
+        }
+
+        // Trop de messages envoyés = lockout
+        if (messageCount >= 3) {
+            lockoutUser('Limite de messages atteinte');
+            return false;
+        }
 
         if (!lastSend) return true;
 
         const now = Date.now();
         const timeSinceLast = now - parseInt(lastSend);
-        const cooldown = 10 * 60 * 1000; // 10 minutes
+        
+        // Cooldown progressif
+        const baseCooldown = 10 * 60 * 1000; // 10 minutes
+        const cooldown = baseCooldown * (messageCount + 1);
 
         if (timeSinceLast < cooldown) {
             const minutesLeft = Math.ceil((cooldown - timeSinceLast) / 60000);
-            errorMessage.textContent = `T'as déjà envoyé un message avec cet appareil. Attends ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}, spammer. 😈`;
+            localStorage.setItem(attemptsKey, (failedAttempts + 1).toString());
+            errorMessage.textContent = `⏳ Cooldown actif: ${minutesLeft} minutes restantes`;
             errorMessage.classList.add('show');
             setTimeout(() => errorMessage.classList.remove('show'), 8000);
+            
+            if (addSuspicion(20, 'Tentative pendant cooldown')) return false;
             return false;
         }
         return true;
@@ -256,8 +446,8 @@
             return;
         }
 
-        // 2. Fingerprint + cooldown 10 min
-        if (!canSendMessage()) {
+        // 2. Fingerprint + rate limiting multi-niveaux
+        if (!await canSendMessage()) {
             return;
         }
 
@@ -266,13 +456,11 @@
         successMessage.classList.remove('show');
         errorMessage.classList.remove('show');
 
-        // FIXED: Don't send g-recaptcha-response to EmailJS
         const formData = {
             name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             title: document.getElementById('subject').value,
             message: document.getElementById('message').value
-            // REMOVED: 'g-recaptcha-response': recaptchaResponse
         };
 
         try {
@@ -286,14 +474,23 @@
             });
 
             // === Enregistrement du fingerprint après succès ===
-            const fp = getFingerprint();
+            const fp = await getSuperFingerprint();
+            const countKey = 'messageCount_' + fp;
+            const currentCount = parseInt(localStorage.getItem(countKey) || '0');
             localStorage.setItem('lastMessage_' + fp, Date.now().toString());
+            localStorage.setItem(countKey, (currentCount + 1).toString());
+            localStorage.removeItem('failedAttempts_' + fp);
 
             successMessage.classList.add('show');
             contactForm.reset();
             setTimeout(() => successMessage.classList.remove('show'), 5000);
         } catch (error) {
             console.error('Erreur EmailJS:', error);
+            const fp = await getSuperFingerprint();
+            const attemptsKey = 'failedAttempts_' + fp;
+            const failedAttempts = parseInt(localStorage.getItem(attemptsKey) || '0');
+            localStorage.setItem(attemptsKey, (failedAttempts + 1).toString());
+            
             if (error.text && error.text.includes('rate limit')) {
                 errorMessage.textContent = "Trop rapide, calme-toi 15 secondes.";
             } else {
@@ -306,6 +503,7 @@
             submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
         }
     });
+
 </script>
 
     <!-- Bouton Retour en haut -->

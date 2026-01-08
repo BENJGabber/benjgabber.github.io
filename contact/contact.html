@@ -189,6 +189,12 @@
     // Simple initialization
         emailjs.init('hJ21pqCbKdeCOCaZD');
 
+    // Get DOM elements first
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+
     // ===== SUPER FINGERPRINTING MULTI-COUCHES =====
     async function getSuperFingerprint() {
         const canvas = document.createElement('canvas');
@@ -427,10 +433,6 @@
         return true;
     }
 
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('successMessage');
-    const errorMessage = document.getElementById('errorMessage');
     const EMAIL_SERVICE_ID = 'service_7n8wk97';
     const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
     const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';

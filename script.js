@@ -1367,3 +1367,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Toast Notification System
+function showToast(message, type = 'info', duration = 4000) {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    const icons = {
+        success: '✅',
+        error: '❌',
+        info: 'ℹ️'
+    };
+    
+    toast.innerHTML = `
+        <span class="toast-icon">${icons[type] || '📢'}</span>
+        <span class="toast-message">${message}</span>
+        <button class="toast-close" aria-label="Fermer">&times;</button>
+    `;
+    
+    container.appendChild(toast);
+    
+    const closeBtn = toast.querySelector('.toast-close');
+    const removeToast = () => {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 400);
+    };
+    
+    closeBtn.addEventListener('click', removeToast);
+    setTimeout(removeToast, duration);
+}

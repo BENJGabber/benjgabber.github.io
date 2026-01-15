@@ -358,8 +358,7 @@
         };
         localStorage.setItem(lockoutKey, JSON.stringify(lockoutData));
         
-        errorMessage.textContent = `🚫 Accès bloqué pour 24h. Raison: ${reason}`;
-        errorMessage.classList.add('show');
+        showToast(`🚫 Accès bloqué pour 24h. Raison: ${reason}`, 'error', 6000);
         submitBtn.disabled = true;
         contactForm.style.opacity = '0.5';
         contactForm.style.pointerEvents = 'none';
@@ -424,9 +423,7 @@
         if (timeSinceLast < cooldown) {
             const minutesLeft = Math.ceil((cooldown - timeSinceLast) / 60000);
             localStorage.setItem(attemptsKey, (failedAttempts + 1).toString());
-            errorMessage.textContent = `⏳ Cooldown actif: ${minutesLeft} minutes restantes`;
-            errorMessage.classList.add('show');
-            setTimeout(() => errorMessage.classList.remove('show'), 8000);
+            showToast(`⏳ Cooldown actif: ${minutesLeft} minutes restantes`, 'info', 8000);
             
             if (addSuspicion(20, 'Tentative pendant cooldown')) return false;
             return false;
@@ -456,8 +453,6 @@
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Envoi en cours...</span><span>⏳</span>';
-        successMessage.classList.remove('show');
-        errorMessage.classList.remove('show');
 
         const formData = {
             name: document.getElementById('name').value,
@@ -484,9 +479,8 @@
             localStorage.setItem(countKey, (currentCount + 1).toString());
             localStorage.removeItem('failedAttempts_' + fp);
 
-            successMessage.classList.add('show');
+            showToast('✅ Message envoyé avec succès ! Je vous répondrai rapidement.', 'success', 5000);
             contactForm.reset();
-            setTimeout(() => successMessage.classList.remove('show'), 5000);
         } catch (error) {
             console.error('Erreur EmailJS:', error);
             const fp = await getSuperFingerprint();
@@ -494,13 +488,11 @@
             const failedAttempts = parseInt(localStorage.getItem(attemptsKey) || '0');
             localStorage.setItem(attemptsKey, (failedAttempts + 1).toString());
             
+            let errorMsg = "❌ Une erreur s'est produite. Veuillez réessayer.";
             if (error.text && error.text.includes('rate limit')) {
-                errorMessage.textContent = "Trop rapide, calme-toi 15 secondes.";
-            } else {
-                errorMessage.textContent = "Échec. Réessaie plus tard.";
+                errorMsg = "⏱️ Trop rapide, calme-toi 15 secondes.";
             }
-            errorMessage.classList.add('show');
-            setTimeout(() => errorMessage.classList.remove('show'), 5000);
+            showToast(errorMsg, 'error', 5000);
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<span>Envoyer le message</span><span>✉️</span>';
@@ -516,6 +508,10 @@
         </svg>
         <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
     </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
     <script src="../script.js"></script>
 </body>
 </html>

@@ -3515,6 +3515,7 @@ body.light-mode .back-to-top:hover {
 
 .page-header {
     text-align: center;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     animation: fadeInUp 1s ease-out;
 }

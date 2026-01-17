@@ -484,50 +484,76 @@
             const warningsLabel = getTutorialTranslation('cisco.warnings') || '⚠️ Attention';
             const copyLabel = getTutorialTranslation('cisco.copy') || 'Copier';
 
+            // Get translated introduction
+            const introText = getTutorialTranslation(`cisco.tut${tutorial.id}.intro`) || tutorial.content.introduction;
+
+            // Get translated prerequisites
+            let prerequisites = tutorial.content.prerequisites;
+            const prereqTransKey = getTutorialTranslation(`cisco.tut${tutorial.id}.prereq`);
+            if (prereqTransKey) {
+                prerequisites = prereqTransKey.split('|');
+            }
+
             let html = `
                 <div class="tutorial-section">
-                    <h3>📝 ${introLabel}</h3>
-                    <p>${tutorial.content.introduction}</p>
+                    <h3>${introLabel}</h3>
+                    <p>${introText}</p>
                 </div>
 
                 <div class="tutorial-section">
-                    <h3>📋 ${prereqLabel}</h3>
+                    <h3>${prereqLabel}</h3>
                     <ul>
-                        ${tutorial.content.prerequisites.map(p => `<li>${p}</li>`).join('')}
+                        ${prerequisites.map(p => `<li>${p}</li>`).join('')}
                     </ul>
                 </div>
 
                 <div class="tutorial-section">
-                    <h3>🔧 ${stepsLabel}</h3>
+                    <h3>${stepsLabel}</h3>
                     <ol class="steps-list">
-                        ${tutorial.content.steps.map(step => `
-                            <li>
-                                <h4>${step.title}</h4>
-                                <p>${step.content}</p>
-                                <div class="command-block">
-                                    <button class="copy-btn" onclick="copyToClipboard(this)">${copyLabel}</button>
-                                    <pre><code>${step.commands.join('\n')}</code></pre>
-                                </div>
-                            </li>
-                        `).join('')}
+                        ${tutorial.content.steps.map((step, idx) => {
+                            const stepTitleKey = `cisco.tut${tutorial.id}.step${idx + 1}.title`;
+                            const stepContentKey = `cisco.tut${tutorial.id}.step${idx + 1}.content`;
+                            const stepTitle = getTutorialTranslation(stepTitleKey) || step.title;
+                            const stepContent = getTutorialTranslation(stepContentKey) || step.content;
+                            return `
+                                <li>
+                                    <h4>${stepTitle}</h4>
+                                    <p>${stepContent}</p>
+                                    <div class="command-block">
+                                        <button class="copy-btn" onclick="copyToClipboard(this)">${copyLabel}</button>
+                                        <pre><code>${step.commands.join('\n')}</code></pre>
+                                    </div>
+                                </li>
+                            `;
+                        }).join('')}
                     </ol>
                 </div>
             `;
 
             if (tutorial.content.tips && tutorial.content.tips.length > 0) {
+                let tips = tutorial.content.tips;
+                const tipsTransKey = getTutorialTranslation(`cisco.tut${tutorial.id}.tips`);
+                if (tipsTransKey) {
+                    tips = tipsTransKey.split('|');
+                }
                 html += `
                     <div class="tutorial-section">
-                        <h3>💡 ${tipsLabel}</h3>
-                        ${tutorial.content.tips.map(tip => `<div class="note-box"><p>${tip}</p></div>`).join('')}
+                        <h3>${tipsLabel}</h3>
+                        ${tips.map(tip => `<div class="note-box"><p>${tip}</p></div>`).join('')}
                     </div>
                 `;
             }
 
             if (tutorial.content.warnings && tutorial.content.warnings.length > 0) {
+                let warnings = tutorial.content.warnings;
+                const warningsTransKey = getTutorialTranslation(`cisco.tut${tutorial.id}.warnings`);
+                if (warningsTransKey) {
+                    warnings = warningsTransKey.split('|');
+                }
                 html += `
                     <div class="tutorial-section">
-                        <h3>⚠️ ${warningsLabel}</h3>
-                        ${tutorial.content.warnings.map(warning => `<div class="warning-box"><p>${warning}</p></div>`).join('')}
+                        <h3>${warningsLabel}</h3>
+                        ${warnings.map(warning => `<div class="warning-box"><p>${warning}</p></div>`).join('')}
                     </div>
                 `;
             }

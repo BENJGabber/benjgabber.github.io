@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Tutoriels Cisco - Mon Portfolio</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="./cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
+                <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+                <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="font-toggle" id="fontToggle" aria-label="Changer de police">Aa</button>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="side-nav-links">
+            <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+            <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
+            <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="./cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
+            <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
+            <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="side-menu-toggles">
+            <button class="lang-toggle" id="languageToggleMobile" aria-label="Changer de langue">EN</button>
+            <button class="theme-toggle" id="themeToggleMobile" aria-label="Changer de thème">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="cisco-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>🌐 Tutoriels Cisco</h1>
+                <p>Guides pratiques et configurations réseau basés sur mon expérience</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Tous</button>
+                <button class="filter-tab" data-filter="beginner">Débutant</button>
+                <button class="filter-tab" data-filter="intermediate">Intermédiaire</button>
+                <button class="filter-tab" data-filter="advanced">Avancé</button>
+            </div>
+
+            <!-- Tutorials Grid -->
+            <div class="tutorials-grid" id="tutorialsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="tutorialModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="closeModal">&times;</button>
+                <div id="modalHeader"></div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Bouton Retour en haut -->
+    <button id="backToTop" class="back-to-top" data-i18n-aria="back.toTop" aria-label="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+        <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
+    </button>
+
+    <script>
+        // Tutorials Data
+        const tutorials = [
+            {
+                id: 1,
+                title: "Configuration de Base d'un Switch Cisco",
+                difficulty: "beginner",
+                duration: "15 min",
+                category: "Configuration",
+                description: "Apprenez à configurer un switch Cisco de A à Z : hostname, mots de passe, et sécurisation de base.",
+                tags: ["Switch", "IOS", "Sécurité"],
+                content: {
+                    introduction: "Ce tutoriel couvre la configuration initiale d'un switch Cisco. Vous apprendrez les commandes essentielles pour mettre en service un équipement réseau.",
+                    prerequisites: ["Accès console au switch", "Câble console (RJ45 vers USB)", "Logiciel de terminal (PuTTY, Tera Term)"],
+                    steps: [
+                        {
+                            title: "Accéder au mode privilégié",
+                            content: "Commencez par entrer en mode privilégié pour avoir accès à toutes les commandes.",
+                            commands: ["Switch> enable", "Switch#"]
+                        },
+                        {
+                            title: "Configurer le hostname",
+                            content: "Donnez un nom significatif à votre switch pour faciliter son identification.",
+                            commands: ["Switch# configure terminal", "Switch(config)# hostname SW-Bureau-01", "SW-Bureau-01(config)#"]
+                        },
+                        {
+                            title: "Sécuriser l'accès console",
+                            content: "Définissez un mot de passe pour l'accès console afin de protéger votre équipement.",
+                            commands: ["SW-Bureau-01(config)# line console 0", "SW-Bureau-01(config-line)# password Cisco123", "SW-Bureau-01(config-line)# login", "SW-Bureau-01(config-line)# exit"]
+                        },
+                        {
+                            title: "Configurer le mode privilégié",
+                            content: "Protégez l'accès au mode privilégié avec un mot de passe chiffré.",
+                            commands: ["SW-Bureau-01(config)# enable secret SecurePass456", "SW-Bureau-01(config)# service password-encryption"]
+                        },
+                        {
+                            title: "Sauvegarder la configuration",
+                            content: "Enregistrez vos modifications pour qu'elles persistent après un redémarrage.",
+                            commands: ["SW-Bureau-01(config)# exit", "SW-Bureau-01# copy running-config startup-config", "Destination filename [startup-config]? [Entrée]"]
+                        }
+                    ],
+                    tips: ["Utilisez toujours 'enable secret' au lieu de 'enable password' pour un meilleur chiffrement", "Notez vos mots de passe dans un endroit sécurisé", "La commande 'service password-encryption' chiffre tous les mots de passe en clair"],
+                    warnings: ["Ne perdez jamais vos mots de passe ! La récupération nécessite une procédure complexe", "Testez toujours votre configuration avant de déconnecter le câble console"]
+                }
+            },
+            {
+                id: 2,
+                title: "Configuration des VLANs",
+                difficulty: "intermediate",
+                duration: "30 min",
+                category: "Réseau",
+                description: "Segmentez votre réseau avec les VLANs : création, attribution et configuration des ports trunk.",
+                tags: ["VLAN", "Trunk", "Segmentation"],
+                content: {
+                    introduction: "Les VLANs permettent de segmenter logiquement un réseau physique en plusieurs réseaux virtuels isolés.",
+                    prerequisites: ["Switch configuré", "Connaissances de base en réseau", "Plan d'adressage IP"],
+                    steps: [
+                        {
+                            title: "Créer les VLANs",
+                            content: "Définissez vos VLANs avec des noms descriptifs.",
+                            commands: ["Switch# configure terminal", "Switch(config)# vlan 10", "Switch(config-vlan)# name Informatique", "Switch(config-vlan)# exit", "Switch(config)# vlan 20", "Switch(config-vlan)# name Comptabilite", "Switch(config-vlan)# exit", "Switch(config)# vlan 99", "Switch(config-vlan)# name Management", "Switch(config-vlan)# exit"]
+                        },
+                        {
+                            title: "Assigner des ports aux VLANs",
+                            content: "Configurez les ports en mode access pour chaque VLAN.",
+                            commands: ["Switch(config)# interface range fastethernet 0/1-10", "Switch(config-if-range)# switchport mode access", "Switch(config-if-range)# switchport access vlan 10", "Switch(config-if-range)# exit", "", "Switch(config)# interface range fastethernet 0/11-20", "Switch(config-if-range)# switchport mode access", "Switch(config-if-range)# switchport access vlan 20", "Switch(config-if-range)# exit"]
+                        },
+                        {
+                            title: "Configurer un port Trunk",
+                            content: "Le trunk permet de transporter plusieurs VLANs entre switchs.",
+                            commands: ["Switch(config)# interface gigabitethernet 0/1", "Switch(config-if)# switchport mode trunk", "Switch(config-if)# switchport trunk allowed vlan 10,20,99", "Switch(config-if)# exit"]
+                        },
+                        {
+                            title: "Vérifier la configuration",
+                            content: "Utilisez ces commandes pour vérifier vos VLANs.",
+                            commands: ["Switch# show vlan brief", "Switch# show interfaces trunk", "Switch# show vlan id 10"]
+                        }
+                    ],
+                    tips: ["Utilisez le VLAN 1 uniquement pour le management (bonnes pratiques)", "Documentez votre plan de VLANs avant de commencer", "Le VLAN natif par défaut est le VLAN 1 sur les trunks"],
+                    warnings: ["Attention : changer le VLAN d'un port peut interrompre la connexion", "Vérifiez que les deux côtés du trunk utilisent le même protocole (802.1Q)"]
+                }
+            },
+            {
+                id: 3,
+                title: "Mise en Place d'ACL (Access Control Lists)",
+                difficulty: "advanced",
+                duration: "45 min",
+                category: "Sécurité",
+                description: "Filtrez le trafic réseau avec les ACL standard et étendues pour renforcer la sécurité.",
+                tags: ["ACL", "Filtrage", "Sécurité"],
+                content: {
+                    introduction: "Les ACL permettent de contrôler le trafic réseau en autorisant ou refusant des paquets selon des critères définis.",
+                    prerequisites: ["Routeur Cisco configuré", "Compréhension du modèle TCP/IP", "Plan de sécurité réseau"],
+                    steps: [
+                        {
+                            title: "ACL Standard - Bloquer une plage IP",
+                            content: "Les ACL standard filtrent uniquement sur l'adresse IP source.",
+                            commands: ["Router# configure terminal", "Router(config)# access-list 10 deny 192.168.1.0 0.0.0.255", "Router(config)# access-list 10 permit any", "", "# Appliquer l'ACL sur une interface", "Router(config)# interface gigabitethernet 0/0", "Router(config-if)# ip access-group 10 in", "Router(config-if)# exit"]
+                        },
+                        {
+                            title: "ACL Étendue - Filtrage par port",
+                            content: "Les ACL étendues permettent un filtrage plus précis (source, destination, protocole, port).",
+                            commands: ["Router(config)# access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 80", "Router(config)# access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 443", "Router(config)# access-list 100 deny ip any any", "", "Router(config)# interface gigabitethernet 0/1", "Router(config-if)# ip access-group 100 out", "Router(config-if)# exit"]
+                        },
+                        {
+                            title: "ACL Nommée",
+                            content: "Les ACL nommées sont plus flexibles et modifiables.",
+                            commands: ["Router(config)# ip access-list extended FILTRAGE-WEB", "Router(config-ext-nacl)# 10 permit tcp any any eq 80", "Router(config-ext-nacl)# 20 permit tcp any any eq 443", "Router(config-ext-nacl)# 30 deny ip any any", "Router(config-ext-nacl)# exit", "", "Router(config)# interface gigabitethernet 0/0", "Router(config-if)# ip access-group FILTRAGE-WEB in"]
+                        },
+                        {
+                            title: "Vérification et Dépannage",
+                            content: "Commandes essentielles pour vérifier vos ACL.",
+                            commands: ["Router# show access-lists", "Router# show ip access-lists", "Router# show ip interface gigabitethernet 0/0", "", "# Effacer les compteurs d'ACL", "Router# clear ip access-list counters"]
+                        }
+                    ],
+                    tips: ["Placez les ACL standard au plus près de la destination", "Placez les ACL étendues au plus près de la source", "Testez toujours vos ACL avant de les appliquer en production", "Utilisez des numéros séquentiels (10, 20, 30...) pour faciliter les modifications"],
+                    warnings: ["ATTENTION : Il y a toujours un 'deny any' implicite à la fin !", "L'ordre des règles est CRITIQUE : première correspondance = action appliquée", "Une ACL vide sur une interface bloque tout le trafic !"]
+                }
+            },
+            {
+                id: 4,
+                title: "Configuration Routage Inter-VLAN",
+                difficulty: "intermediate",
+                duration: "40 min",
+                category: "Routage",
+                description: "Permettez la communication entre VLANs avec le routage sur stick (Router-on-a-Stick).",
+                tags: ["VLAN", "Routage", "Sous-interfaces"],
+                content: {
+                    introduction: "Le routage inter-VLAN permet aux différents VLANs de communiquer entre eux via un routeur ou un switch de niveau 3.",
+                    prerequisites: ["VLANs déjà configurés", "Routeur Cisco", "Trunk configuré vers le routeur"],
+                    steps: [
+                        {
+                            title: "Configuration des sous-interfaces",
+                            content: "Créez une sous-interface pour chaque VLAN sur le routeur.",
+                            commands: ["Router# configure terminal", "Router(config)# interface gigabitethernet 0/0.10", "Router(config-subif)# encapsulation dot1Q 10", "Router(config-subif)# ip address 192.168.10.1 255.255.255.0", "Router(config-subif)# exit", "", "Router(config)# interface gigabitethernet 0/0.20", "Router(config-subif)# encapsulation dot1Q 20", "Router(config-subif)# ip address 192.168.20.1 255.255.255.0", "Router(config-subif)# exit"]
+                        },
+                        {
+                            title: "Activer l'interface physique",
+                            content: "L'interface principale doit être active (no shutdown).",
+                            commands: ["Router(config)# interface gigabitethernet 0/0", "Router(config-if)# no shutdown", "Router(config-if)# exit"]
+                        },
+                        {
+                            title: "Vérifier la configuration",
+                            content: "Assurez-vous que tout fonctionne correctement.",
+                            commands: ["Router# show ip interface brief", "Router# show vlans", "Router# show ip route"]
+                        }
+                    ],
+                    tips: ["Le numéro de sous-interface doit correspondre au VLAN (bonne pratique)", "N'oubliez pas 'no shutdown' sur l'interface principale", "Testez avec des pings entre VLANs"],
+                    warnings: ["Le trunk sur le switch doit autoriser tous les VLANs concernés"]
+                }
+            },
+            {
+                id: 5,
+                title: "Configuration SSH pour Administration Sécurisée",
+                difficulty: "intermediate",
+                duration: "20 min",
+                category: "Sécurité",
+                description: "Remplacez Telnet par SSH pour une administration réseau sécurisée et chiffrée.",
+                tags: ["SSH", "Sécurité", "Administration"],
+                content: {
+                    introduction: "SSH (Secure Shell) permet une connexion sécurisée et chiffrée à vos équipements réseau, contrairement à Telnet qui transmet en clair.",
+                    prerequisites: ["Image IOS compatible SSH (K9)", "Accès console au switch/routeur"],
+                    steps: [
+                        {
+                            title: "Configurer hostname et domaine",
+                            content: "Ces paramètres sont nécessaires pour générer la clé RSA.",
+                            commands: ["Switch# configure terminal", "Switch(config)# hostname SW-Core", "SW-Core(config)# ip domain-name monentreprise.local"]
+                        },
+                        {
+                            title: "Générer la clé RSA",
+                            content: "La clé RSA est utilisée pour le chiffrement SSH.",
+                            commands: ["SW-Core(config)# crypto key generate rsa", "How many bits in the modulus [512]: 2048", "# Patientez pendant la génération..."]
+                        },
+                        {
+                            title: "Créer un compte utilisateur",
+                            content: "Créez un utilisateur local pour l'authentification SSH.",
+                            commands: ["SW-Core(config)# username admin privilege 15 secret AdminPass123"]
+                        },
+                        {
+                            title: "Configurer les lignes VTY",
+                            content: "Activez SSH sur les lignes de terminal virtuel.",
+                            commands: ["SW-Core(config)# line vty 0 4", "SW-Core(config-line)# transport input ssh", "SW-Core(config-line)# login local", "SW-Core(config-line)# exit"]
+                        },
+                        {
+                            title: "Configurer SSH version 2 et sauvegarder",
+                            content: "Forcez l'utilisation de SSH version 2 (plus sécurisée) et sauvegardez.",
+                            commands: ["SW-Core(config)# ip ssh version 2", "SW-Core(config)# ip ssh time-out 120", "SW-Core(config)# ip ssh authentication-retries 3", "SW-Core(config)# exit", "SW-Core# copy running-config startup-config"]
+                        }
+                    ],
+                    tips: ["Testez SSH avec un client comme PuTTY ou OpenSSH", "Conservez une connexion console en cas de problème", "SSH est obligatoire pour la sécurité en production"],
+                    warnings: ["Sans SSH correctement configuré, vous risquez de perdre l'accès au device", "Vérifiez que Telnet est bien désactivé après la configuration SSH"]
+                }
+            }
+        ];
+
+        // Affichage des tutoriels
+        function displayTutorials(filter = 'all') {
+            const grid = document.getElementById('tutorialsGrid');
+            grid.innerHTML = '';
+
+            tutorials
+                .filter(t => filter === 'all' || t.difficulty === filter)
+                .forEach(tutorial => {
+                    const card = document.createElement('div');
+                    card.className = 'tutorial-card';
+                    card.innerHTML = `
+                        <div class="tutorial-header">
+                            <span class="tutorial-difficulty difficulty-${tutorial.difficulty}">${tutorial.difficulty}</span>
+                            <h3>${tutorial.title}</h3>
+                            <div class="tutorial-meta">
+                                <span>⏱️ ${tutorial.duration}</span>
+                                <span>📁 ${tutorial.category}</span>
+                            </div>
+                        </div>
+                        <div class="tutorial-body">
+                            <p>${tutorial.description}</p>
+                            <div class="tutorial-tags">
+                                ${tutorial.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="tutorial-actions">
+                                <button class="btn btn-primary" onclick="openModal(${tutorial.id})">Lire Plus</button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+        }
+
+        // Ouvrir modal
+        function openModal(id) {
+            const tutorial = tutorials.find(t => t.id === id);
+            const modal = document.getElementById('tutorialModal');
+            const header = document.getElementById('modalHeader');
+            const body = document.getElementById('modalBody');
+
+            header.innerHTML = `
+                <h2>${tutorial.title}</h2>
+                <p>${tutorial.description}</p>
+            `;
+
+            let html = `
+                <div class="tutorial-section">
+                    <h3>📝 Introduction</h3>
+                    <p>${tutorial.content.introduction}</p>
+                </div>
+
+                <div class="tutorial-section">
+                    <h3>📋 Prérequis</h3>
+                    <ul>
+                        ${tutorial.content.prerequisites.map(p => `<li>${p}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div class="tutorial-section">
+                    <h3>🔧 Étapes</h3>
+                    <ol class="steps-list">
+                        ${tutorial.content.steps.map(step => `
+                            <li>
+                                <h4>${step.title}</h4>
+                                <p>${step.content}</p>
+                                <div class="command-block">
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copier</button>
+                                    <pre><code>${step.commands.join('\n')}</code></pre>
+                                </div>
+                            </li>
+                        `).join('')}
+                    </ol>
+                </div>
+            `;
+
+            if (tutorial.content.tips && tutorial.content.tips.length > 0) {
+                html += `
+                    <div class="tutorial-section">
+                        <h3>💡 Conseils</h3>
+                        ${tutorial.content.tips.map(tip => `<div class="note-box"><p>${tip}</p></div>`).join('')}
+                    </div>
+                `;
+            }
+
+            if (tutorial.content.warnings && tutorial.content.warnings.length > 0) {
+                html += `
+                    <div class="tutorial-section">
+                        <h3>⚠️ Attention</h3>
+                        ${tutorial.content.warnings.map(warning => `<div class="warning-box"><p>${warning}</p></div>`).join('')}
+                    </div>
+                `;
+            }
+
+            body.innerHTML = html;
+            modal.classList.add('active');
+        }
+
+        // Copier les commandes
+        function copyToClipboard(btn) {
+            const code = btn.nextElementSibling.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = '✓ Copié';
+                setTimeout(() => btn.textContent = 'Copier', 2000);
+            });
+        }
+
+        // Fermer modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('tutorialModal').classList.remove('active');
+        });
+
+        // Filtres
+        document.querySelectorAll('.filter-tab').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                displayTutorials(e.target.dataset.filter);
+            });
+        });
+
+        // Afficher les tutoriels au chargement
+        displayTutorials();
+    </script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

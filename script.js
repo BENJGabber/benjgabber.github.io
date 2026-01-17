@@ -1279,6 +1279,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Make translations available globally for other pages
+    window.manualTranslations = manualTranslations;
+
     // Initialize translation system
     captureOriginalTranslations();
     initLanguageSelector();

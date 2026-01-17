@@ -338,8 +338,8 @@
             if (window.manualTranslations && window.manualTranslations[lang] && window.manualTranslations[lang][key]) {
                 return window.manualTranslations[lang][key];
             }
-            // Fallback for missing translations
-            return key;
+            // Fallback for missing translations - return empty string for French to use originals
+            return '';
         }
 
         // Translate difficulty level
@@ -582,16 +582,19 @@
     <script src="../script.js"></script>
     <script>
         // Initialize tutorials after script.js has loaded and translations are available
-        // Wait a small moment to ensure script.js is fully loaded
+        // Wait longer to ensure script.js is fully loaded and DOM is ready
         setTimeout(() => {
-            // Apply any pending translations to navigation and other elements
+            // Force apply translations
             const lang = localStorage.getItem('selectedLang') || 'fr';
+            console.log('Initializing Cisco tutorials with language:', lang);
+            console.log('window.manualTranslations available:', !!window.manualTranslations);
+            
             if (window.applyManualTranslations) {
                 window.applyManualTranslations(lang);
             }
             // Initialize tutorials with current language
             initTutorials();
-        }, 100);
+        }, 300);
     </script>
 </body>
 

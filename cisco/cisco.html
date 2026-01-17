@@ -562,8 +562,11 @@
         });
 
         // Afficher les tutoriels et ressources au chargement
-        displayTutorials();
-        renderResources();
+        // This will be called after script.js loads
+        function initTutorials() {
+            displayTutorials();
+            renderResources();
+        }
 
         // Listen for language changes and re-render
         window.addEventListener('languageChanged', (e) => {
@@ -577,6 +580,10 @@
         });
     </script>
     <script src="../script.js"></script>
+    <script>
+        // Initialize tutorials after script.js has loaded and translations are available
+        initTutorials();
+    </script>
 </body>
 
 </html>

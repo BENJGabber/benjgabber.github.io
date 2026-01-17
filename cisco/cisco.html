@@ -582,7 +582,16 @@
     <script src="../script.js"></script>
     <script>
         // Initialize tutorials after script.js has loaded and translations are available
-        initTutorials();
+        // Wait a small moment to ensure script.js is fully loaded
+        setTimeout(() => {
+            // Apply any pending translations to navigation and other elements
+            const lang = localStorage.getItem('selectedLang') || 'fr';
+            if (window.applyManualTranslations) {
+                window.applyManualTranslations(lang);
+            }
+            // Initialize tutorials with current language
+            initTutorials();
+        }, 100);
     </script>
 </body>
 

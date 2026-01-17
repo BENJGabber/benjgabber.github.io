@@ -210,39 +210,39 @@
             },
             {
                 id: 3,
-                title: "Mise en Place d'ACL (Access Control Lists)",
-                difficulty: "advanced",
-                duration: "45 min",
-                category: "Sécurité",
-                description: "Filtrez le trafic réseau avec les ACL standard et étendues pour renforcer la sécurité.",
-                tags: ["ACL", "Filtrage", "Sécurité"],
+                title: "Attribution des VLANs par Port",
+                difficulty: "beginner",
+                duration: "20 min",
+                category: "Configuration",
+                description: "Assignez des ports physiques à des VLANs spécifiques en mode access pour segmenter votre réseau.",
+                tags: ["VLAN", "Port Access", "Segmentation"],
                 content: {
-                    introduction: "Les ACL permettent de contrôler le trafic réseau en autorisant ou refusant des paquets selon des critères définis.",
-                    prerequisites: ["Routeur Cisco configuré", "Compréhension du modèle TCP/IP", "Plan de sécurité réseau"],
+                    introduction: "L'attribution par port est la méthode la plus courante pour assigner des dispositifs aux VLANs. Elle permet de configurer rapidement chaque port pour un VLAN spécifique.",
+                    prerequisites: ["Switch Cisco configuré", "VLANs déjà créés", "Plan d'assignation des ports"],
                     steps: [
                         {
-                            title: "ACL Standard - Bloquer une plage IP",
-                            content: "Les ACL standard filtrent uniquement sur l'adresse IP source.",
-                            commands: ["Router# configure terminal", "Router(config)# access-list 10 deny 192.168.1.0 0.0.0.255", "Router(config)# access-list 10 permit any", "", "# Appliquer l'ACL sur une interface", "Router(config)# interface gigabitethernet 0/0", "Router(config-if)# ip access-group 10 in", "Router(config-if)# exit"]
+                            title: "Configurer un port individuel",
+                            content: "Assignez un port spécifique à un VLAN en mode access.",
+                            commands: ["Switch# configure terminal", "Switch(config)# interface fastethernet 0/1", "Switch(config-if)# switchport mode access", "Switch(config-if)# switchport access vlan 10", "Switch(config-if)# description PC-Bureau-Informatique", "Switch(config-if)# exit"]
                         },
                         {
-                            title: "ACL Étendue - Filtrage par port",
-                            content: "Les ACL étendues permettent un filtrage plus précis (source, destination, protocole, port).",
-                            commands: ["Router(config)# access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 80", "Router(config)# access-list 100 permit tcp 192.168.10.0 0.0.0.255 any eq 443", "Router(config)# access-list 100 deny ip any any", "", "Router(config)# interface gigabitethernet 0/1", "Router(config-if)# ip access-group 100 out", "Router(config-if)# exit"]
+                            title: "Configurer une plage de ports",
+                            content: "Assignez plusieurs ports en une seule commande pour gagner du temps.",
+                            commands: ["Switch(config)# interface range fastethernet 0/2-5", "Switch(config-if-range)# switchport mode access", "Switch(config-if-range)# switchport access vlan 20", "Switch(config-if-range)# description Postes-Comptabilite", "Switch(config-if-range)# exit"]
                         },
                         {
-                            title: "ACL Nommée",
-                            content: "Les ACL nommées sont plus flexibles et modifiables.",
-                            commands: ["Router(config)# ip access-list extended FILTRAGE-WEB", "Router(config-ext-nacl)# 10 permit tcp any any eq 80", "Router(config-ext-nacl)# 20 permit tcp any any eq 443", "Router(config-ext-nacl)# 30 deny ip any any", "Router(config-ext-nacl)# exit", "", "Router(config)# interface gigabitethernet 0/0", "Router(config-if)# ip access-group FILTRAGE-WEB in"]
+                            title: "Désactiver les ports inutilisés",
+                            content: "Sécurisez votre réseau en désactivant les ports qui ne sont pas utilisés.",
+                            commands: ["Switch(config)# interface range fastethernet 0/20-24", "Switch(config-if-range)# shutdown", "Switch(config-if-range)# exit"]
                         },
                         {
-                            title: "Vérification et Dépannage",
-                            content: "Commandes essentielles pour vérifier vos ACL.",
-                            commands: ["Router# show access-lists", "Router# show ip access-lists", "Router# show ip interface gigabitethernet 0/0", "", "# Effacer les compteurs d'ACL", "Router# clear ip access-list counters"]
+                            title: "Vérifier l'assignation des VLANs",
+                            content: "Contrôlez que chaque port est bien assigné au bon VLAN.",
+                            commands: ["Switch# show vlan brief", "Switch# show interfaces switchport", "Switch# show interfaces fastethernet 0/1 switchport"]
                         }
                     ],
-                    tips: ["Placez les ACL standard au plus près de la destination", "Placez les ACL étendues au plus près de la source", "Testez toujours vos ACL avant de les appliquer en production", "Utilisez des numéros séquentiels (10, 20, 30...) pour faciliter les modifications"],
-                    warnings: ["ATTENTION : Il y a toujours un 'deny any' implicite à la fin !", "L'ordre des règles est CRITIQUE : première correspondance = action appliquée", "Une ACL vide sur une interface bloque tout le trafic !"]
+                    tips: ["Documentez votre schéma d'assignation des ports", "Utilisez des descriptions claires pour chaque port (ex: PC-Bureau-123)", "Groupez les plages de ports pour accélérer la configuration", "Testez la connectivité après chaque configuration"],
+                    warnings: ["Ne pas assigner un port déjà configuré à un autre VLAN sans d'abord le déconnecter", "L'assignation par port ne fonctionne qu'en mode 'access', pas en mode 'trunk'"]
                 }
             },
             {
@@ -279,44 +279,44 @@
             },
             {
                 id: 5,
-                title: "Configuration SSH pour Administration Sécurisée",
-                difficulty: "intermediate",
-                duration: "20 min",
-                category: "Sécurité",
-                description: "Remplacez Telnet par SSH pour une administration réseau sécurisée et chiffrée.",
-                tags: ["SSH", "Sécurité", "Administration"],
+                title: "Attribution des VLANs par Subnet Mask",
+                difficulty: "advanced",
+                duration: "35 min",
+                category: "Réseau",
+                description: "Assignez automatiquement les dispositifs aux VLANs en fonction de leurs adresses IP et masques de sous-réseau (VLAN dynamique).",
+                tags: ["VLAN", "Dynamique", "Subnet Mask"],
                 content: {
-                    introduction: "SSH (Secure Shell) permet une connexion sécurisée et chiffrée à vos équipements réseau, contrairement à Telnet qui transmet en clair.",
-                    prerequisites: ["Image IOS compatible SSH (K9)", "Accès console au switch/routeur"],
+                    introduction: "L'assignation dynamique par subnet mask permet une gestion automatique et flexible des VLANs. Les dispositifs sont assignés au VLAN approprié en fonction de leur adresse IP sans reconfiguration manuelle des ports.",
+                    prerequisites: ["Switch de niveau 3 ou superviseur", "Serveur VLAN Query Protocol (VQP)", "Base de données VLAN configurée"],
                     steps: [
                         {
-                            title: "Configurer hostname et domaine",
-                            content: "Ces paramètres sont nécessaires pour générer la clé RSA.",
-                            commands: ["Switch# configure terminal", "Switch(config)# hostname SW-Core", "SW-Core(config)# ip domain-name monentreprise.local"]
+                            title: "Créer les mappings IP-VLAN",
+                            content: "Définissez les correspondances entre plages IP et VLANs.",
+                            commands: ["Switch# configure terminal", "Switch(config)# vlan 10", "Switch(config-vlan)# name Informatique", "Switch(config-vlan)# exit", "", "Switch(config)# vlan 20", "Switch(config-vlan)# name Comptabilite", "Switch(config-vlan)# exit", "", "Switch(config)# vlan 30", "Switch(config-vlan)# name RH", "Switch(config-vlan)# exit"]
                         },
                         {
-                            title: "Générer la clé RSA",
-                            content: "La clé RSA est utilisée pour le chiffrement SSH.",
-                            commands: ["SW-Core(config)# crypto key generate rsa", "How many bits in the modulus [512]: 2048", "# Patientez pendant la génération..."]
+                            title: "Configurer le VLAN Query Protocol (VQP)",
+                            content: "Activez la communication entre le switch et le serveur de base de données.",
+                            commands: ["Switch(config)# vtp mode client", "Switch(config)# vtp domain example.com", "Switch(config)# vlan database", "Switch(vlan)# vlan 10", "Switch(vlan)# vlan 20", "Switch(vlan)# vlan 30", "Switch(vlan)# exit"]
                         },
                         {
-                            title: "Créer un compte utilisateur",
-                            content: "Créez un utilisateur local pour l'authentification SSH.",
-                            commands: ["SW-Core(config)# username admin privilege 15 secret AdminPass123"]
+                            title: "Créer les entrées de mapping",
+                            content: "Définissez les associations entre adresses IP/subnet et VLAN.",
+                            commands: ["Switch# configure terminal", "Switch(config)# vmps server 192.168.1.50", "Switch(config)# vmps reconfirm interval 60", "", "# Ou configurer manuellement les mappings:", "Switch(config)# ip vlan map 192.168.10.0 255.255.255.0 10", "Switch(config)# ip vlan map 192.168.20.0 255.255.255.0 20", "Switch(config)# ip vlan map 192.168.30.0 255.255.255.0 30"]
                         },
                         {
-                            title: "Configurer les lignes VTY",
-                            content: "Activez SSH sur les lignes de terminal virtuel.",
-                            commands: ["SW-Core(config)# line vty 0 4", "SW-Core(config-line)# transport input ssh", "SW-Core(config-line)# login local", "SW-Core(config-line)# exit"]
+                            title: "Activer VLAN dynamique sur les ports",
+                            content: "Configurez les ports en mode dynamic ou access-dynamic.",
+                            commands: ["Switch(config)# interface range fastethernet 0/1-24", "Switch(config-if-range)# switchport mode dynamic auto", "Switch(config-if-range)# no shutdown", "Switch(config-if-range)# exit"]
                         },
                         {
-                            title: "Configurer SSH version 2 et sauvegarder",
-                            content: "Forcez l'utilisation de SSH version 2 (plus sécurisée) et sauvegardez.",
-                            commands: ["SW-Core(config)# ip ssh version 2", "SW-Core(config)# ip ssh time-out 120", "SW-Core(config)# ip ssh authentication-retries 3", "SW-Core(config)# exit", "SW-Core# copy running-config startup-config"]
+                            title: "Vérifier la configuration dynamique",
+                            content: "Validez que les dispositifs sont assignés au bon VLAN.",
+                            commands: ["Switch# show vlan brief", "Switch# show vlan dynamic", "Switch# show vmps server", "Switch# show interface fastethernet 0/1 switchport"]
                         }
                     ],
-                    tips: ["Testez SSH avec un client comme PuTTY ou OpenSSH", "Conservez une connexion console en cas de problème", "SSH est obligatoire pour la sécurité en production"],
-                    warnings: ["Sans SSH correctement configuré, vous risquez de perdre l'accès au device", "Vérifiez que Telnet est bien désactivé après la configuration SSH"]
+                    tips: ["Utilisez un serveur VMPS centralisé pour gérer les mappings", "Testez les mappings avec différentes adresses IP", "Documentez les plages IP/subnet et leurs VLANs correspondants", "Configurez un VLAN par défaut pour les adresses IP non mappées"],
+                    warnings: ["La configuration VMPS nécessite une synchronisation correcte", "Les changements d'IP des dispositifs peuvent prendre du temps à être reconnus", "Assurez-vous que le DHCP assigne les bonnes adresses IP pour le bon VLAN"]
                 }
             }
         ];

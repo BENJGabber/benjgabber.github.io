@@ -90,16 +90,16 @@
     <section class="cisco-section">
         <div class="container">
             <div class="page-header">
-                <h1>🌐 Tutoriels Cisco</h1>
-                <p>Guides pratiques et configurations réseau basés sur mon expérience</p>
+                <h1 data-i18n="cisco.title">🌐 Tutoriels Cisco</h1>
+                <p data-i18n="cisco.subtitle">Guides pratiques et configurations réseau basés sur mon expérience</p>
             </div>
 
             <!-- Filter Tabs -->
             <div class="filter-tabs">
-                <button class="filter-tab active" data-filter="all">Tous</button>
-                <button class="filter-tab" data-filter="beginner">Débutant</button>
-                <button class="filter-tab" data-filter="intermediate">Intermédiaire</button>
-                <button class="filter-tab" data-filter="advanced">Avancé</button>
+                <button class="filter-tab active" data-filter="all" data-i18n="cisco.filter.all">Tous</button>
+                <button class="filter-tab" data-filter="beginner" data-i18n="cisco.filter.beginner">Débutant</button>
+                <button class="filter-tab" data-filter="intermediate" data-i18n="cisco.filter.intermediate">Intermédiaire</button>
+                <button class="filter-tab" data-filter="advanced" data-i18n="cisco.filter.advanced">Avancé</button>
             </div>
 
             <!-- Tutorials Grid -->
@@ -107,50 +107,8 @@
 
             <!-- Resources Section -->
             <div class="cisco-resources">
-                <h2>📚 Ressources Recommandées</h2>
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <div class="resource-icon">🏫</div>
-                        <h3>Cisco Networking Academy</h3>
-                        <p>Accédez à des cours officiels, des certifications et des ressources d'apprentissage Cisco reconnues mondialement.</p>
-                        <a href="https://www.netacad.com/" target="_blank" rel="noopener noreferrer" class="resource-btn">Accéder à l'Académie</a>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🖥️</div>
-                        <h3>Cisco Packet Tracer</h3>
-                        <p>Simulateur réseau puissant pour pratiquer vos configurations Cisco sans équipement physique. Gratuit pour les étudiants.</p>
-                        <a href="https://www.netacad.com/courses/packet-tracer" target="_blank" rel="noopener noreferrer" class="resource-btn">Télécharger Packet Tracer</a>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">📖</div>
-                        <h3>Documentation Cisco</h3>
-                        <p>Documentation officielle complète pour tous les équipements et systèmes d'exploitation IOS Cisco.</p>
-                        <a href="https://www.cisco.com/c/en/us/support/docs/" target="_blank" rel="noopener noreferrer" class="resource-btn">Consulter la Docs</a>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">⚙️</div>
-                        <h3>GNS3</h3>
-                        <p>Alternative gratuite et open-source à Packet Tracer. Permet l'émulation d'équipements Cisco, Juniper et d'autres fabricants.</p>
-                        <a href="https://www.gns3.com/" target="_blank" rel="noopener noreferrer" class="resource-btn">Visiter GNS3</a>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🎓</div>
-                        <h3>Cisco Learning Network</h3>
-                        <p>Communauté d'apprentissage officielle avec forums, tutoriels et préparation aux certifications.</p>
-                        <a href="https://learningnetwork.cisco.com/" target="_blank" rel="noopener noreferrer" class="resource-btn">Rejoindre la Communauté</a>
-                    </div>
-
-                    <div class="resource-card">
-                        <div class="resource-icon">🔐</div>
-                        <h3>Cisco Learning Labs</h3>
-                        <p>Labs interactifs et hands-on pour pratiquer les configurations dans un environnement sécurisé et guidé.</p>
-                        <a href="https://developer.cisco.com/learning/labs/" target="_blank" rel="noopener noreferrer" class="resource-btn">Accéder aux Labs</a>
-                    </div>
-                </div>
+                <h2 data-i18n="cisco.resources">📚 Ressources Recommandées</h2>
+                <div class="resources-grid" id="resourcesGrid"></div>
             </div>
         </div>
     </section>
@@ -369,6 +327,105 @@
             }
         ];
 
+        // Get current language from localStorage or default to 'fr'
+        function getCurrentLanguage() {
+            return localStorage.getItem('selectedLang') || 'fr';
+        }
+
+        // Get translated text from parent script.js translations or return French default
+        function getTutorialTranslation(key) {
+            const lang = getCurrentLanguage();
+            if (window.manualTranslations && window.manualTranslations[lang] && window.manualTranslations[lang][key]) {
+                return window.manualTranslations[lang][key];
+            }
+            // Fallback for missing translations
+            return key;
+        }
+
+        // Translate difficulty level
+        function getDifficultyTranslation(difficulty) {
+            const difficulties = {
+                'fr': { 'beginner': 'Débutant', 'intermediate': 'Intermédiaire', 'advanced': 'Avancé' },
+                'en': { 'beginner': 'Beginner', 'intermediate': 'Intermediate', 'advanced': 'Advanced' },
+                'es': { 'beginner': 'Principiante', 'intermediate': 'Intermedio', 'advanced': 'Avanzado' }
+            };
+            const lang = getCurrentLanguage();
+            return (difficulties[lang] && difficulties[lang][difficulty]) || difficulty;
+        }
+
+        // Resources data
+        const resources = [
+            {
+                id: 'academy',
+                icon: '🏫',
+                titleKey: 'cisco.academy',
+                descKey: 'cisco.academy.desc',
+                buttonLabel: 'Accéder à l\'Académie',
+                url: 'https://www.netacad.com/'
+            },
+            {
+                id: 'packettracer',
+                icon: '🖥️',
+                titleKey: 'cisco.packettracer',
+                descKey: 'cisco.packettracer.desc',
+                buttonLabel: 'Télécharger Packet Tracer',
+                url: 'https://www.netacad.com/courses/packet-tracer'
+            },
+            {
+                id: 'docs',
+                icon: '📖',
+                titleKey: 'cisco.docs',
+                descKey: 'cisco.docs.desc',
+                buttonLabel: 'Consulter la Docs',
+                url: 'https://www.cisco.com/c/en/us/support/docs/'
+            },
+            {
+                id: 'gns3',
+                icon: '⚙️',
+                titleKey: 'cisco.gns3',
+                descKey: 'cisco.gns3.desc',
+                buttonLabel: 'Visiter GNS3',
+                url: 'https://www.gns3.com/'
+            },
+            {
+                id: 'learningnetwork',
+                icon: '🎓',
+                titleKey: 'cisco.learningnetwork',
+                descKey: 'cisco.learningnetwork.desc',
+                buttonLabel: 'Rejoindre la Communauté',
+                url: 'https://learningnetwork.cisco.com/'
+            },
+            {
+                id: 'labs',
+                icon: '🔐',
+                titleKey: 'cisco.labs',
+                descKey: 'cisco.labs.desc',
+                buttonLabel: 'Accéder aux Labs',
+                url: 'https://developer.cisco.com/learning/labs/'
+            }
+        ];
+
+        // Render resources with translations
+        function renderResources() {
+            const grid = document.getElementById('resourcesGrid');
+            grid.innerHTML = '';
+            
+            resources.forEach(resource => {
+                const card = document.createElement('div');
+                card.className = 'resource-card';
+                const title = getTutorialTranslation(resource.titleKey) || 'Resource';
+                const desc = getTutorialTranslation(resource.descKey) || 'Description';
+                
+                card.innerHTML = `
+                    <div class="resource-icon">${resource.icon}</div>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                    <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="resource-btn">${resource.buttonLabel}</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
         // Affichage des tutoriels
         function displayTutorials(filter = 'all') {
             const grid = document.getElementById('tutorialsGrid');
@@ -379,22 +436,25 @@
                 .forEach(tutorial => {
                     const card = document.createElement('div');
                     card.className = 'tutorial-card';
+                    const translatedDifficulty = getDifficultyTranslation(tutorial.difficulty);
+                    const translatedTitle = getTutorialTranslation(`cisco.tut${tutorial.id}.title`) || tutorial.title;
+                    const translatedDesc = getTutorialTranslation(`cisco.tut${tutorial.id}.desc`) || tutorial.description;
                     card.innerHTML = `
                         <div class="tutorial-header">
-                            <span class="tutorial-difficulty difficulty-${tutorial.difficulty}">${tutorial.difficulty}</span>
-                            <h3>${tutorial.title}</h3>
+                            <span class="tutorial-difficulty difficulty-${tutorial.difficulty}">${translatedDifficulty}</span>
+                            <h3>${translatedTitle}</h3>
                             <div class="tutorial-meta">
                                 <span>⏱️ ${tutorial.duration}</span>
                                 <span>📁 ${tutorial.category}</span>
                             </div>
                         </div>
                         <div class="tutorial-body">
-                            <p>${tutorial.description}</p>
+                            <p>${translatedDesc}</p>
                             <div class="tutorial-tags">
                                 ${tutorial.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                             </div>
                             <div class="tutorial-actions">
-                                <button class="btn btn-primary" onclick="openModal(${tutorial.id})">Lire Plus</button>
+                                <button class="btn btn-primary" onclick="openModal(${tutorial.id})">${getTutorialTranslation('cisco.readMore') || 'Lire Plus'}</button>
                             </div>
                         </div>
                     `;
@@ -409,33 +469,43 @@
             const header = document.getElementById('modalHeader');
             const body = document.getElementById('modalBody');
 
+            const translatedTitle = getTutorialTranslation(`cisco.tut${tutorial.id}.title`) || tutorial.title;
+            const translatedDesc = getTutorialTranslation(`cisco.tut${tutorial.id}.desc`) || tutorial.description;
+
             header.innerHTML = `
-                <h2>${tutorial.title}</h2>
-                <p>${tutorial.description}</p>
+                <h2>${translatedTitle}</h2>
+                <p>${translatedDesc}</p>
             `;
+
+            const introLabel = getTutorialTranslation('cisco.intro') || '📝 Introduction';
+            const prereqLabel = getTutorialTranslation('cisco.prereq') || '📋 Prérequis';
+            const stepsLabel = getTutorialTranslation('cisco.steps') || '🔧 Étapes';
+            const tipsLabel = getTutorialTranslation('cisco.tips') || '💡 Conseils';
+            const warningsLabel = getTutorialTranslation('cisco.warnings') || '⚠️ Attention';
+            const copyLabel = getTutorialTranslation('cisco.copy') || 'Copier';
 
             let html = `
                 <div class="tutorial-section">
-                    <h3>📝 Introduction</h3>
+                    <h3>📝 ${introLabel}</h3>
                     <p>${tutorial.content.introduction}</p>
                 </div>
 
                 <div class="tutorial-section">
-                    <h3>📋 Prérequis</h3>
+                    <h3>📋 ${prereqLabel}</h3>
                     <ul>
                         ${tutorial.content.prerequisites.map(p => `<li>${p}</li>`).join('')}
                     </ul>
                 </div>
 
                 <div class="tutorial-section">
-                    <h3>🔧 Étapes</h3>
+                    <h3>🔧 ${stepsLabel}</h3>
                     <ol class="steps-list">
                         ${tutorial.content.steps.map(step => `
                             <li>
                                 <h4>${step.title}</h4>
                                 <p>${step.content}</p>
                                 <div class="command-block">
-                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copier</button>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">${copyLabel}</button>
                                     <pre><code>${step.commands.join('\n')}</code></pre>
                                 </div>
                             </li>
@@ -447,7 +517,7 @@
             if (tutorial.content.tips && tutorial.content.tips.length > 0) {
                 html += `
                     <div class="tutorial-section">
-                        <h3>💡 Conseils</h3>
+                        <h3>💡 ${tipsLabel}</h3>
                         ${tutorial.content.tips.map(tip => `<div class="note-box"><p>${tip}</p></div>`).join('')}
                     </div>
                 `;
@@ -456,7 +526,7 @@
             if (tutorial.content.warnings && tutorial.content.warnings.length > 0) {
                 html += `
                     <div class="tutorial-section">
-                        <h3>⚠️ Attention</h3>
+                        <h3>⚠️ ${warningsLabel}</h3>
                         ${tutorial.content.warnings.map(warning => `<div class="warning-box"><p>${warning}</p></div>`).join('')}
                     </div>
                 `;
@@ -469,9 +539,11 @@
         // Copier les commandes
         function copyToClipboard(btn) {
             const code = btn.nextElementSibling.textContent;
+            const copiedLabel = getTutorialTranslation('cisco.copied') || '✓ Copié';
+            const copyLabel = getTutorialTranslation('cisco.copy') || 'Copier';
             navigator.clipboard.writeText(code).then(() => {
-                btn.textContent = '✓ Copié';
-                setTimeout(() => btn.textContent = 'Copier', 2000);
+                btn.textContent = copiedLabel;
+                setTimeout(() => btn.textContent = copyLabel, 2000);
             });
         }
 
@@ -489,8 +561,20 @@
             });
         });
 
-        // Afficher les tutoriels au chargement
+        // Afficher les tutoriels et ressources au chargement
         displayTutorials();
+        renderResources();
+
+        // Listen for language changes and re-render
+        window.addEventListener('languageChanged', (e) => {
+            displayTutorials();
+            renderResources();
+            // Also update filter buttons to show translated text
+            const activeFilter = document.querySelector('.filter-tab.active');
+            if (activeFilter) {
+                displayTutorials(activeFilter.dataset.filter);
+            }
+        });
     </script>
     <script src="../script.js"></script>
 </body>

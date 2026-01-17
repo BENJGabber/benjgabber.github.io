@@ -3722,6 +3722,15 @@ body.light-mode .back-to-top:hover {
     border-bottom: 1px solid rgba(139, 92, 246, 0.2);
     border-radius: 20px 20px 0 0;
     position: relative;
+    color: white;
+}
+
+.modal-header h2 {
+    color: white;
+}
+
+.modal-header p {
+    color: #cbd5e1;
 }
 
 .modal-close {

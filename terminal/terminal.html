@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Commandes Terminal - Mon Portfolio</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><a href="../index.html">Mon Portfolio</a></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+                <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+                <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
+                <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+                <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
+                <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+                <li><a href="./terminal.html" data-i18n="nav.terminal">Terminal</a></li>
+                <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
+                <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+                <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="font-toggle" id="fontToggle" aria-label="Changer de police">Aa</button>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <ul class="side-nav-links">
+            <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
+            <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
+            <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
+            <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
+            <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="./terminal.html" data-i18n="nav.terminal">Terminal</a></li>
+            <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
+            <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="side-menu-toggles">
+            <button class="lang-toggle" id="languageToggleMobile" aria-label="Changer de langue">EN</button>
+            <button class="theme-toggle" id="themeToggleMobile" aria-label="Changer de thème">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button class="font-toggle" id="fontToggleMobile" aria-label="Changer de police">Aa</button>
+        </div>
+    </div>
+
+    <!-- Terminal Section -->
+    <section class="terminal-section">
+        <div class="container">
+            <h1 class="section-title" data-i18n="terminal.title">Commandes Terminal</h1>
+            <p class="section-subtitle" data-i18n="terminal.subtitle">Guide complet des commandes essentielles pour Windows PowerShell et Linux</p>
+
+            <!-- Overview Card -->
+            <div class="terminal-intro">
+                <div class="intro-icon">⌨️</div>
+                <h2 data-i18n="terminal.overview">Aperçu</h2>
+                <p data-i18n="terminal.overview.desc">La maîtrise du terminal est essentielle pour les administrateurs réseau, les développeurs et les passionnés d'informatique. Cette page présente les commandes les plus utiles et les plus fréquemment utilisées pour Windows PowerShell et Linux, avec des explications et des cas d'usage pratiques.</p>
+            </div>
+
+            <!-- OS Selection -->
+            <div class="os-selector-container">
+                <button id="powershellTab" class="os-tab active" data-i18n="terminal.tab.powershell"><span class="os-icon">🪟</span> PowerShell</button>
+                <button id="linuxTab" class="os-tab" data-i18n="terminal.tab.linux"><span class="os-icon">🐧</span> Linux/Bash</button>
+            </div>
+
+            <!-- POWERSHELL SECTION -->
+            <div id="powershellSection" class="os-section" style="display: block;">
+                <h2 class="section-subtitle" data-i18n="terminal.ps.title">PowerShell - Commandes Essentielles</h2>
+
+                <div class="commands-grid">
+                    <!-- File/Directory Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">📁 Gestion des Fichiers et Dossiers</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-ChildItem</code>
+                                <span class="command-alias">Alias: ls, dir</span>
+                            </div>
+                            <p class="command-desc">Lister les fichiers et dossiers du répertoire courant</p>
+                            <pre class="command-code">Get-ChildItem
+Get-ChildItem -Path C:\ -Recurse
+Get-ChildItem -Filter *.txt</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Set-Location</code>
+                                <span class="command-alias">Alias: cd</span>
+                            </div>
+                            <p class="command-desc">Changer de répertoire courant</p>
+                            <pre class="command-code">Set-Location C:\Users\Documents
+cd ..
+cd ~</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>New-Item</code>
+                                <span class="command-alias">Alias: mkdir</span>
+                            </div>
+                            <p class="command-desc">Créer un nouveau fichier ou dossier</p>
+                            <pre class="command-code">New-Item -ItemType Directory -Path "C:\MonDossier"
+New-Item -ItemType File -Path "fichier.txt"</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Copy-Item</code>
+                                <span class="command-alias">Alias: copy</span>
+                            </div>
+                            <p class="command-desc">Copier des fichiers ou dossiers</p>
+                            <pre class="command-code">Copy-Item "source.txt" "destination.txt"
+Copy-Item -Path "C:\Dossier" -Destination "D:\Backup" -Recurse</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Remove-Item</code>
+                                <span class="command-alias">Alias: del, rm</span>
+                            </div>
+                            <p class="command-desc">Supprimer des fichiers ou dossiers</p>
+                            <pre class="command-code">Remove-Item "fichier.txt"
+Remove-Item "C:\Dossier" -Recurse -Force</pre>
+                        </div>
+                    </div>
+
+                    <!-- Network Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">🌐 Commandes Réseau</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-NetIPConfiguration</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Afficher la configuration réseau</p>
+                            <pre class="command-code">Get-NetIPConfiguration
+Get-NetIPConfiguration -InterfaceAlias "Ethernet"</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Test-NetConnection</code>
+                                <span class="command-alias">Alias: ping</span>
+                            </div>
+                            <p class="command-desc">Tester la connectivité réseau</p>
+                            <pre class="command-code">Test-NetConnection -ComputerName google.com
+Test-NetConnection -ComputerName 192.168.1.1 -Port 80</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-NetAdapter</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Afficher les adaptateurs réseau</p>
+                            <pre class="command-code">Get-NetAdapter
+Get-NetAdapter | Format-Table -AutoSize</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Resolve-DnsName</code>
+                                <span class="command-alias">Alias: nslookup</span>
+                            </div>
+                            <p class="command-desc">Résoudre un nom de domaine en adresse IP</p>
+                            <pre class="command-code">Resolve-DnsName google.com
+Resolve-DnsName google.com -Type A</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>ipconfig /flushdns</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Vider le cache DNS local</p>
+                            <pre class="command-code">ipconfig /flushdns</pre>
+                        </div>
+                    </div>
+
+                    <!-- Process Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">⚙️ Gestion des Processus</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-Process</code>
+                                <span class="command-alias">Alias: ps</span>
+                            </div>
+                            <p class="command-desc">Lister les processus en cours d'exécution</p>
+                            <pre class="command-code">Get-Process
+Get-Process -Name "chrome"
+Get-Process | Sort-Object -Property WS -Descending | Select-Object -First 10</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Stop-Process</code>
+                                <span class="command-alias">Alias: kill</span>
+                            </div>
+                            <p class="command-desc">Arrêter un processus</p>
+                            <pre class="command-code">Stop-Process -Name "notepad"
+Stop-Process -Id 1234 -Force</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Start-Process</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Lancer un processus ou une application</p>
+                            <pre class="command-code">Start-Process "notepad.exe"
+Start-Process "C:\Program Files\Chrome\chrome.exe"</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-Service</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Lister les services Windows</p>
+                            <pre class="command-code">Get-Service
+Get-Service | Where-Object {$_.Status -eq 'Running'}</pre>
+                        </div>
+                    </div>
+
+                    <!-- System Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">💻 Informations Système</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-ComputerInfo</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Afficher les informations système complètes</p>
+                            <pre class="command-code">Get-ComputerInfo
+Get-ComputerInfo | Select-Object OsName, OsVersion, CsProcessors</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Get-Volume</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Afficher l'utilisation des disques</p>
+                            <pre class="command-code">Get-Volume
+Get-Volume | Format-Table -AutoSize</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>Measure-Object</code>
+                                <span class="command-alias"></span>
+                            </div>
+                            <p class="command-desc">Calculer des statistiques sur des objets</p>
+                            <pre class="command-code">Get-Process | Measure-Object -Property WS -Sum
+Get-ChildItem | Measure-Object -Property Length -Sum</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINUX SECTION -->
+            <div id="linuxSection" class="os-section" style="display: none;">
+                <h2 class="section-subtitle" data-i18n="terminal.linux.title">Linux/Bash - Commandes Essentielles</h2>
+
+                <div class="commands-grid">
+                    <!-- File/Directory Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">📁 Gestion des Fichiers et Dossiers</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>ls</code>
+                                <span class="command-alias">list</span>
+                            </div>
+                            <p class="command-desc">Lister les fichiers et dossiers</p>
+                            <pre class="command-code">ls
+ls -la
+ls -lh /home
+ls -R /home/user</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>cd</code>
+                                <span class="command-alias">change directory</span>
+                            </div>
+                            <p class="command-desc">Changer de répertoire courant</p>
+                            <pre class="command-code">cd /home/user
+cd ..
+cd ~
+cd -</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>pwd</code>
+                                <span class="command-alias">print working directory</span>
+                            </div>
+                            <p class="command-desc">Afficher le chemin du répertoire courant</p>
+                            <pre class="command-code">pwd</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>mkdir</code>
+                                <span class="command-alias">make directory</span>
+                            </div>
+                            <p class="command-desc">Créer un nouveau dossier</p>
+                            <pre class="command-code">mkdir MonDossier
+mkdir -p /home/user/dossier/sous-dossier</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>cp</code>
+                                <span class="command-alias">copy</span>
+                            </div>
+                            <p class="command-desc">Copier des fichiers ou dossiers</p>
+                            <pre class="command-code">cp source.txt destination.txt
+cp -r /source /destination</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>rm</code>
+                                <span class="command-alias">remove</span>
+                            </div>
+                            <p class="command-desc">Supprimer des fichiers ou dossiers</p>
+                            <pre class="command-code">rm fichier.txt
+rm -r /chemin/dossier
+rm -rf /* (DANGER - Ne JAMAIS exécuter !)</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>mv</code>
+                                <span class="command-alias">move</span>
+                            </div>
+                            <p class="command-desc">Déplacer ou renommer des fichiers</p>
+                            <pre class="command-code">mv ancien_nom.txt nouveau_nom.txt
+mv /source/fichier.txt /destination/</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>find</code>
+                                <span class="command-alias">search</span>
+                            </div>
+                            <p class="command-desc">Rechercher des fichiers</p>
+                            <pre class="command-code">find /home -name "*.txt"
+find / -type f -size +100M
+find /home -user username</pre>
+                        </div>
+                    </div>
+
+                    <!-- Network Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">🌐 Commandes Réseau</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>ifconfig / ip</code>
+                                <span class="command-alias">network config</span>
+                            </div>
+                            <p class="command-desc">Afficher la configuration réseau</p>
+                            <pre class="command-code">ifconfig
+ip addr show
+ip link show</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>ping</code>
+                                <span class="command-alias">packet internet groper</span>
+                            </div>
+                            <p class="command-desc">Tester la connectivité réseau</p>
+                            <pre class="command-code">ping google.com
+ping -c 4 192.168.1.1
+ping -i 2 8.8.8.8</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>nslookup / dig</code>
+                                <span class="command-alias">DNS lookup</span>
+                            </div>
+                            <p class="command-desc">Résoudre un nom de domaine</p>
+                            <pre class="command-code">nslookup google.com
+dig google.com
+dig +short google.com</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>netstat / ss</code>
+                                <span class="command-alias">socket statistics</span>
+                            </div>
+                            <p class="command-desc">Afficher les connexions réseau actives</p>
+                            <pre class="command-code">netstat -tulpn
+ss -tulpn
+ss -ant | grep ESTABLISHED</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>traceroute</code>
+                                <span class="command-alias">trace path</span>
+                            </div>
+                            <p class="command-desc">Tracer le chemin vers une destination</p>
+                            <pre class="command-code">traceroute google.com
+traceroute -m 20 8.8.8.8</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>wget / curl</code>
+                                <span class="command-alias">download</span>
+                            </div>
+                            <p class="command-desc">Télécharger des fichiers depuis internet</p>
+                            <pre class="command-code">wget https://example.com/file.zip
+curl -O https://example.com/file.zip
+curl -I https://example.com</pre>
+                        </div>
+                    </div>
+
+                    <!-- Process & System Commands -->
+                    <div class="command-card">
+                        <h3 class="command-category">⚙️ Processus et Système</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>ps</code>
+                                <span class="command-alias">processes</span>
+                            </div>
+                            <p class="command-desc">Lister les processus en cours</p>
+                            <pre class="command-code">ps
+ps aux
+ps aux | grep chrome
+ps -elf | sort -k4 -rn | head</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>top / htop</code>
+                                <span class="command-alias">monitor</span>
+                            </div>
+                            <p class="command-desc">Surveiller l'utilisation des ressources</p>
+                            <pre class="command-code">top
+htop
+top -u username</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>kill</code>
+                                <span class="command-alias">terminate</span>
+                            </div>
+                            <p class="command-desc">Arrêter un processus</p>
+                            <pre class="command-code">kill 1234
+kill -9 1234 (SIGKILL)
+killall chrome</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>systemctl</code>
+                                <span class="command-alias">service control</span>
+                            </div>
+                            <p class="command-desc">Gérer les services</p>
+                            <pre class="command-code">systemctl status apache2
+systemctl start nginx
+systemctl enable ssh
+systemctl restart mysql</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>df / du</code>
+                                <span class="command-alias">disk usage</span>
+                            </div>
+                            <p class="command-desc">Afficher l'utilisation du disque</p>
+                            <pre class="command-code">df -h
+du -sh /home
+du -sh /* | sort -rh | head</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>free</code>
+                                <span class="command-alias">memory info</span>
+                            </div>
+                            <p class="command-desc">Afficher l'utilisation de la mémoire</p>
+                            <pre class="command-code">free
+free -h
+free -m</pre>
+                        </div>
+                    </div>
+
+                    <!-- User & Permissions -->
+                    <div class="command-card">
+                        <h3 class="command-category">👤 Utilisateurs et Permissions</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>sudo</code>
+                                <span class="command-alias">superuser do</span>
+                            </div>
+                            <p class="command-desc">Exécuter une commande en tant qu'administrateur</p>
+                            <pre class="command-code">sudo apt update
+sudo systemctl restart nginx
+sudo cat /etc/shadow</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>chmod</code>
+                                <span class="command-alias">change mode</span>
+                            </div>
+                            <p class="command-desc">Changer les permissions d'un fichier</p>
+                            <pre class="command-code">chmod 755 script.sh
+chmod u+x fichier.txt
+chmod -R 777 /chemin</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>chown</code>
+                                <span class="command-alias">change owner</span>
+                            </div>
+                            <p class="command-desc">Changer le propriétaire d'un fichier</p>
+                            <pre class="command-code">chown user fichier.txt
+chown user:group fichier.txt
+chown -R user:group /chemin</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>whoami / id</code>
+                                <span class="command-alias">current user</span>
+                            </div>
+                            <p class="command-desc">Afficher l'utilisateur actuel</p>
+                            <pre class="command-code">whoami
+id
+id username</pre>
+                        </div>
+                    </div>
+
+                    <!-- Text & Compression -->
+                    <div class="command-card">
+                        <h3 class="command-category">📄 Texte et Compression</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>cat</code>
+                                <span class="command-alias">concatenate</span>
+                            </div>
+                            <p class="command-desc">Afficher le contenu d'un fichier</p>
+                            <pre class="command-code">cat fichier.txt
+cat /etc/hosts
+cat file1.txt file2.txt > combined.txt</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>grep</code>
+                                <span class="command-alias">search text</span>
+                            </div>
+                            <p class="command-desc">Rechercher du texte dans des fichiers</p>
+                            <pre class="command-code">grep "motif" fichier.txt
+grep -r "texte" /chemin
+grep -i "case" fichier.txt</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>tar</code>
+                                <span class="command-alias">archive</span>
+                            </div>
+                            <p class="command-desc">Compresser et décompresser des fichiers</p>
+                            <pre class="command-code">tar -cvf archive.tar dossier/
+tar -xvf archive.tar
+tar -czvf archive.tar.gz dossier/</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>zip / unzip</code>
+                                <span class="command-alias">compress</span>
+                            </div>
+                            <p class="command-desc">Créer et extraire des fichiers ZIP</p>
+                            <pre class="command-code">zip -r archive.zip dossier/
+unzip archive.zip
+unzip -l archive.zip</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>sed / awk</code>
+                                <span class="command-alias">text processing</span>
+                            </div>
+                            <p class="command-desc">Traiter et manipuler du texte</p>
+                            <pre class="command-code">sed 's/ancien/nouveau/' fichier.txt
+awk '{print $1}' fichier.txt
+cat fichier.txt | sed 's/a/b/g'</pre>
+                        </div>
+                    </div>
+
+                    <!-- Package Management -->
+                    <div class="command-card">
+                        <h3 class="command-category">📦 Gestion des Paquets (Debian/Ubuntu)</h3>
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>apt</code>
+                                <span class="command-alias">package manager</span>
+                            </div>
+                            <p class="command-desc">Gérer les paquets système</p>
+                            <pre class="command-code">sudo apt update
+sudo apt upgrade
+sudo apt install package-name
+sudo apt remove package-name
+sudo apt search package-name</pre>
+                        </div>
+
+                        <div class="command-item">
+                            <div class="command-header">
+                                <code>dpkg</code>
+                                <span class="command-alias">debian package</span>
+                            </div>
+                            <p class="command-desc">Gérer les paquets .deb</p>
+                            <pre class="command-code">dpkg -i package.deb
+dpkg -r package-name
+dpkg -l | grep package
+dpkg -L package-name</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Bouton Retour en haut -->
+    <button id="backToTop" class="back-to-top" data-i18n-aria="back.toTop" aria-label="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+        <span class="sr-only" data-i18n="back.toTop">Retour en haut</span>
+    </button>
+
+    <script src="../script.js"></script>
+    <script>
+        // Terminal tabs functionality
+        const powershellTab = document.getElementById('powershellTab');
+        const linuxTab = document.getElementById('linuxTab');
+        const powershellSection = document.getElementById('powershellSection');
+        const linuxSection = document.getElementById('linuxSection');
+
+        powershellTab.addEventListener('click', () => {
+            powershellSection.style.display = 'block';
+            linuxSection.style.display = 'none';
+            powershellTab.classList.add('active');
+            linuxTab.classList.remove('active');
+        });
+
+        linuxTab.addEventListener('click', () => {
+            powershellSection.style.display = 'none';
+            linuxSection.style.display = 'block';
+            linuxTab.classList.add('active');
+            powershellTab.classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

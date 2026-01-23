@@ -4029,3 +4029,17 @@ body.light-mode .back-to-top:hover {
         padding: 1rem;
     }
 }
+.terminal-section,
+.cisco-section {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    min-height: 100vh;
+    padding-top: 100px;       /* pour compenser la nav fixe */
+    padding-bottom: 4rem;
+}
+
+/* Si tu veux que ça reste cohérent en light mode */
+body.light-mode .terminal-section,
+body.light-mode .cisco-section {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    color: #1e293b;
+}

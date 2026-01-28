@@ -1603,6 +1603,33 @@ if (backToTopButton) {
             cards.forEach(card => card.classList.add('in-view'));
         }
     })();
+
+    (function setupCommandCardObserver() {
+        const cards = document.querySelectorAll('.command-card');
+        if (!cards.length) return;
+
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            cards.forEach(card => observer.observe(card));
+        } else {
+            // Fallback for older browsers: reveal immediately
+            cards.forEach(card => card.classList.add('in-view'));
+        }
+    })();
 }
 
 // OS Section Switching for Optimization Page

@@ -4253,6 +4253,123 @@ body.light-mode .command-code {
     border-color: rgba(139, 92, 246, 0.25);
 }
 
+/* Responsive Terminal Styles */
+@media (max-width: 768px) {
+    .terminal-section,
+    .cisco-section {
+        padding-top: 80px;
+        padding-bottom: 2rem;
+    }
+
+    .terminal-intro {
+        padding: 1.5rem;
+        margin: 1.5rem 0 2rem;
+    }
+
+    .intro-icon {
+        font-size: 3rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .terminal-intro h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .terminal-intro p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .commands-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .command-card {
+        padding: 1.5rem;
+    }
+
+    .command-category {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .command-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .command-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .command-header code {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .command-alias {
+        font-size: 0.8rem;
+    }
+
+    .command-code {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-section,
+    .cisco-section {
+        padding-top: 70px;
+    }
+
+    .terminal-intro {
+        padding: 1rem;
+        margin: 1rem 0 1.5rem;
+    }
+
+    .intro-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .terminal-intro h2 {
+        font-size: 1.2rem;
+    }
+
+    .terminal-intro p {
+        font-size: 0.9rem;
+    }
+
+    .command-card {
+        padding: 1rem;
+    }
+
+    .command-category {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .command-item {
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .command-desc {
+        font-size: 0.9rem;
+    }
+
+    .command-code {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
 /* Si tu veux que ça reste cohérent en light mode */
 @media (prefers-reduced-motion: reduce) {
     .command-card, .command-card.in-view {

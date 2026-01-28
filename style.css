@@ -4037,9 +4037,228 @@ body.light-mode .back-to-top:hover {
     padding-bottom: 4rem;
 }
 
-/* Si tu veux que ça reste cohérent en light mode */
+/* Terminal Section Title and Subtitle Colors */
+.terminal-section .section-title,
+.cisco-section .section-title {
+    color: #ffffff !important;
+}
+
+.terminal-section .section-subtitle,
+.cisco-section .section-subtitle {
+    color: #cbd5e1 !important;
+}
+
+/* Terminal Intro Card */
+.terminal-intro {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: 2rem 0 3rem;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.intro-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.terminal-intro h2 {
+    color: #f8fafc;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.terminal-intro p {
+    color: #cbd5e1;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Commands Grid */
+.commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Command Card - Main Container */
+.command-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.command-card.in-view {
+    animation: fadeInUp 0.6s ease-out both;
+}
+
+.command-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.35);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Command Category Title */
+.command-category {
+    color: #f8fafc;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Individual Command Item */
+.command-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.command-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Command Header with Command Name and Alias */
+.command-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.command-header code {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    word-break: break-word;
+}
+
+/* Command Alias */
+.command-alias {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* Command Description */
+.command-desc {
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Command Code/Example Block */
+.command-code {
+    background: rgba(15, 23, 42, 0.6);
+    color: #a78bfa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Light Mode - Terminal */
 body.light-mode .terminal-section,
 body.light-mode .cisco-section {
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
     color: #1e293b;
+}
+
+body.light-mode .terminal-section .section-title,
+body.light-mode .cisco-section .section-title {
+    color: #1e293b !important;
+}
+
+body.light-mode .terminal-section .section-subtitle,
+body.light-mode .cisco-section .section-subtitle {
+    color: #475569 !important;
+}
+
+body.light-mode .terminal-intro {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .terminal-intro h2 {
+    color: #1e293b;
+}
+
+body.light-mode .terminal-intro p {
+    color: #475569;
+}
+
+body.light-mode .command-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .command-card:hover {
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.25);
+}
+
+body.light-mode .command-category {
+    color: #1e293b;
+}
+
+body.light-mode .command-item {
+    border-bottom-color: rgba(139, 92, 246, 0.2);
+}
+
+body.light-mode .command-header code {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+body.light-mode .command-alias {
+    color: #64748b;
+}
+
+body.light-mode .command-desc {
+    color: #475569;
+}
+
+body.light-mode .command-code {
+    background: rgba(30, 41, 59, 0.08);
+    color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.25);
+}
+
+/* Si tu veux que ça reste cohérent en light mode */
+@media (prefers-reduced-motion: reduce) {
+    .command-card, .command-card.in-view {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
 }

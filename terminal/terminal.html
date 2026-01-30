@@ -114,13 +114,13 @@
                 <div class="commands-grid">
                     <!-- File/Directory Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">📁 Gestion des Fichiers et Dossiers</h3>
+                        <h3 class="command-category" data-i18n="terminal.ps.cat1">📁 Gestion des Fichiers et Dossiers</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>Get-ChildItem</code>
                                 <span class="command-alias">Alias: ls, dir</span>
                             </div>
-                            <p class="command-desc">Lister les fichiers et dossiers du répertoire courant</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd1">Lister les fichiers et dossiers du répertoire courant</p>
                             <pre class="command-code">Get-ChildItem
 Get-ChildItem -Path C:\ -Recurse
 Get-ChildItem -Filter *.txt</pre>
@@ -131,7 +131,7 @@ Get-ChildItem -Filter *.txt</pre>
                                 <code>Set-Location</code>
                                 <span class="command-alias">Alias: cd</span>
                             </div>
-                            <p class="command-desc">Changer de répertoire courant</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd2">Changer de répertoire courant</p>
                             <pre class="command-code">Set-Location C:\Users\Documents
 cd ..
 cd ~</pre>
@@ -142,7 +142,7 @@ cd ~</pre>
                                 <code>New-Item</code>
                                 <span class="command-alias">Alias: mkdir</span>
                             </div>
-                            <p class="command-desc">Créer un nouveau fichier ou dossier</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd3">Créer un nouveau fichier ou dossier</p>
                             <pre class="command-code">New-Item -ItemType Directory -Path "C:\MonDossier"
 New-Item -ItemType File -Path "fichier.txt"</pre>
                         </div>
@@ -152,7 +152,7 @@ New-Item -ItemType File -Path "fichier.txt"</pre>
                                 <code>Copy-Item</code>
                                 <span class="command-alias">Alias: copy</span>
                             </div>
-                            <p class="command-desc">Copier des fichiers ou dossiers</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd4">Copier des fichiers ou dossiers</p>
                             <pre class="command-code">Copy-Item "source.txt" "destination.txt"
 Copy-Item -Path "C:\Dossier" -Destination "D:\Backup" -Recurse</pre>
                         </div>
@@ -162,7 +162,7 @@ Copy-Item -Path "C:\Dossier" -Destination "D:\Backup" -Recurse</pre>
                                 <code>Remove-Item</code>
                                 <span class="command-alias">Alias: del, rm</span>
                             </div>
-                            <p class="command-desc">Supprimer des fichiers ou dossiers</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd5">Supprimer des fichiers ou dossiers</p>
                             <pre class="command-code">Remove-Item "fichier.txt"
 Remove-Item "C:\Dossier" -Recurse -Force</pre>
                         </div>
@@ -170,13 +170,13 @@ Remove-Item "C:\Dossier" -Recurse -Force</pre>
 
                     <!-- Network Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">🌐 Commandes Réseau</h3>
+                        <h3 class="command-category" data-i18n="terminal.ps.cat2">🌐 Commandes Réseau</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>Get-NetIPConfiguration</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Afficher la configuration réseau</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd6">Afficher la configuration réseau</p>
                             <pre class="command-code">Get-NetIPConfiguration
 Get-NetIPConfiguration -InterfaceAlias "Ethernet"</pre>
                         </div>
@@ -186,7 +186,7 @@ Get-NetIPConfiguration -InterfaceAlias "Ethernet"</pre>
                                 <code>Test-NetConnection</code>
                                 <span class="command-alias">Alias: ping</span>
                             </div>
-                            <p class="command-desc">Tester la connectivité réseau</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd7">Tester la connectivité réseau</p>
                             <pre class="command-code">Test-NetConnection -ComputerName google.com
 Test-NetConnection -ComputerName 192.168.1.1 -Port 80</pre>
                         </div>
@@ -196,7 +196,7 @@ Test-NetConnection -ComputerName 192.168.1.1 -Port 80</pre>
                                 <code>Get-NetAdapter</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Afficher les adaptateurs réseau</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd8">Afficher les adaptateurs réseau</p>
                             <pre class="command-code">Get-NetAdapter
 Get-NetAdapter | Format-Table -AutoSize</pre>
                         </div>
@@ -206,7 +206,7 @@ Get-NetAdapter | Format-Table -AutoSize</pre>
                                 <code>Resolve-DnsName</code>
                                 <span class="command-alias">Alias: nslookup</span>
                             </div>
-                            <p class="command-desc">Résoudre un nom de domaine en adresse IP</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd9">Résoudre un nom de domaine en adresse IP</p>
                             <pre class="command-code">Resolve-DnsName google.com
 Resolve-DnsName google.com -Type A</pre>
                         </div>
@@ -216,20 +216,20 @@ Resolve-DnsName google.com -Type A</pre>
                                 <code>ipconfig /flushdns</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Vider le cache DNS local</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd10">Vider le cache DNS local</p>
                             <pre class="command-code">ipconfig /flushdns</pre>
                         </div>
                     </div>
 
                     <!-- Process Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">⚙️ Gestion des Processus</h3>
+                        <h3 class="command-category" data-i18n="terminal.ps.cat3">⚙️ Gestion des Processus</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>Get-Process</code>
                                 <span class="command-alias">Alias: ps</span>
                             </div>
-                            <p class="command-desc">Lister les processus en cours d'exécution</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd11">Lister les processus en cours d'exécution</p>
                             <pre class="command-code">Get-Process
 Get-Process -Name "chrome"
 Get-Process | Sort-Object -Property WS -Descending | Select-Object -First 10</pre>
@@ -240,7 +240,7 @@ Get-Process | Sort-Object -Property WS -Descending | Select-Object -First 10</pr
                                 <code>Stop-Process</code>
                                 <span class="command-alias">Alias: kill</span>
                             </div>
-                            <p class="command-desc">Arrêter un processus</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd12">Arrêter un processus</p>
                             <pre class="command-code">Stop-Process -Name "notepad"
 Stop-Process -Id 1234 -Force</pre>
                         </div>
@@ -250,7 +250,7 @@ Stop-Process -Id 1234 -Force</pre>
                                 <code>Start-Process</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Lancer un processus ou une application</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd13">Lancer un processus ou une application</p>
                             <pre class="command-code">Start-Process "notepad.exe"
 Start-Process "C:\Program Files\Chrome\chrome.exe"</pre>
                         </div>
@@ -260,7 +260,7 @@ Start-Process "C:\Program Files\Chrome\chrome.exe"</pre>
                                 <code>Get-Service</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Lister les services Windows</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd14">Lister les services Windows</p>
                             <pre class="command-code">Get-Service
 Get-Service | Where-Object {$_.Status -eq 'Running'}</pre>
                         </div>
@@ -268,13 +268,13 @@ Get-Service | Where-Object {$_.Status -eq 'Running'}</pre>
 
                     <!-- System Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">💻 Informations Système</h3>
+                        <h3 class="command-category" data-i18n="terminal.ps.cat4">💻 Informations Système</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>Get-ComputerInfo</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Afficher les informations système complètes</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd15">Afficher les informations système complètes</p>
                             <pre class="command-code">Get-ComputerInfo
 Get-ComputerInfo | Select-Object OsName, OsVersion, CsProcessors</pre>
                         </div>
@@ -284,7 +284,7 @@ Get-ComputerInfo | Select-Object OsName, OsVersion, CsProcessors</pre>
                                 <code>Get-Volume</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Afficher l'utilisation des disques</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd16">Afficher l'utilisation des disques</p>
                             <pre class="command-code">Get-Volume
 Get-Volume | Format-Table -AutoSize</pre>
                         </div>
@@ -294,7 +294,7 @@ Get-Volume | Format-Table -AutoSize</pre>
                                 <code>Measure-Object</code>
                                 <span class="command-alias"></span>
                             </div>
-                            <p class="command-desc">Calculer des statistiques sur des objets</p>
+                            <p class="command-desc" data-i18n="terminal.ps.cmd17">Calculer des statistiques sur des objets</p>
                             <pre class="command-code">Get-Process | Measure-Object -Property WS -Sum
 Get-ChildItem | Measure-Object -Property Length -Sum</pre>
                         </div>
@@ -309,13 +309,13 @@ Get-ChildItem | Measure-Object -Property Length -Sum</pre>
                 <div class="commands-grid">
                     <!-- File/Directory Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">📁 Gestion des Fichiers et Dossiers</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat1">📁 Gestion des Fichiers et Dossiers</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>ls</code>
                                 <span class="command-alias">list</span>
                             </div>
-                            <p class="command-desc">Lister les fichiers et dossiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd1">Lister les fichiers et dossiers</p>
                             <pre class="command-code">ls
 ls -la
 ls -lh /home
@@ -327,7 +327,7 @@ ls -R /home/user</pre>
                                 <code>cd</code>
                                 <span class="command-alias">change directory</span>
                             </div>
-                            <p class="command-desc">Changer de répertoire courant</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd2">Changer de répertoire courant</p>
                             <pre class="command-code">cd /home/user
 cd ..
 cd ~
@@ -339,7 +339,7 @@ cd -</pre>
                                 <code>pwd</code>
                                 <span class="command-alias">print working directory</span>
                             </div>
-                            <p class="command-desc">Afficher le chemin du répertoire courant</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd3">Afficher le chemin du répertoire courant</p>
                             <pre class="command-code">pwd</pre>
                         </div>
 
@@ -348,7 +348,7 @@ cd -</pre>
                                 <code>mkdir</code>
                                 <span class="command-alias">make directory</span>
                             </div>
-                            <p class="command-desc">Créer un nouveau dossier</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd4">Créer un nouveau dossier</p>
                             <pre class="command-code">mkdir MonDossier
 mkdir -p /home/user/dossier/sous-dossier</pre>
                         </div>
@@ -358,7 +358,7 @@ mkdir -p /home/user/dossier/sous-dossier</pre>
                                 <code>cp</code>
                                 <span class="command-alias">copy</span>
                             </div>
-                            <p class="command-desc">Copier des fichiers ou dossiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd5">Copier des fichiers ou dossiers</p>
                             <pre class="command-code">cp source.txt destination.txt
 cp -r /source /destination</pre>
                         </div>
@@ -368,7 +368,7 @@ cp -r /source /destination</pre>
                                 <code>rm</code>
                                 <span class="command-alias">remove</span>
                             </div>
-                            <p class="command-desc">Supprimer des fichiers ou dossiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd6">Supprimer des fichiers ou dossiers</p>
                             <pre class="command-code">rm fichier.txt
 rm -r /chemin/dossier
 rm -rf /* (DANGER - Ne JAMAIS exécuter !)</pre>
@@ -379,7 +379,7 @@ rm -rf /* (DANGER - Ne JAMAIS exécuter !)</pre>
                                 <code>mv</code>
                                 <span class="command-alias">move</span>
                             </div>
-                            <p class="command-desc">Déplacer ou renommer des fichiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd7">Déplacer ou renommer des fichiers</p>
                             <pre class="command-code">mv ancien_nom.txt nouveau_nom.txt
 mv /source/fichier.txt /destination/</pre>
                         </div>
@@ -389,7 +389,7 @@ mv /source/fichier.txt /destination/</pre>
                                 <code>find</code>
                                 <span class="command-alias">search</span>
                             </div>
-                            <p class="command-desc">Rechercher des fichiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd8">Rechercher des fichiers</p>
                             <pre class="command-code">find /home -name "*.txt"
 find / -type f -size +100M
 find /home -user username</pre>
@@ -398,13 +398,13 @@ find /home -user username</pre>
 
                     <!-- Network Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">🌐 Commandes Réseau</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat2">🌐 Commandes Réseau</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>ifconfig / ip</code>
                                 <span class="command-alias">network config</span>
                             </div>
-                            <p class="command-desc">Afficher la configuration réseau</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd9">Afficher la configuration réseau</p>
                             <pre class="command-code">ifconfig
 ip addr show
 ip link show</pre>
@@ -415,7 +415,7 @@ ip link show</pre>
                                 <code>ping</code>
                                 <span class="command-alias">packet internet groper</span>
                             </div>
-                            <p class="command-desc">Tester la connectivité réseau</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd10">Tester la connectivité réseau</p>
                             <pre class="command-code">ping google.com
 ping -c 4 192.168.1.1
 ping -i 2 8.8.8.8</pre>
@@ -426,7 +426,7 @@ ping -i 2 8.8.8.8</pre>
                                 <code>nslookup / dig</code>
                                 <span class="command-alias">DNS lookup</span>
                             </div>
-                            <p class="command-desc">Résoudre un nom de domaine</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd11">Résoudre un nom de domaine</p>
                             <pre class="command-code">nslookup google.com
 dig google.com
 dig +short google.com</pre>
@@ -437,7 +437,7 @@ dig +short google.com</pre>
                                 <code>netstat / ss</code>
                                 <span class="command-alias">socket statistics</span>
                             </div>
-                            <p class="command-desc">Afficher les connexions réseau actives</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd12">Afficher les connexions réseau actives</p>
                             <pre class="command-code">netstat -tulpn
 ss -tulpn
 ss -ant | grep ESTABLISHED</pre>
@@ -448,7 +448,7 @@ ss -ant | grep ESTABLISHED</pre>
                                 <code>traceroute</code>
                                 <span class="command-alias">trace path</span>
                             </div>
-                            <p class="command-desc">Tracer le chemin vers une destination</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd13">Tracer le chemin vers une destination</p>
                             <pre class="command-code">traceroute google.com
 traceroute -m 20 8.8.8.8</pre>
                         </div>
@@ -458,7 +458,7 @@ traceroute -m 20 8.8.8.8</pre>
                                 <code>wget / curl</code>
                                 <span class="command-alias">download</span>
                             </div>
-                            <p class="command-desc">Télécharger des fichiers depuis internet</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd14">Télécharger des fichiers depuis internet</p>
                             <pre class="command-code">wget https://example.com/file.zip
 curl -O https://example.com/file.zip
 curl -I https://example.com</pre>
@@ -467,13 +467,13 @@ curl -I https://example.com</pre>
 
                     <!-- Process & System Commands -->
                     <div class="command-card">
-                        <h3 class="command-category">⚙️ Processus et Système</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat3">⚙️ Processus et Système</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>ps</code>
                                 <span class="command-alias">processes</span>
                             </div>
-                            <p class="command-desc">Lister les processus en cours</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd15">Lister les processus en cours</p>
                             <pre class="command-code">ps
 ps aux
 ps aux | grep chrome
@@ -485,7 +485,7 @@ ps -elf | sort -k4 -rn | head</pre>
                                 <code>top / htop</code>
                                 <span class="command-alias">monitor</span>
                             </div>
-                            <p class="command-desc">Surveiller l'utilisation des ressources</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd16">Surveiller l'utilisation des ressources</p>
                             <pre class="command-code">top
 htop
 top -u username</pre>
@@ -496,7 +496,7 @@ top -u username</pre>
                                 <code>kill</code>
                                 <span class="command-alias">terminate</span>
                             </div>
-                            <p class="command-desc">Arrêter un processus</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd17">Arrêter un processus</p>
                             <pre class="command-code">kill 1234
 kill -9 1234 (SIGKILL)
 killall chrome</pre>
@@ -507,7 +507,7 @@ killall chrome</pre>
                                 <code>systemctl</code>
                                 <span class="command-alias">service control</span>
                             </div>
-                            <p class="command-desc">Gérer les services</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd18">Gérer les services</p>
                             <pre class="command-code">systemctl status apache2
 systemctl start nginx
 systemctl enable ssh
@@ -519,7 +519,7 @@ systemctl restart mysql</pre>
                                 <code>df / du</code>
                                 <span class="command-alias">disk usage</span>
                             </div>
-                            <p class="command-desc">Afficher l'utilisation du disque</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd19">Afficher l'utilisation du disque</p>
                             <pre class="command-code">df -h
 du -sh /home
 du -sh /* | sort -rh | head</pre>
@@ -530,7 +530,7 @@ du -sh /* | sort -rh | head</pre>
                                 <code>free</code>
                                 <span class="command-alias">memory info</span>
                             </div>
-                            <p class="command-desc">Afficher l'utilisation de la mémoire</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd20">Afficher l'utilisation de la mémoire</p>
                             <pre class="command-code">free
 free -h
 free -m</pre>
@@ -539,13 +539,13 @@ free -m</pre>
 
                     <!-- User & Permissions -->
                     <div class="command-card">
-                        <h3 class="command-category">👤 Utilisateurs et Permissions</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat4">👤 Utilisateurs et Permissions</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>sudo</code>
                                 <span class="command-alias">superuser do</span>
                             </div>
-                            <p class="command-desc">Exécuter une commande en tant qu'administrateur</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd21">Exécuter une commande en tant qu'administrateur</p>
                             <pre class="command-code">sudo apt update
 sudo systemctl restart nginx
 sudo cat /etc/shadow</pre>
@@ -556,7 +556,7 @@ sudo cat /etc/shadow</pre>
                                 <code>chmod</code>
                                 <span class="command-alias">change mode</span>
                             </div>
-                            <p class="command-desc">Changer les permissions d'un fichier</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd22">Changer les permissions d'un fichier</p>
                             <pre class="command-code">chmod 755 script.sh
 chmod u+x fichier.txt
 chmod -R 777 /chemin</pre>
@@ -567,7 +567,7 @@ chmod -R 777 /chemin</pre>
                                 <code>chown</code>
                                 <span class="command-alias">change owner</span>
                             </div>
-                            <p class="command-desc">Changer le propriétaire d'un fichier</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd23">Changer le propriétaire d'un fichier</p>
                             <pre class="command-code">chown user fichier.txt
 chown user:group fichier.txt
 chown -R user:group /chemin</pre>
@@ -578,7 +578,7 @@ chown -R user:group /chemin</pre>
                                 <code>whoami / id</code>
                                 <span class="command-alias">current user</span>
                             </div>
-                            <p class="command-desc">Afficher l'utilisateur actuel</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd24">Afficher l'utilisateur actuel</p>
                             <pre class="command-code">whoami
 id
 id username</pre>
@@ -587,13 +587,13 @@ id username</pre>
 
                     <!-- Text & Compression -->
                     <div class="command-card">
-                        <h3 class="command-category">📄 Texte et Compression</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat5">📄 Texte et Compression</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>cat</code>
                                 <span class="command-alias">concatenate</span>
                             </div>
-                            <p class="command-desc">Afficher le contenu d'un fichier</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd25">Afficher le contenu d'un fichier</p>
                             <pre class="command-code">cat fichier.txt
 cat /etc/hosts
 cat file1.txt file2.txt > combined.txt</pre>
@@ -604,7 +604,7 @@ cat file1.txt file2.txt > combined.txt</pre>
                                 <code>grep</code>
                                 <span class="command-alias">search text</span>
                             </div>
-                            <p class="command-desc">Rechercher du texte dans des fichiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd26">Rechercher du texte dans des fichiers</p>
                             <pre class="command-code">grep "motif" fichier.txt
 grep -r "texte" /chemin
 grep -i "case" fichier.txt</pre>
@@ -615,7 +615,7 @@ grep -i "case" fichier.txt</pre>
                                 <code>tar</code>
                                 <span class="command-alias">archive</span>
                             </div>
-                            <p class="command-desc">Compresser et décompresser des fichiers</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd27">Compresser et décompresser des fichiers</p>
                             <pre class="command-code">tar -cvf archive.tar dossier/
 tar -xvf archive.tar
 tar -czvf archive.tar.gz dossier/</pre>
@@ -626,7 +626,7 @@ tar -czvf archive.tar.gz dossier/</pre>
                                 <code>zip / unzip</code>
                                 <span class="command-alias">compress</span>
                             </div>
-                            <p class="command-desc">Créer et extraire des fichiers ZIP</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd28">Créer et extraire des fichiers ZIP</p>
                             <pre class="command-code">zip -r archive.zip dossier/
 unzip archive.zip
 unzip -l archive.zip</pre>
@@ -637,7 +637,7 @@ unzip -l archive.zip</pre>
                                 <code>sed / awk</code>
                                 <span class="command-alias">text processing</span>
                             </div>
-                            <p class="command-desc">Traiter et manipuler du texte</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd29">Traiter et manipuler du texte</p>
                             <pre class="command-code">sed 's/ancien/nouveau/' fichier.txt
 awk '{print $1}' fichier.txt
 cat fichier.txt | sed 's/a/b/g'</pre>
@@ -646,13 +646,13 @@ cat fichier.txt | sed 's/a/b/g'</pre>
 
                     <!-- Package Management -->
                     <div class="command-card">
-                        <h3 class="command-category">📦 Gestion des Paquets (Debian/Ubuntu)</h3>
+                        <h3 class="command-category" data-i18n="terminal.linux.cat6">📦 Gestion des Paquets (Debian/Ubuntu)</h3>
                         <div class="command-item">
                             <div class="command-header">
                                 <code>apt</code>
                                 <span class="command-alias">package manager</span>
                             </div>
-                            <p class="command-desc">Gérer les paquets système</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd30">Gérer les paquets système</p>
                             <pre class="command-code">sudo apt update
 sudo apt upgrade
 sudo apt install package-name
@@ -665,7 +665,7 @@ sudo apt search package-name</pre>
                                 <code>dpkg</code>
                                 <span class="command-alias">debian package</span>
                             </div>
-                            <p class="command-desc">Gérer les paquets .deb</p>
+                            <p class="command-desc" data-i18n="terminal.linux.cmd31">Gérer les paquets .deb</p>
                             <pre class="command-code">dpkg -i package.deb
 dpkg -r package-name
 dpkg -l | grep package

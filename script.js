@@ -640,7 +640,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'cisco.tut5.step5.title': 'Verify Dynamic Configuration',
             'cisco.tut5.step5.content': 'Validate that devices are assigned to the correct VLAN.',
             'cisco.tut5.tips': 'Use centralized VMPS server to manage mappings|Test mappings with different IP addresses|Document IP/subnet ranges and their corresponding VLANs|Configure a default VLAN for unmapped IP addresses',
-            'cisco.tut5.warnings': 'VMPS configuration requires proper synchronization|Device IP changes may take time to be recognized|Ensure DHCP assigns correct IP addresses for the correct VLAN'
+            'cisco.tut5.warnings': 'VMPS configuration requires proper synchronization|Device IP changes may take time to be recognized|Ensure DHCP assigns correct IP addresses for the correct VLAN',
+            'nav.terminal': 'Terminal',
+            'terminal.title': 'Terminal Commands',
+            'terminal.subtitle': 'Complete guide to essential commands for Windows PowerShell and Linux',
+            'terminal.overview': 'Overview',
+            'terminal.overview.desc': 'Mastering the terminal is essential for network administrators, developers, and IT enthusiasts. This page presents the most useful and frequently used commands for Windows PowerShell and Linux, with explanations and practical use cases.',
+            'terminal.tab.powershell': '🪟 PowerShell',
+            'terminal.tab.linux': '🐧 Linux/Bash',
+            'terminal.ps.title': 'PowerShell - Essential Commands',
+            'terminal.linux.title': 'Linux/Bash - Essential Commands'
         },
         fr: {
             'nav.brand': 'Mon Portfolio',
@@ -754,7 +763,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'cisco.tut5.step5.title': 'Vérifier la configuration dynamique',
             'cisco.tut5.step5.content': 'Validez que les dispositifs sont assignés au bon VLAN.',
             'cisco.tut5.tips': 'Utilisez un serveur VMPS centralisé pour gérer les mappings|Testez les mappings avec différentes adresses IP|Documentez les plages IP/subnet et leurs VLANs correspondants|Configurez un VLAN par défaut pour les adresses IP non mappées',
-            'cisco.tut5.warnings': 'La configuration VMPS nécessite une synchronisation correcte|Les changements d\'IP des dispositifs peuvent prendre du temps à être reconnus|Assurez-vous que le DHCP assigne les bonnes adresses IP pour le bon VLAN'
+            'cisco.tut5.warnings': 'La configuration VMPS nécessite une synchronisation correcte|Les changements d\'IP des dispositifs peuvent prendre du temps à être reconnus|Assurez-vous que le DHCP assigne les bonnes adresses IP pour le bon VLAN',
+            'nav.terminal': 'Terminal',
+            'terminal.title': 'Commandes Terminal',
+            'terminal.subtitle': 'Guide complet des commandes essentielles pour Windows PowerShell et Linux',
+            'terminal.overview': 'Aperçu',
+            'terminal.overview.desc': 'La maîtrise du terminal est essentielle pour les administrateurs réseau, les développeurs et les passionnés d\'informatique. Cette page présente les commandes les plus utiles et les plus fréquemment utilisées pour Windows PowerShell et Linux, avec des explications et des cas d\'usage pratiques.',
+            'terminal.tab.powershell': '🪟 PowerShell',
+            'terminal.tab.linux': '🐧 Linux/Bash',
+            'terminal.ps.title': 'PowerShell - Commandes Essentielles',
+            'terminal.linux.title': 'Linux/Bash - Commandes Essentielles'
         }
 
             ,
@@ -1086,7 +1104,16 @@ document.addEventListener('DOMContentLoaded', () => {
             'cisco.tut5.step5.title': 'Verificar configuración dinámica',
             'cisco.tut5.step5.content': 'Valida que los dispositivos se asignen a la VLAN correcta.',
             'cisco.tut5.tips': 'Usa servidor VMPS centralizado para gestionar mapeos|Prueba mapeos con diferentes direcciones IP|Documenta rangos IP/subred y sus VLAN correspondientes|Configura una VLAN predeterminada para direcciones IP sin mapear',
-            'cisco.tut5.warnings': 'La configuración VMPS requiere sincronización adecuada|Los cambios de IP del dispositivo pueden tardar en reconocerse|Asegúrate de que DHCP asigne direcciones IP correctas para la VLAN correcta'
+            'cisco.tut5.warnings': 'La configuración VMPS requiere sincronización adecuada|Los cambios de IP del dispositivo pueden tardar en reconocerse|Asegúrate de que DHCP asigne direcciones IP correctas para la VLAN correcta',
+            'nav.terminal': 'Terminal',
+            'terminal.title': 'Comandos de Terminal',
+            'terminal.subtitle': 'Guía completa de comandos esenciales para Windows PowerShell y Linux',
+            'terminal.overview': 'Descripción general',
+            'terminal.overview.desc': 'Dominar la terminal es esencial para administradores de redes, desarrolladores y entusiastas de IT. Esta página presenta los comandos más útiles y frecuentemente utilizados para Windows PowerShell y Linux, con explicaciones y casos prácticos de uso.',
+            'terminal.tab.powershell': '🪟 PowerShell',
+            'terminal.tab.linux': '🐧 Linux/Bash',
+            'terminal.ps.title': 'PowerShell - Comandos Esenciales',
+            'terminal.linux.title': 'Linux/Bash - Comandos Esenciales'
         }
     };
 

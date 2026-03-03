@@ -1892,6 +1892,14 @@ body.light-mode .no-results p {
     margin-top: 2rem;
 }
 
+/* Small screens - ensure cards don't overflow */
+@media (max-width: 350px) {
+    .forum-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
 /* Forum Card */
 .forum-card {
     background: rgba(30, 41, 59, 0.6);
@@ -4367,6 +4375,35 @@ body.light-mode .command-code {
         padding: 0.6rem;
         font-size: 0.8rem;
         line-height: 1.4;
+    }
+}
+
+/* Tablet sizes (769px - 1024px) - navbar adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+        padding: 0.5rem;
+    }
+
+    .lang-toggle,
+    .theme-toggle,
+    .font-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 0.85rem;
+    }
+
+    .theme-toggle svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .nav-container {
+        padding: 0 1.5rem;
     }
 }
 

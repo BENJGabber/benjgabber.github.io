@@ -1398,50 +1398,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Translation using LibreTranslate
     async function translateText(text, targetLang) {
-        if (!text || !text.trim()) return text;
-        if (targetLang === 'fr') return text;
-
-        // Check cache first
-        const cached = getCachedTranslation(text, targetLang);
-        if (cached) return cached;
-
-        try {
-            // Clean HTML tags for translation
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = text;
-            const plainText = tempDiv.textContent || tempDiv.innerText || '';
-
-            if (!plainText.trim()) return text;
-
-            const response = await fetch('https://libretranslate.com/translate', {
-                method: 'POST',
-                body: JSON.stringify({
-                    q: plainText,
-                    source: 'fr',
-                    target: targetLang,
-                    format: 'text'
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Translation failed');
-            }
-
-            const data = await response.json();
-            const translation = data.translatedText;
-
-            // Cache the translation
-            setCachedTranslation(text, targetLang, translation);
-
-            return translation;
-        } catch (error) {
-            console.error('Translation error:', error);
-            return text;
-        }
+        // All translations handled through manual translations only
+        // LibreTranslate API removed for simplified, manual-only approach
+        return text;
     }
 
     // Show notification
@@ -1563,53 +1522,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Translate all page elements
+    // Translate all page elements (manual only)
     async function translatePage(targetLang) {
         const langName = languages.find(l => l.code === targetLang) ?.name || targetLang;
 
-        // Apply manual translations if available
+        // Apply manual translations
         const manualApplied = applyManualTranslations(targetLang);
 
         if (manualApplied) {
             showTranslationNotification(`✅ Page displayed in ${langName}`);
-            return;
-        }
-
-        // Otherwise, use auto-translation
-        showTranslationNotification(`🌐 Translating to ${langName}...`);
-
-        const elements = document.querySelectorAll('[data-i18n]');
-        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
-
-        try {
-            // Translate text content
-            for (const element of elements) {
-                const key = element.dataset.i18n;
-                const originalText = originalTranslations[key] || element.textContent.trim();
-
-                if (originalText) {
-                    const translated = await translateText(originalText, targetLang);
-                    element.innerHTML = translated;
-                    await new Promise(resolve => setTimeout(resolve, 100)); // Rate limiting
-                }
-            }
-
-            // Translate placeholders
-            for (const element of placeholderElements) {
-                const key = element.dataset.i18nPlaceholder;
-                const originalText = originalPlaceholders[key] || element.getAttribute('placeholder');
-
-                if (originalText) {
-                    const translated = await translateText(originalText, targetLang);
-                    element.setAttribute('placeholder', translated);
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                }
-            }
-
-            showTranslationNotification(`✅ Page translated to ${langName}`);
-        } catch (error) {
-            console.error('Translation error:', error);
-            showTranslationNotification('Translation error occurred', true);
+        } else {
+            showTranslationNotification('Language not available', true);
         }
     }
 

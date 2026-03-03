@@ -20,8 +20,9 @@
                 <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
                 <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
                 <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+                <li><a href="../terminal/terminal.html" data-i18n="nav.terminal">Terminal</a></li>
                 <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
-                <li><a href="#" data-i18n="nav.contact">Contact</a></li>
+                <li><a href="./contact.html" data-i18n="nav.contact">Contact</a></li>
                 <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
                 <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -57,9 +58,11 @@
             <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
             <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
             <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
             <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="../terminal/terminal.html" data-i18n="nav.terminal">Terminal</a></li>
             <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
-            <li><a href="#" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="./contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
         <div class="side-menu-toggles">
             <button class="lang-toggle" id="languageToggleMobile" aria-label="Changer de langue">EN</button>
@@ -321,8 +324,7 @@
 
     function addSuspicion(points, reason) {
         suspicionScore += points;
-        console.log(`⚠️ +${points} suspicion: ${reason} (Total: ${suspicionScore})`);
-        
+        // Debug logging removed - spam detection running silently
         if (suspicionScore >= MAX_SUSPICION) {
             lockoutUser('Score de suspicion trop élevé');
             return true;

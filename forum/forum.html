@@ -19,9 +19,10 @@
                 <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
                 <li><a href="../formation/formation.html" data-i18n="nav.path">Parcours et Expériences</a></li>
                 <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
-                <li><a href="#" data-i18n="nav.articles">Articles</a></li>
+                <li><a href="./forum.html" data-i18n="nav.articles">Articles</a></li>
                 <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
                 <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+                <li><a href="../terminal/terminal.html" data-i18n="nav.terminal">Terminal</a></li>
                 <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
                 <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
                 <button class="lang-toggle" id="languageToggle" aria-label="Changer de langue">🇫🇷 FR</button>
@@ -58,8 +59,10 @@
             <li><a href="../index.html#apropos" data-i18n="nav.about">À propos</a></li>
             <li><a href="../formation/formation.html" data-i18n="nav.journey">Parcours et Expériences</a></li>
             <li><a href="../projets/projets.html" data-i18n="nav.projects">Projets</a></li>
-            <li><a href="#" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="./forum.html" data-i18n="nav.articles">Articles</a></li>
+            <li><a href="../cisco/cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
             <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="../terminal/terminal.html" data-i18n="nav.terminal">Terminal</a></li>
             <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
             <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
@@ -192,12 +195,9 @@
                 // Réinitialiser l'index du proxy en cas de succès
                 currentProxyIndex = 0;
             } catch (error) {
-                console.error('Erreur détaillée:', error);
-
                 // Essayer le proxy suivant si disponible
                 if (currentProxyIndex < CORS_PROXIES.length - 1) {
                     currentProxyIndex++;
-                    console.log(`Tentative avec un autre proxy (${currentProxyIndex + 1}/${CORS_PROXIES.length})...`);
                     return fetchForumTopics(); // Réessayer avec le proxy suivant
                 }
 

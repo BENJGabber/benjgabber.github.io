@@ -61,6 +61,7 @@
             <li><a href="../forum/forum.html" data-i18n="nav.articles">Articles</a></li>
             <li><a href="./cisco.html" data-i18n="nav.cisco">Tutoriels Cisco</a></li>
             <li><a href="../optimization/optimization.html" data-i18n="nav.optimization">Optimisation PC</a></li>
+            <li><a href="../terminal/terminal.html" data-i18n="nav.terminal">Terminal</a></li>
             <li><a href="../resources/resources.html" data-i18n="nav.resources">Ressources</a></li>
             <li><a href="../contact/contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
@@ -612,8 +613,6 @@
         setTimeout(() => {
             // Force apply translations
             const lang = localStorage.getItem('selectedLang') || 'fr';
-            console.log('Initializing Cisco tutorials with language:', lang);
-            console.log('window.manualTranslations available:', !!window.manualTranslations);
             
             if (window.applyManualTranslations) {
                 window.applyManualTranslations(lang);

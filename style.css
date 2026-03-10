@@ -507,6 +507,10 @@ body.light-mode .language-select option {
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     z-index: 999;
+    /* Flex layout so links can scroll and toggles stay at bottom */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .side-menu.open {
@@ -516,6 +520,9 @@ body.light-mode .language-select option {
 .side-nav-links {
     list-style: none;
     padding: 0;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .side-nav-links li {
@@ -537,13 +544,13 @@ body.light-mode .language-select option {
 }
 
 .side-menu-toggles {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     gap: 15px;
     align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 12px 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Formation Section */
@@ -4530,6 +4537,165 @@ body.light-mode .warning-box p {
 
     .nav-container {
         padding: 0 1.5rem;
+    }
+}
+
+/* ============================================
+   MOBILE IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* --- Formation Timeline: left rail (top-to-bottom, left-to-right reading) --- */
+    .formation-timeline::before {
+        left: 18px;
+        transform: none;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 48px;
+        margin-bottom: 2rem;
+    }
+
+    .timeline-date {
+        position: static;
+        transform: none;
+        left: auto;
+        margin-left: -30px;
+        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        padding: 5px 12px;
+        display: inline-block;
+    }
+
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        width: 100%;
+        margin: 0 !important;
+        padding: 1.25rem;
+    }
+
+    /* Formation page section sizing */
+    .formation-section {
+        padding: 80px 0 60px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.4rem;
+        margin: 2rem 0 1.5rem;
+    }
+
+    /* Experience card header: wrap date below title on narrow screens */
+    .experience-header {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    /* Skills bars (homepage about section) */
+    .skill-item {
+        gap: 0.75rem;
+    }
+
+    .skill-name {
+        min-width: 120px;
+        font-size: 0.9rem;
+    }
+
+    .skill-square {
+        width: 15px;
+        height: 15px;
+    }
+
+    /* Resource category tabs: horizontal scroll instead of wrapping */
+    .resource-categories {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+    }
+
+    .resource-categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .resource-tab {
+        flex-shrink: 0;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Cisco filter tabs: horizontal scroll instead of wrapping */
+    .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+    }
+
+    .filter-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-tab {
+        flex-shrink: 0;
+    }
+
+    /* Side menu link spacing: reduce on smaller screens */
+    .side-nav-links li {
+        margin: 18px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Timeline: tighter on very small phones */
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        padding-left: 40px;
+    }
+
+    .timeline-date {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        margin-left: -22px;
+    }
+
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        padding: 1rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Skill bars: tighter on very small phones */
+    .skill-square {
+        width: 13px;
+        height: 13px;
+    }
+
+    .skill-name {
+        min-width: 95px;
+        font-size: 0.82rem;
+    }
+
+    /* Side menu link spacing */
+    .side-nav-links li {
+        margin: 14px 0;
     }
 }
 

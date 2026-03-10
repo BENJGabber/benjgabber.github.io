@@ -4267,6 +4267,14 @@ body.light-mode .command-code {
 }
 
 /* Light Mode - Cisco specific readability */
+body.light-mode .page-header h1 {
+    color: #1e293b;
+}
+
+body.light-mode .page-header p {
+    color: #475569;
+}
+
 body.light-mode .filter-tab {
     background: rgba(255, 255, 255, 0.92);
     border-color: rgba(124, 58, 237, 0.35);

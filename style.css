@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #a855f7;
+    --primary-color-rgb: 168, 85, 247;
+}
+
 /* Luciole Font */
 @font-face {
     font-family: 'Luciole';
@@ -4259,6 +4264,119 @@ body.light-mode .command-code {
     background: rgba(30, 41, 59, 0.08);
     color: #7c3aed;
     border-color: rgba(139, 92, 246, 0.25);
+}
+
+/* Light Mode - Cisco specific readability */
+body.light-mode .filter-tab {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(124, 58, 237, 0.35);
+    color: #334155;
+}
+
+body.light-mode .filter-tab:hover {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: #7c3aed;
+    color: #1e293b;
+}
+
+body.light-mode .filter-tab.active {
+    background: #7c3aed;
+    color: #ffffff;
+    border-color: #7c3aed;
+}
+
+body.light-mode .tutorial-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: rgba(124, 58, 237, 0.28);
+}
+
+body.light-mode .tutorial-header {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    border-bottom-color: rgba(124, 58, 237, 0.22);
+}
+
+body.light-mode .tutorial-header h3 {
+    color: #1e293b;
+}
+
+body.light-mode .tutorial-meta {
+    color: #475569;
+}
+
+body.light-mode .tutorial-body p {
+    color: #475569;
+}
+
+body.light-mode .tag {
+    background: rgba(124, 58, 237, 0.1);
+    color: #6d28d9;
+    border-color: rgba(124, 58, 237, 0.25);
+}
+
+body.light-mode .cisco-resources h2 {
+    color: #1e293b;
+}
+
+body.light-mode .modal-content {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(124, 58, 237, 0.25);
+}
+
+body.light-mode .modal-header {
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    border-bottom-color: rgba(124, 58, 237, 0.2);
+    color: #1e293b;
+}
+
+body.light-mode .modal-header h2 {
+    color: #1e293b;
+}
+
+body.light-mode .modal-header p {
+    color: #475569;
+}
+
+body.light-mode .modal-body {
+    background: rgba(255, 255, 255, 0.98);
+    color: #475569;
+}
+
+body.light-mode .tutorial-section h3,
+body.light-mode .tutorial-section h4,
+body.light-mode .steps-list li h4 {
+    color: #1e293b;
+}
+
+body.light-mode .tutorial-section ul,
+body.light-mode .steps-list li,
+body.light-mode .tutorial-section p {
+    color: #475569;
+}
+
+body.light-mode .command-block {
+    background: rgba(15, 23, 42, 0.05);
+    border-color: rgba(124, 58, 237, 0.22);
+}
+
+body.light-mode .command-block pre,
+body.light-mode .command-block code {
+    color: #0f172a;
+}
+
+body.light-mode .note-box {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+body.light-mode .note-box p {
+    color: #1d4ed8;
+}
+
+body.light-mode .warning-box {
+    background: rgba(239, 68, 68, 0.08);
+}
+
+body.light-mode .warning-box p {
+    color: #b91c1c;
 }
 
 /* Responsive Terminal Styles */

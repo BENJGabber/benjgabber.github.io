@@ -717,6 +717,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.optimization': 'PC Optimization',
             'nav.resources': 'Resources',
             'back.toTop': 'Back to top',
+            'aria.changeLanguage': 'Change language',
+            'aria.changeTheme': 'Change theme',
+            'aria.changeFont': 'Change font',
+            'aria.expandImage': 'Image zoom',
+            'aria.close': 'Close',
             'about.skills': 'Skills',
             'optimization.tools.cleaning': 'Disk Cleanup',
             'optimization.tools.cleaning.desc': 'Free up disk space by removing temporary files and old system data.',
@@ -795,6 +800,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.optimization': 'Optimisation PC',
             'nav.resources': 'Ressources',
             'back.toTop': 'Retour en haut',
+            'aria.changeLanguage': 'Changer de langue',
+            'aria.changeTheme': 'Changer de thème',
+            'aria.changeFont': 'Changer de police',
+            'aria.expandImage': 'Agrandissement de l\'image',
+            'aria.close': 'Fermer',
             'cisco.title': '🌐 Tutoriels Cisco',
             'cisco.subtitle': 'Guides pratiques et configurations réseau basés sur mon expérience',
             'cisco.filter.all': 'Tous',
@@ -1424,6 +1434,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'nav.optimization': 'Optimización PC',
             'nav.resources': 'Recursos',
             'back.toTop': 'Volver arriba',
+            'aria.changeLanguage': 'Cambiar idioma',
+            'aria.changeTheme': 'Cambiar tema',
+            'aria.changeFont': 'Cambiar fuente',
+            'aria.expandImage': 'Ampliación de imagen',
+            'aria.close': 'Cerrar',
             'about.skills': 'Habilidades',
             'optimization.tools.cleaning': 'Limpieza de disco',
             'optimization.tools.cleaning.desc': 'Libera espacio eliminando archivos temporales y datos antiguos del sistema.',
@@ -1791,6 +1806,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make translations available globally for other pages
     window.manualTranslations = manualTranslations;
     window.applyManualTranslations = applyManualTranslations;
+    window.translatePage = translatePage;
 
     // Initialize translation system
     captureOriginalTranslations();

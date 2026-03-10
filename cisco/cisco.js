@@ -473,15 +473,21 @@ window.addEventListener('languageChanged', (e) => {
     }
 });
 
-// Initialize tutorials after script.js has loaded and translations are available
-// Wait longer to ensure script.js is fully loaded and DOM is ready
-setTimeout(() => {
-    // Force apply translations
+// Initialize tutorials after DOM is ready and shared translations are available
+function initCiscoPage() {
     const lang = localStorage.getItem('selectedLang') || 'fr';
-    
-    if (window.applyManualTranslations) {
+
+    // Ensure static page strings are in the selected language
+    if (typeof window.applyManualTranslations === 'function') {
         window.applyManualTranslations(lang);
     }
-    // Initialize tutorials with current language
+
+    // Render dynamic tutorial/resource cards in the selected language
     initTutorials();
-}, 300);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCiscoPage);
+} else {
+    initCiscoPage();
+}

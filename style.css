@@ -4563,8 +4563,8 @@ body.light-mode .warning-box p {
     .timeline-date {
         position: absolute;
         left: 18px;
-        top: 0;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         margin: 0;
         font-size: 0.85rem;
         padding: 5px 12px;
@@ -4577,7 +4577,6 @@ body.light-mode .warning-box p {
     .timeline-item:nth-child(even) .timeline-content {
         width: 100%;
         margin: 0 !important;
-        margin-top: 1.15rem !important;
         padding: 1.25rem;
     }
 
@@ -4672,8 +4671,8 @@ body.light-mode .warning-box p {
         font-size: 0.78rem;
         padding: 4px 10px;
         left: 18px;
-        top: 0;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         margin: 0;
     }
 

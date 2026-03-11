@@ -2219,6 +2219,13 @@ body.light-mode .no-results p {
     border-radius: 15px;
     border: 1px solid rgba(139, 92, 246, 0.2);
     color: #cbd5e1;
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.project-why.in-view {
+    animation: fadeInUp 0.6s ease-out both;
 }
 
 .project-why h2 {
@@ -2266,7 +2273,8 @@ body.light-mode .no-results p {
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .project-card, .project-card.in-view {
+    .project-card, .project-card.in-view,
+    .project-why, .project-why.in-view {
         animation: none !important;
         transition: none !important;
         transform: none !important;

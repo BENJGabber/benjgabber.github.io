@@ -1918,7 +1918,7 @@ if (backToTopButton) {
 
     // Project cards: animate when they enter the viewport
     (function setupProjectCardObserver() {
-        const cards = document.querySelectorAll('.project-card');
+        const cards = document.querySelectorAll('.project-card, .project-why');
         if (!cards.length) return;
 
         const options = {

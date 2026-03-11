@@ -4561,14 +4561,15 @@ body.light-mode .warning-box p {
     }
 
     .timeline-date {
-        position: static;
-        transform: none;
-        left: auto;
-        margin-left: -30px;
-        margin-bottom: 0.75rem;
+        position: absolute;
+        left: 18px;
+        top: 0;
+        transform: translateX(-50%);
+        margin: 0;
         font-size: 0.85rem;
         padding: 5px 12px;
         display: inline-block;
+        z-index: 2;
     }
 
     .timeline-content,
@@ -4576,6 +4577,7 @@ body.light-mode .warning-box p {
     .timeline-item:nth-child(even) .timeline-content {
         width: 100%;
         margin: 0 !important;
+        margin-top: 1.15rem !important;
         padding: 1.25rem;
     }
 
@@ -4669,7 +4671,10 @@ body.light-mode .warning-box p {
     .timeline-date {
         font-size: 0.78rem;
         padding: 4px 10px;
-        margin-left: -22px;
+        left: 18px;
+        top: 0;
+        transform: translateX(-50%);
+        margin: 0;
     }
 
     .timeline-content,

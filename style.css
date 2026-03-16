@@ -4643,22 +4643,21 @@ body.light-mode .warning-box p {
         font-size: 0.9rem;
     }
 
-    /* Cisco filter tabs: horizontal scroll instead of wrapping */
+    /* Cisco filter tabs: show all difficulty tabs without horizontal scrolling */
     .filter-tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        justify-content: flex-start;
-        padding-bottom: 0.5rem;
-        scrollbar-width: none;
-    }
-
-    .filter-tabs::-webkit-scrollbar {
-        display: none;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.75rem;
+        justify-content: stretch;
+        width: 100%;
+        margin-bottom: 2rem;
     }
 
     .filter-tab {
-        flex-shrink: 0;
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        text-align: center;
     }
 
     /* Side menu link spacing: reduce on smaller screens */
@@ -4692,6 +4691,10 @@ body.light-mode .warning-box p {
 
     .timeline-content h3 {
         font-size: 1.1rem;
+    }
+
+    .filter-tabs {
+        grid-template-columns: 1fr;
     }
 
     /* Skill bars: tighter on very small phones */

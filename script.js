@@ -433,15 +433,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'optimization.guides': 'Optimization Guides',
             'optimization.notes': 'Useful Commands and Scripts',
             'optimization.tips.title': '💡 Quick Tips',
+            'optimization.copy': '📋 Copy',
+            'optimization.copied': '✅ Copied!',
+            'optimization.snippet.win.services.title': '🪟 PowerShell - Windows Services',
             'optimization.snippet.win.services.desc': 'List running services sorted by memory usage',
+            'optimization.snippet.win.ram.title': '⚡ Windows RAM Optimization',
             'optimization.snippet.win.ram.desc': 'Clear RAM cache and optimize memory',
+            'optimization.snippet.win.disks.title': '💾 Disk Management',
             'optimization.snippet.win.disks.desc': 'Analyze disk usage and list the largest files',
+            'optimization.snippet.win.processes.title': '🔍 Process Monitoring',
             'optimization.snippet.win.processes.desc': 'Display the processes consuming the most RAM',
+            'optimization.snippet.linux.cleaning.title': '🐧 Full System Cleanup',
             'optimization.snippet.linux.cleaning.desc': 'Clean package cache, orphan files, and temporary files',
+            'optimization.snippet.linux.disks.title': '📊 Disk Analysis',
             'optimization.snippet.linux.disks.desc': 'Find the largest files and folders',
+            'optimization.snippet.linux.services.title': '⚙️ Service Optimization',
             'optimization.snippet.linux.services.desc': 'Analyze and optimize startup services',
+            'optimization.snippet.linux.monitoring.title': '💾 Real-Time System Monitoring',
             'optimization.snippet.linux.monitoring.desc': 'Monitor system resources and processes',
+            'optimization.snippet.linux.network.title': '🔍 Network Optimization',
             'optimization.snippet.linux.network.desc': 'Configure and optimize network connection',
+            'optimization.tip.win.1': 'Restart your PC regularly to clear RAM and close zombie processes',
+            'optimization.tip.win.2': 'Always keep 15-20% free space on your system drive',
+            'optimization.tip.win.3': 'Keep Windows and your drivers updated regularly',
+            'optimization.tip.win.4': 'Disable unnecessary visual effects to improve performance',
+            'optimization.tip.win.5': 'Use an SSD for your operating system',
+            'optimization.tip.win.6': 'Monitor temperatures, especially in summer!',
+            'optimization.tip.linux.1': 'Use <code>htop</code> instead of <code>top</code> for a better monitoring experience',
+            'optimization.tip.linux.2': 'Always keep 15-20% free space on your system drive',
+            'optimization.tip.linux.3': 'Update your system regularly with <code>apt update && apt upgrade</code>',
+            'optimization.tip.linux.4': 'Lower swappiness for a more responsive system (ideal value: 10)',
+            'optimization.tip.linux.5': 'Use an SSD for your operating system',
+            'optimization.tip.linux.6': 'Monitor temperatures with <code>sensors</code> or <code>psensor</code>',
             'upgrade.overview': 'Upgrade Your Computer',
             'upgrade.overview.desc': 'Planning to upgrade your computer? This guide will help you understand compatibility, wattage requirements, part selection, and the upgrade process itself.',
             'upgrade.tools': 'Tools & Resources',
@@ -1105,15 +1128,38 @@ document.addEventListener('DOMContentLoaded', () => {
             'optimization.guides': 'Guías de optimización',
             'optimization.notes': 'Comandos y scripts útiles',
             'optimization.tips.title': '💡 Consejos rápidos',
+            'optimization.copy': '📋 Copiar',
+            'optimization.copied': '✅ ¡Copiado!',
+            'optimization.snippet.win.services.title': '🪟 PowerShell - Servicios de Windows',
             'optimization.snippet.win.services.desc': 'Listar servicios en ejecución ordenados por uso de memoria',
+            'optimization.snippet.win.ram.title': '⚡ Optimización de RAM en Windows',
             'optimization.snippet.win.ram.desc': 'Vaciar la caché de RAM y optimizar la memoria',
+            'optimization.snippet.win.disks.title': '💾 Gestión de discos',
             'optimization.snippet.win.disks.desc': 'Analizar el uso de disco y listar los archivos más grandes',
+            'optimization.snippet.win.processes.title': '🔍 Supervisión de procesos',
             'optimization.snippet.win.processes.desc': 'Mostrar los procesos que consumen más RAM',
+            'optimization.snippet.linux.cleaning.title': '🐧 Limpieza completa del sistema',
             'optimization.snippet.linux.cleaning.desc': 'Limpiar la caché de paquetes, archivos huérfanos y temporales',
+            'optimization.snippet.linux.disks.title': '📊 Análisis de discos',
             'optimization.snippet.linux.disks.desc': 'Encontrar los archivos y carpetas más grandes',
+            'optimization.snippet.linux.services.title': '⚙️ Optimización de servicios',
             'optimization.snippet.linux.services.desc': 'Analizar y optimizar los servicios de inicio',
+            'optimization.snippet.linux.monitoring.title': '💾 Monitorización del sistema en tiempo real',
             'optimization.snippet.linux.monitoring.desc': 'Supervisar recursos del sistema y procesos',
+            'optimization.snippet.linux.network.title': '🔍 Optimización de red',
             'optimization.snippet.linux.network.desc': 'Configurar y optimizar la conexión de red',
+            'optimization.tip.win.1': 'Reinicia tu PC con regularidad para vaciar la RAM y cerrar procesos zombis',
+            'optimization.tip.win.2': 'Mantén siempre entre un 15-20% de espacio libre en el disco del sistema',
+            'optimization.tip.win.3': 'Mantén Windows y tus controladores actualizados regularmente',
+            'optimization.tip.win.4': 'Desactiva efectos visuales innecesarios para mejorar el rendimiento',
+            'optimization.tip.win.5': 'Usa un SSD para tu sistema operativo',
+            'optimization.tip.win.6': '¡Vigila las temperaturas, sobre todo en verano!',
+            'optimization.tip.linux.1': 'Usa <code>htop</code> en lugar de <code>top</code> para una mejor experiencia de monitorización',
+            'optimization.tip.linux.2': 'Mantén siempre entre un 15-20% de espacio libre en el disco del sistema',
+            'optimization.tip.linux.3': 'Actualiza tu sistema regularmente con <code>apt update && apt upgrade</code>',
+            'optimization.tip.linux.4': 'Reduce el valor de swappiness para un sistema más reactivo (valor ideal: 10)',
+            'optimization.tip.linux.5': 'Usa un SSD para tu sistema operativo',
+            'optimization.tip.linux.6': 'Supervisa las temperaturas con <code>sensors</code> o <code>psensor</code>',
             'upgrade.overview': 'Actualiza tu computadora',
             'upgrade.overview.desc': '¿Planeas actualizar tu computadora? Esta guía te ayudará a entender compatibilidad, requisitos de vatios, selección de piezas y el proceso de actualización en sí.',
             'upgrade.tools': 'Herramientas y recursos',
@@ -2033,19 +2079,46 @@ document.addEventListener('DOMContentLoaded', () => {
 // COPY BUTTON FOR CODE SNIPPETS
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.snippet-code').forEach(block => {
-        const btn = document.createElement('button');
-        btn.className = 'copy-btn';
-        btn.textContent = '📋 Copy';
-        btn.onclick = () => {
-            navigator.clipboard.writeText(block.textContent);
-            btn.textContent = '✅ Copied!';
-            setTimeout(() => btn.textContent = '📋 Copy', 2000);
+    const getSnippetCopyLabels = () => {
+        const lang = localStorage.getItem('selectedLang') || 'fr';
+        const langData = (typeof manualTranslations !== 'undefined' && manualTranslations[lang]) ? manualTranslations[lang] : null;
+        return {
+            copy: (langData && langData['optimization.copy']) || (lang === 'es' ? '📋 Copiar' : (lang === 'en' ? '📋 Copy' : '📋 Copier')),
+            copied: (langData && langData['optimization.copied']) || (lang === 'es' ? '✅ ¡Copiado!' : (lang === 'en' ? '✅ Copied!' : '✅ Copié !'))
         };
-        block.parentElement.style.position = 'relative';
-        btn.style.cssText = 'position:absolute;top:1rem;right:1rem;padding:0.5rem 1rem;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.3);border-radius:8px;cursor:pointer;color:#c4b5fd;';
-        block.parentElement.appendChild(btn);
-    });
+    };
+
+    const ensureSnippetCopyButtons = () => {
+        document.querySelectorAll('.snippet-code').forEach(block => {
+            let btn = block.querySelector('.copy-btn');
+            const labels = getSnippetCopyLabels();
+
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.style.cssText = 'position:absolute;top:0.75rem;right:0.75rem;padding:0.5rem 1rem;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.3);border-radius:8px;cursor:pointer;color:#c4b5fd;z-index:2;';
+                block.classList.add('has-copy-btn');
+                block.style.position = 'relative';
+                block.appendChild(btn);
+
+                btn.addEventListener('click', () => {
+                    const codeText = block.querySelector('code') ? block.querySelector('code').textContent : block.textContent;
+                    navigator.clipboard.writeText(codeText || '');
+                    const latestLabels = getSnippetCopyLabels();
+                    btn.textContent = latestLabels.copied;
+                    setTimeout(() => {
+                        const refreshedLabels = getSnippetCopyLabels();
+                        btn.textContent = refreshedLabels.copy;
+                    }, 2000);
+                });
+            }
+
+            btn.textContent = labels.copy;
+        });
+    };
+
+    ensureSnippetCopyButtons();
+    window.addEventListener('languageChanged', ensureSnippetCopyButtons);
 });
 
 // ===========================

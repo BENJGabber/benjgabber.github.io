@@ -244,7 +244,7 @@
             <div class="snippets-container">
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>🪟 PowerShell - Services Windows</h3>
+                        <h3 data-i18n="optimization.snippet.win.services.title">🪟 PowerShell - Services Windows</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.win.services.desc">Lister les services en cours d'exécution triés par utilisation mémoire</div>
@@ -255,7 +255,7 @@ Format-Table -AutoSize</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>⚡ Optimisation RAM Windows</h3>
+                        <h3 data-i18n="optimization.snippet.win.ram.title">⚡ Optimisation RAM Windows</h3>
                         <span class="snippet-lang">CMD</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.win.ram.desc">Vider le cache RAM et optimiser la mémoire</div>
@@ -268,7 +268,7 @@ REM Vider le cache des fichiers système
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>💾 Gestion des Disques</h3>
+                        <h3 data-i18n="optimization.snippet.win.disks.title">💾 Gestion des Disques</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.win.disks.desc">Analyser l'utilisation des disques et lister les plus gros fichiers</div>
@@ -283,7 +283,7 @@ Select-Object -First 20 @{Name='Size(MB)'; Expression={[math]::Round($_.Length/1
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>🔍 Surveillance des Processus</h3>
+                        <h3 data-i18n="optimization.snippet.win.processes.title">🔍 Surveillance des Processus</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.win.processes.desc">Afficher les processus qui consomment le plus de RAM</div>
@@ -299,27 +299,27 @@ Format-Table -AutoSize</code></pre>
                 <div class="tips-grid">
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Redémarrez votre PC régulièrement pour vider la RAM et fermer les processus zombies</p>
+                        <p data-i18n="optimization.tip.win.1">Redémarrez votre PC régulièrement pour vider la RAM et fermer les processus zombies</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Gardez toujours 15-20% d'espace libre sur votre disque système</p>
+                        <p data-i18n="optimization.tip.win.2">Gardez toujours 15-20% d'espace libre sur votre disque système</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Mettez à jour Windows et vos pilotes régulièrement</p>
+                        <p data-i18n="optimization.tip.win.3">Mettez à jour Windows et vos pilotes régulièrement</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Désactivez les effets visuels inutiles pour gagner en performances</p>
+                        <p data-i18n="optimization.tip.win.4">Désactivez les effets visuels inutiles pour gagner en performances</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Utilisez un SSD pour votre système d'exploitation</p>
+                        <p data-i18n="optimization.tip.win.5">Utilisez un SSD pour votre système d'exploitation</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Surveillez les températures, surtout en été !</p>
+                        <p data-i18n="optimization.tip.win.6">Surveillez les températures, surtout en été !</p>
                     </div>
                 </div>
             </div>
@@ -461,7 +461,7 @@ Format-Table -AutoSize</code></pre>
             <div class="snippets-container">
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>🐧 Nettoyage Système Complet</h3>
+                        <h3 data-i18n="optimization.snippet.linux.cleaning.title">🐧 Nettoyage Système Complet</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.linux.cleaning.desc">Nettoyer le cache des paquets, les fichiers orphelins et les fichiers temporaires</div>
@@ -478,7 +478,7 @@ sudo snap set system refresh.retain=2</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>📊 Analyse des Disques</h3>
+                        <h3 data-i18n="optimization.snippet.linux.disks.title">📊 Analyse des Disques</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.linux.disks.desc">Trouver les plus gros fichiers et dossiers</div>
@@ -494,7 +494,7 @@ iotop</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>⚙️ Optimisation des Services</h3>
+                        <h3 data-i18n="optimization.snippet.linux.services.title">⚙️ Optimisation des Services</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.linux.services.desc">Analyser et optimiser les services au démarrage</div>
@@ -514,7 +514,7 @@ systemctl list-units --type service --state running</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>💾 Surveillance Système en Temps Réel</h3>
+                        <h3 data-i18n="optimization.snippet.linux.monitoring.title">💾 Surveillance Système en Temps Réel</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.linux.monitoring.desc">Monitorer les ressources système et les processus</div>
@@ -533,7 +533,7 @@ sensors</code></pre>
 
                 <div class="snippet-card">
                     <div class="snippet-header">
-                        <h3>🔍 Optimisation Réseau</h3>
+                        <h3 data-i18n="optimization.snippet.linux.network.title">🔍 Optimisation Réseau</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
                     <div class="snippet-desc" data-i18n="optimization.snippet.linux.network.desc">Configurer et optimiser la connexion réseau</div>
@@ -560,27 +560,27 @@ sudo nano /etc/netplan/00-installer-config.yaml</code></pre>
                 <div class="tips-grid">
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Utilisez <code>htop</code> au lieu de <code>top</code> pour une meilleure expérience de monitoring</p>
+                        <p data-i18n="optimization.tip.linux.1">Utilisez <code>htop</code> au lieu de <code>top</code> pour une meilleure expérience de monitoring</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Gardez toujours 15-20% d'espace libre sur votre disque système</p>
+                        <p data-i18n="optimization.tip.linux.2">Gardez toujours 15-20% d'espace libre sur votre disque système</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Mettez à jour votre système régulièrement avec <code>apt update && apt upgrade</code></p>
+                        <p data-i18n="optimization.tip.linux.3">Mettez à jour votre système régulièrement avec <code>apt update && apt upgrade</code></p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Réduisez la valeur de swappiness pour un système plus réactif (valeur idéale : 10)</p>
+                        <p data-i18n="optimization.tip.linux.4">Réduisez la valeur de swappiness pour un système plus réactif (valeur idéale : 10)</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Utilisez un SSD pour votre système d'exploitation</p>
+                        <p data-i18n="optimization.tip.linux.5">Utilisez un SSD pour votre système d'exploitation</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Surveillez les températures avec <code>sensors</code> ou <code>psensor</code></p>
+                        <p data-i18n="optimization.tip.linux.6">Surveillez les températures avec <code>sensors</code> ou <code>psensor</code></p>
                     </div>
                 </div>
             </div>
@@ -732,27 +732,27 @@ sudo nano /etc/netplan/00-installer-config.yaml</code></pre>
                 <div class="tips-grid">
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Améliorez toujours la RAM par paires pour une performance en double canal</p>
+                        <p data-i18n="upgrade.tip1">Améliorez toujours la RAM par paires pour une performance en double canal</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Mettez à jour le BIOS avant d'installer une nouvelle génération de CPU</p>
+                        <p data-i18n="upgrade.tip2">Mettez à jour le BIOS avant d'installer une nouvelle génération de CPU</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Conservez l'emballage d'origine pour la garantie/les retours</p>
+                        <p data-i18n="upgrade.tip3">Conservez l'emballage d'origine pour la garantie/les retours</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Testez immédiatement les nouveaux composants pour détecter les défauts</p>
+                        <p data-i18n="upgrade.tip4">Testez immédiatement les nouveaux composants pour détecter les défauts</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>Utilisez de la pâte thermique pour l'installation du CPU (vérifiez si pré-appliquée)</p>
+                        <p data-i18n="upgrade.tip5">Utilisez de la pâte thermique pour l'installation du CPU (vérifiez si pré-appliquée)</p>
                     </div>
                     <div class="tip-card">
                         <span class="tip-icon">✅</span>
-                        <p>N'améliorez pas juste pour les benchmarks, améliorez selon vos besoins</p>
+                        <p data-i18n="upgrade.tip6">N'améliorez pas juste pour les benchmarks, améliorez selon vos besoins</p>
                     </div>
                 </div>
             </div>

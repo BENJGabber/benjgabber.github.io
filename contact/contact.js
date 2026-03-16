@@ -1,17 +1,17 @@
-// Contact Form Handler
-// Handles spam detection, rate limiting, and EmailJS integration
+
+
 
 const EMAIL_SERVICE_ID = 'service_7n8wk97';
 const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
 const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
 
-// Get DOM elements
+
 const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
 
-// ===== SUPER FINGERPRINTING MULTI-COUCHES =====
+
 async function getSuperFingerprint() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -23,7 +23,7 @@ async function getSuperFingerprint() {
     ctx.fillText('anti-spam fingerprint', 2, 15);
     const canvasData = canvas.toDataURL();
 
-    // Audio fingerprinting
+    
     let audioHash = 'none';
     try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -51,7 +51,7 @@ async function getSuperFingerprint() {
         audioHash = 'error';
     }
 
-    // WebGL fingerprinting
+    
     let webglHash = 'none';
     try {
         const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -61,7 +61,7 @@ async function getSuperFingerprint() {
         webglHash = 'error';
     }
 
-    // Fonts detection
+    
     const fonts = ['monospace', 'sans-serif', 'serif'];
     const testString = 'mmmmmmmmmmlli';
     const testSize = '72px';
@@ -119,7 +119,7 @@ async function getSuperFingerprint() {
 
     const fingerprint = btoa(data.join('|||'));
     
-    // Hash supplémentaire avec crypto
+    
     const encoder = new TextEncoder();
     const dataBuffer = encoder.encode(fingerprint);
     const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
@@ -129,7 +129,7 @@ async function getSuperFingerprint() {
     return hashHex;
 }
 
-// ===== SYSTÈME DE POINTS DE SUSPICION =====
+
 let suspicionScore = 0;
 const MAX_SUSPICION = 100;
 
@@ -142,7 +142,7 @@ function addSuspicion(points, reason) {
     return false;
 }
 
-// Détecter comportement bot
+
 let mouseMovements = 0;
 let keyPresses = 0;
 let formFocusTime = 0;
@@ -164,11 +164,11 @@ if (contactForm) {
     }, true);
 }
 
-// ===== LOCKOUT SYSTEM =====
+
 function lockoutUser(reason) {
     const lockoutKey = 'contact_lockout';
     const lockoutData = {
-        until: Date.now() + (24 * 60 * 60 * 1000), // 24h
+        until: Date.now() + (24 * 60 * 60 * 1000), 
         reason: reason
     };
     localStorage.setItem(lockoutKey, JSON.stringify(lockoutData));
@@ -204,9 +204,9 @@ function checkLockout() {
     return false;
 }
 
-// ===== RATE LIMITING MULTI-NIVEAUX =====
+
 async function canSendMessage() {
-    // Check lockout first
+    
     if (checkLockout()) return false;
 
     const fp = await getSuperFingerprint();
@@ -218,13 +218,13 @@ async function canSendMessage() {
     const messageCount = parseInt(localStorage.getItem(countKey) || '0');
     const failedAttempts = parseInt(localStorage.getItem(attemptsKey) || '0');
 
-    // Trop de tentatives échouées = lockout
+    
     if (failedAttempts >= 5) {
         lockoutUser('Trop de tentatives suspectes');
         return false;
     }
 
-    // Trop de messages envoyés = lockout
+    
     if (messageCount >= 3) {
         lockoutUser('Limite de messages atteinte');
         return false;
@@ -235,8 +235,8 @@ async function canSendMessage() {
     const now = Date.now();
     const timeSinceLast = now - parseInt(lastSend);
     
-    // Cooldown progressif
-    const baseCooldown = 10 * 60 * 1000; // 10 minutes
+    
+    const baseCooldown = 10 * 60 * 1000; 
     const cooldown = baseCooldown * (messageCount + 1);
 
     if (timeSinceLast < cooldown) {
@@ -250,12 +250,12 @@ async function canSendMessage() {
     return true;
 }
 
-// ===== FORM SUBMISSION =====
+
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // 1. Honeypot
+        
         const honeypot = document.getElementById('honeypot');
         if (honeypot && honeypot.value !== '') {
             if (errorMessage) {
@@ -266,7 +266,7 @@ if (contactForm) {
             return;
         }
 
-        // 2. Fingerprint + rate limiting multi-niveaux
+        
         if (!await canSendMessage()) {
             return;
         }
@@ -284,7 +284,7 @@ if (contactForm) {
         };
 
         try {
-            // Send both emails
+            
             await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_RECEPTION_ID, formData);
             await emailjs.send(EMAIL_SERVICE_ID, TEMPLATE_AUTOREPLY_ID, {
                 name: formData.name,
@@ -293,7 +293,7 @@ if (contactForm) {
                 message: formData.message
             });
 
-            // === Enregistrement du fingerprint après succès ===
+            
             const fp = await getSuperFingerprint();
             const countKey = 'messageCount_' + fp;
             const currentCount = parseInt(localStorage.getItem(countKey) || '0');

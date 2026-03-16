@@ -1,7 +1,7 @@
-// Cisco Tutorials Handler
-// Manages tutorials, resources, modals, and translations
 
-// Tutorials Data
+
+
+
 const tutorials = [
     {
         id: 1,
@@ -195,22 +195,22 @@ const tutorials = [
     }
 ];
 
-// Get current language from localStorage or default to 'fr'
+
 function getCurrentLanguage() {
     return localStorage.getItem('selectedLang') || 'fr';
 }
 
-// Get translated text from parent script.js translations or return French default
+
 function getTutorialTranslation(key) {
     const lang = getCurrentLanguage();
     if (window.manualTranslations && window.manualTranslations[lang] && window.manualTranslations[lang][key]) {
         return window.manualTranslations[lang][key];
     }
-    // Fallback for missing translations - return empty string for French to use originals
+    
     return '';
 }
 
-// Translate difficulty level
+
 function getDifficultyTranslation(difficulty) {
     const difficulties = {
         'fr': { 'beginner': 'Débutant', 'intermediate': 'Intermédiaire', 'advanced': 'Avancé' },
@@ -221,7 +221,7 @@ function getDifficultyTranslation(difficulty) {
     return (difficulties[lang] && difficulties[lang][difficulty]) || difficulty;
 }
 
-// Resources data
+
 const resources = [
     {
         id: 'academy',
@@ -273,7 +273,7 @@ const resources = [
     }
 ];
 
-// Render resources with translations
+
 function renderResources() {
     const grid = document.getElementById('resourcesGrid');
     grid.innerHTML = '';
@@ -294,7 +294,7 @@ function renderResources() {
     });
 }
 
-// Affichage des tutoriels
+
 function displayTutorials(filter = 'all') {
     const grid = document.getElementById('tutorialsGrid');
     grid.innerHTML = '';
@@ -330,7 +330,6 @@ function displayTutorials(filter = 'all') {
         });
 }
 
-// Ouvrir modal
 function openModal(id) {
     const tutorial = tutorials.find(t => t.id === id);
     const modal = document.getElementById('tutorialModal');
@@ -352,10 +351,10 @@ function openModal(id) {
     const warningsLabel = getTutorialTranslation('cisco.warnings') || '⚠️ Attention';
     const copyLabel = getTutorialTranslation('cisco.copy') || 'Copier';
 
-    // Get translated introduction
+    
     const introText = getTutorialTranslation(`cisco.tut${tutorial.id}.intro`) || tutorial.content.introduction;
 
-    // Get translated prerequisites
+    
     let prerequisites = tutorial.content.prerequisites;
     const prereqTransKey = getTutorialTranslation(`cisco.tut${tutorial.id}.prereq`);
     if (prereqTransKey) {
@@ -430,7 +429,6 @@ function openModal(id) {
     modal.classList.add('active');
 }
 
-// Copier les commandes
 function copyToClipboard(btn) {
     const code = btn.nextElementSibling.textContent;
     const copiedLabel = getTutorialTranslation('cisco.copied') || '✓ Copié';
@@ -441,12 +439,10 @@ function copyToClipboard(btn) {
     });
 }
 
-// Fermer modal
 document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('tutorialModal').classList.remove('active');
 });
 
-// Filtres
 document.querySelectorAll('.filter-tab').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
@@ -455,34 +451,27 @@ document.querySelectorAll('.filter-tab').forEach(btn => {
     });
 });
 
-// Afficher les tutoriels et ressources au chargement
-// This will be called after script.js loads
 function initTutorials() {
     displayTutorials();
     renderResources();
 }
 
-// Listen for language changes and re-render
 window.addEventListener('languageChanged', (e) => {
     displayTutorials();
     renderResources();
-    // Also update filter buttons to show translated text
     const activeFilter = document.querySelector('.filter-tab.active');
     if (activeFilter) {
         displayTutorials(activeFilter.dataset.filter);
     }
 });
 
-// Initialize tutorials after DOM is ready and shared translations are available
 function initCiscoPage() {
     const lang = localStorage.getItem('selectedLang') || 'fr';
 
-    // Ensure static page strings are in the selected language
     if (typeof window.applyManualTranslations === 'function') {
         window.applyManualTranslations(lang);
     }
 
-    // Render dynamic tutorial/resource cards in the selected language
     initTutorials();
 }
 

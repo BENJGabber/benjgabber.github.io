@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
             sideMenu.classList.toggle('open');
         });
 
-        // Close side menu when a link is clicked
+        
         sideMenu.querySelectorAll('.side-nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 sideMenu.classList.remove('open');
             });
         });
 
-        // Optional: Close side menu if clicked outside (for better UX)
+        
         document.addEventListener('click', (event) => {
             if (!sideMenu.contains(event.target) && !menuToggle.contains(event.target) && sideMenu.classList.contains('open')) {
                 sideMenu.classList.remove('open');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Easter Egg: Click counter on photo
+    
     let clickCount = 0;
     let clickTimer = null;
     const CLICK_THRESHOLD = 10;
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => hint.remove(), 1500);
     }
 
-    // Click hint translations
+    
     const CLICK_HINTS = {
         fr: { half: 'À mi-chemin... 🤔', almost: 'Encore un peu... 👀' },
         en: { half: 'Halfway... 🤔', almost: 'Almost there... 👀' },
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const facts = EASTER_FACTS[selectedLang] || EASTER_FACTS.fr;
         const randomFact = facts[Math.floor(Math.random() * facts.length)];
 
-        // Modal strings (fallback to French)
+        
         const manualLang = manualTranslations[selectedLang] || {};
         const modalTitle = manualLang['easter.title'] || (selectedLang === 'en' ? 'Congrats! You found the Easter Egg!' : (selectedLang === 'es' ? '¡Felicidades! ¡Has encontrado el Easter Egg!' : 'Bravo ! Vous avez trouvé l\'Easter Egg !'));
         const closeLabel = manualLang['easter.close'] || (selectedLang === 'en' ? 'Close' : (selectedLang === 'es' ? 'Cerrar' : 'Fermer'));
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Smooth delayed follow effect for CV image
+    
     const cvSection = document.querySelector('.cv-section');
     const cvContent = document.querySelector('.cv-content');
     const cvImageWrapper = document.querySelector('.cv-image');
@@ -301,9 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===========================
-    // ENHANCED AUTO-TRANSLATION SYSTEM
-    // ===========================
+    
 
     const TRANSLATION_CACHE_KEY = 'translationCache';
     const CACHE_EXPIRY_DAYS = 7;
@@ -311,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalPlaceholders = {};
     const originalAria = {};
 
-    // Manual translations for English (instant display)
+    
     const manualTranslations = {
         en: {
             'nav.brand': 'My Portfolio',
@@ -1586,7 +1584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Languages available
+    
     const languages = [{
             code: 'fr',
             name: 'Français',
@@ -1604,7 +1602,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Capture original French text
+    
     function captureOriginalTranslations() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.dataset.i18n;
@@ -1622,7 +1620,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Capture original aria-labels for elements that require aria translation
+        
         document.querySelectorAll('[data-i18n-aria]').forEach(element => {
             const key = element.dataset.i18nAria;
             if (!key) return;
@@ -1632,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cache management
+    
     function getCache() {
         try {
             const cache = localStorage.getItem(TRANSLATION_CACHE_KEY);
@@ -1673,14 +1671,13 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCache(cache);
     }
 
-    // Translation using LibreTranslate
+    
     async function translateText(text, targetLang) {
-        // All translations handled through manual translations only
-        // LibreTranslate API removed for simplified, manual-only approach
+        
         return text;
     }
 
-    // Show notification
+    
     function showTranslationNotification(message, isError = false) {
         const existing = document.getElementById('translationNotification');
         if (existing) existing.remove();
@@ -1734,10 +1731,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Apply manual translations (for English)
+    
     function applyManualTranslations(targetLang) {
         if (targetLang === 'fr') {
-            // Restore French
+            
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.dataset.i18n;
                 if (originalTranslations[key]) {
@@ -1752,7 +1749,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Restore original aria-labels
+            
             document.querySelectorAll('[data-i18n-aria]').forEach(element => {
                 const key = element.dataset.i18nAria;
                 if (originalAria[key]) {
@@ -1784,7 +1781,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            // Apply aria-label translations when available
+            
             if (langData) {
                 document.querySelectorAll('[data-i18n-aria]').forEach(element => {
                     const key = element.dataset.i18nAria;
@@ -1799,11 +1796,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    // Translate all page elements (manual only)
+    
     async function translatePage(targetLang) {
         const langName = languages.find(l => l.code === targetLang) ?.name || targetLang;
 
-        // Apply manual translations
+        
         const manualApplied = applyManualTranslations(targetLang);
 
         if (manualApplied) {
@@ -1813,7 +1810,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize language selector
+    
     function initLanguageSelector() {
         const languageToggle = document.getElementById('languageToggle');
         const languageToggleMobile = document.getElementById('languageToggleMobile');
@@ -1821,7 +1818,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentLang = localStorage.getItem('selectedLang') || 'fr';
 
-        // Function to update button text
+        
         function updateButtonText(button, lang) {
             const langData = languages.find(l => l.code === lang);
             if (langData) {
@@ -1829,11 +1826,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Initialize button text
+        
         if (languageToggle) updateButtonText(languageToggle, currentLang);
         if (languageToggleMobile) updateButtonText(languageToggleMobile, currentLang);
 
-        // Handle language toggle
+        
         function toggleLanguage(button) {
             const current = localStorage.getItem('selectedLang') || 'fr';
             const currentIndex = languages.findIndex(l => l.code === current);
@@ -1849,7 +1846,7 @@ document.addEventListener('DOMContentLoaded', () => {
             translatePage(newLang).then(() => {
                 button.disabled = false;
                 button.style.opacity = '1';
-                // Dispatch custom event for pages like Cisco to update their content
+                
                 window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: newLang } }));
             });
         }
@@ -1861,23 +1858,23 @@ document.addEventListener('DOMContentLoaded', () => {
             languageToggleMobile.addEventListener('click', () => toggleLanguage(languageToggleMobile));
         }
 
-        // Apply saved language on load
+        
         if (currentLang !== 'fr') {
             translatePage(currentLang);
         }
     }
 
-    // Make translations available globally for other pages
+    
     window.manualTranslations = manualTranslations;
     window.applyManualTranslations = applyManualTranslations;
     window.translatePage = translatePage;
 
-    // Initialize translation system
+    
     captureOriginalTranslations();
     initLanguageSelector();
-}); // <-- This was missing!
+}); 
 
-// Theme Toggle Functionality
+
 const themeToggle = document.getElementById('themeToggle');
 const themeToggleMobile = document.getElementById('themeToggleMobile');
 const body = document.body;
@@ -1903,7 +1900,7 @@ function initThemeToggle(toggle) {
 if (themeToggle) initThemeToggle(themeToggle);
 if (themeToggleMobile) initThemeToggle(themeToggleMobile);
 
-// Font Toggle Functionality
+
 const fontToggle = document.getElementById('fontToggle');
 const fontToggleMobile = document.getElementById('fontToggleMobile');
 
@@ -1932,13 +1929,11 @@ function initFontToggle(toggle) {
 if (fontToggle) initFontToggle(fontToggle);
 if (fontToggleMobile) initFontToggle(fontToggleMobile);
 
-// ===========================
-// BACK TO TOP BUTTON
-// ===========================
+
 const backToTopButton = document.getElementById('backToTop');
 
 if (backToTopButton) {
-    // Show/hide button on scroll
+    
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
             backToTopButton.classList.add('visible');
@@ -1947,7 +1942,7 @@ if (backToTopButton) {
         }
     });
 
-    // Smooth scroll helper (uses JS-driven animation for consistent behavior)
+    
     function smoothScrollToTop(duration = 600) {
         const start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         if (start <= 0) return;
@@ -1966,7 +1961,7 @@ if (backToTopButton) {
             if (progress < 1) {
                 requestAnimationFrame(step);
             } else {
-                // Ensure we end exactly at the top
+                
                 window.scrollTo(0, 0);
             }
         }
@@ -1974,13 +1969,13 @@ if (backToTopButton) {
         requestAnimationFrame(step);
     }
 
-    // Scroll to top on click — use our JS scroller for consistent smoothness
+    
     backToTopButton.addEventListener('click', (e) => {
         e.preventDefault();
         smoothScrollToTop(600);
     });
 
-    // Project cards: animate when they enter the viewport
+    
     (function setupProjectCardObserver() {
         const cards = document.querySelectorAll('.project-card, .project-why');
         if (!cards.length) return;
@@ -2003,7 +1998,7 @@ if (backToTopButton) {
 
             cards.forEach(card => observer.observe(card));
         } else {
-            // Fallback for older browsers: reveal immediately
+            
             cards.forEach(card => card.classList.add('in-view'));
         }
     })();
@@ -2030,13 +2025,13 @@ if (backToTopButton) {
 
             cards.forEach(card => observer.observe(card));
         } else {
-            // Fallback for older browsers: reveal immediately
+            
             cards.forEach(card => card.classList.add('in-view'));
         }
     })();
 }
 
-// OS Section Switching for Optimization Page
+
 document.addEventListener('DOMContentLoaded', () => {
     const windowsTab = document.getElementById('windowsTab');
     const linuxTab = document.getElementById('linuxTab');
@@ -2075,9 +2070,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ===========================
-// COPY BUTTON FOR CODE SNIPPETS
-// ===========================
+
 document.addEventListener('DOMContentLoaded', () => {
     const getSnippetCopyLabels = () => {
         const lang = localStorage.getItem('selectedLang') || 'fr';
@@ -2121,19 +2114,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('languageChanged', ensureSnippetCopyButtons);
 });
 
-// ===========================
-// RESOURCES PAGE TAB SWITCHING
-// ===========================
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.resource-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             const category = tab.dataset.category;
             
-            // Update active tab
+            
             document.querySelectorAll('.resource-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
-            // Show corresponding grid
+            
             document.querySelectorAll('.resource-grid').forEach(grid => {
                 if (grid.dataset.category === category) {
                     grid.classList.remove('hidden');
@@ -2145,7 +2136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Toast Notification System
+
 function showToast(message, type = 'info', duration = 4000) {
     const container = document.getElementById('toastContainer');
     if (!container) return;

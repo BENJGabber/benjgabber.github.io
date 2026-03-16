@@ -9,7 +9,7 @@
     --primary-color-rgb: 168, 85, 247;
 }
 
-/* Luciole Font */
+
 @font-face {
     font-family: 'Luciole';
     src: url('Fonts/Luciole-Regular.ttf') format('truetype');
@@ -50,7 +50,7 @@ body.luciole-mode {
 }
 
 
-/* Navigation */
+
 
 nav {
     position: fixed;
@@ -79,12 +79,12 @@ nav {
     text-decoration: none;
     color: #c0c0c0;
     transition: none;
-    /* Remove transition for logo link */
+    
 }
 
 .logo a:hover {
     color: #c0c0c0;
-    /* Keep logo color consistent on hover */
+    
 }
 
 .nav-links {
@@ -100,7 +100,7 @@ nav {
     transition: color 0.3s ease;
 }
 
-/* Center nav link text horizontally and vertically */
+
 .nav-links li {
     display: flex;
     align-items: center;
@@ -117,7 +117,7 @@ nav {
     color: #4500b4;
 }
 
-/* Language Toggle Button - SECTION CORRIGÉE */
+
 .lang-toggle {
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(148, 163, 184, 0.45);
@@ -143,7 +143,7 @@ nav {
     -moz-appearance: none;
     padding-right: 2.5rem;
     min-width: 160px;
-    /* Utilise une seule image de fond */
+    
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
@@ -155,7 +155,7 @@ nav {
     color: #f8fafc;
 }
 
-/* Light Mode - SECTION CORRIGÉE */
+
 body.light-mode .lang-toggle {
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(51, 65, 85, 0.2);
@@ -169,7 +169,7 @@ body.light-mode .lang-toggle:focus {
 }
 
 body.light-mode .language-select {
-    /* Image de fond pour le mode clair - MODIFIÉ */
+    
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231f2937' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
@@ -181,7 +181,7 @@ body.light-mode .language-select option {
     color: #1f2937;
 }
 
-/* Hero Section */
+
 
 .hero {
     height: 100vh;
@@ -272,7 +272,7 @@ body.light-mode .language-select option {
 }
 
 
-/* Animation flottante */
+
 
 .floating {
     position: absolute;
@@ -284,9 +284,9 @@ body.light-mode .language-select option {
 
 .scroll-indicator {
     text-decoration: none;
-    /* enlève le soulignement */
+    
     color: white;
-    /* garde la couleur du texte/flèche */
+    
     font-size: 0.9rem;
     text-align: center;
     display: inline-block;
@@ -294,7 +294,7 @@ body.light-mode .language-select option {
 
 .scroll-indicator:visited {
     color: white;
-    /* évite que ça devienne violet après clic */
+    
 }
 
 .scroll-arrow {
@@ -305,7 +305,7 @@ body.light-mode .language-select option {
 }
 
 
-/* Animations */
+
 
 @keyframes fadeInUp {
     from {
@@ -350,7 +350,7 @@ body.light-mode .language-select option {
     }
 }
 
-/* SVG Icon Animations */
+
 @keyframes svgRotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -379,7 +379,7 @@ body.light-mode .language-select option {
     animation: svgBounceIcon 0.5s ease;
 }
 
-/* Toast Notifications */
+
 @keyframes slideInRight {
     from {
         transform: translateX(400px);
@@ -474,7 +474,7 @@ body.light-mode .language-select option {
     opacity: 1;
 }
 
-/* Menu Toggle */
+
 
 .menu-toggle {
     display: none;
@@ -492,22 +492,22 @@ body.light-mode .language-select option {
 }
 
 
-/* Side Menu */
+
 
 .side-menu {
     position: fixed;
     top: 0;
     right: -250px;
-    /* Hidden by default */
+    
     width: min(250px, 80vw);
     height: 100%;
     background-color: #222;
     padding-top: 90px;
-    /* Increased from 60px to 90px for more spacing */
+    
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease;
     z-index: 999;
-    /* Flex layout so links can scroll and toggles stay at bottom */
+    
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -528,7 +528,7 @@ body.light-mode .language-select option {
 .side-nav-links li {
     text-align: center;
     margin: 25px 0;
-    /* Increased from 20px to 25px for more spacing between links */
+    
 }
 
 .side-nav-links a {
@@ -553,7 +553,7 @@ body.light-mode .language-select option {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Formation Section */
+
 
 .formation-section {
     padding: 100px 0;
@@ -583,7 +583,7 @@ body.light-mode .language-select option {
 }
 
 
-/* Timeline */
+
 
 .formation-timeline {
     position: relative;
@@ -651,7 +651,7 @@ body.light-mode .language-select option {
 }
 
 
-/* Section CV / À propos */
+
 
 .cv-section {
     padding: 100px 0;
@@ -740,7 +740,7 @@ body.light-mode .language-select option {
     border-radius: 12px;
 }
 
-/* Lightbox */
+
 .lightbox-overlay {
     position: fixed;
     inset: 0;
@@ -858,14 +858,14 @@ body.light-mode .language-select option {
     text-align: justify;
 }
 
-/* Sticky Image */
+
 .sticky-image {
     position: sticky;
     top: 120px;
     max-height: calc(100vh - 120px);
 }
 
-/* Skills Section */
+
 .skills-list {
     display: flex;
     flex-direction: column;
@@ -953,7 +953,7 @@ html, body {
     animation: fadeInUp 1s ease-out;
 }
 
-/* Responsive - Mobile */
+
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 1rem;
@@ -1043,7 +1043,7 @@ html, body {
     }
 }
 
-/* Theme Toggle Button */
+
 .theme-toggle {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -1081,7 +1081,7 @@ html, body {
     transform: rotate(0deg) scale(1);
 }
 
-/* Font Toggle Button */
+
 .font-toggle {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -1104,7 +1104,7 @@ html, body {
     transform: scale(1.1);
 }
 
-/* Light Mode Styles */
+
 body.light-mode {
     background: #ffffff;
     color: #333;
@@ -1169,7 +1169,7 @@ body.light-mode .side-nav-links a {
     color: #333;
 }
 
-/* Light mode for CV Section */
+
 body.light-mode .cv-section {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
@@ -1246,7 +1246,7 @@ body.light-mode .image-placeholder:hover {
     border-color: #4500b4;
 }
 
-/* Dark mode for Formation Section (default) */
+
 .formation-section {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
 }
@@ -1353,7 +1353,7 @@ body.light-mode .image-placeholder:hover {
     margin: 0 auto;
 }
 
-/* Light mode for Formation Section */
+
 body.light-mode .formation-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%) !important;
 }
@@ -1423,7 +1423,7 @@ body.light-mode .competence {
     border: 1px solid rgba(69, 0, 180, 0.2);
 }
 
-/* Forum Section */
+
 .forum-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -1439,7 +1439,7 @@ body.light-mode .competence {
     animation: fadeInUp 1s ease-out 0.2s both;
 }
 
-/* Controls */
+
 .controls {
     display: flex;
     justify-content: center;
@@ -1499,7 +1499,7 @@ body.light-mode .competence {
     box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
 }
 
-/* Loading State */
+
 .loading {
     text-align: center;
     padding: 3rem;
@@ -1526,7 +1526,7 @@ body.light-mode .competence {
     }
 }
 
-/* Articles Grid */
+
 .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1601,7 +1601,7 @@ body.light-mode .competence {
     gap: 0.5rem;
 }
 
-/* No Results */
+
 .no-results {
     text-align: center;
     padding: 3rem;
@@ -1619,7 +1619,7 @@ body.light-mode .competence {
     font-size: 1.1rem;
 }
 
-/* Light mode for Forum Section */
+
 body.light-mode .forum-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%) !important;
 }
@@ -1707,7 +1707,7 @@ body.light-mode .no-results p {
     color: #666;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .theme-toggle {
         width: 40px;
@@ -1744,9 +1744,9 @@ body.light-mode .no-results p {
     }
 }
 
-/* ===========================
-   FORUM SECTION STYLES
-   =========================== */
+
+
+
 
 .forum-section {
     padding: 100px 0;
@@ -1761,7 +1761,7 @@ body.light-mode .no-results p {
     margin-bottom: 3rem;
 }
 
-/* Forum Controls */
+
 .forum-controls {
     display: flex;
     justify-content: space-between;
@@ -1840,7 +1840,7 @@ body.light-mode .no-results p {
     font-size: 1rem;
 }
 
-/* Loading State */
+
 .loading {
     text-align: center;
     padding: 4rem 2rem;
@@ -1864,7 +1864,7 @@ body.light-mode .no-results p {
     }
 }
 
-/* Error State */
+
 .forum-error {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
@@ -1896,7 +1896,7 @@ body.light-mode .no-results p {
     transform: translateY(-2px);
 }
 
-/* Forum Grid */
+
 .forum-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -1904,7 +1904,7 @@ body.light-mode .no-results p {
     margin-top: 2rem;
 }
 
-/* Small screens - ensure cards don't overflow */
+
 @media (max-width: 350px) {
     .forum-grid {
         grid-template-columns: 1fr;
@@ -1912,7 +1912,7 @@ body.light-mode .no-results p {
     }
 }
 
-/* Forum Card */
+
 .forum-card {
     background: rgba(30, 41, 59, 0.6);
     backdrop-filter: blur(20px);
@@ -1988,7 +1988,7 @@ body.light-mode .no-results p {
     color: #c4b5fd;
 }
 
-/* Forum Card Stats */
+
 .forum-card-stats {
     display: flex;
     gap: 1.5rem;
@@ -2011,7 +2011,7 @@ body.light-mode .no-results p {
     font-weight: 600;
 }
 
-/* Forum Card Category */
+
 .forum-card-category {
     margin-top: auto;
 }
@@ -2025,7 +2025,7 @@ body.light-mode .no-results p {
     border: 1px solid;
 }
 
-/* No Results */
+
 .no-results {
     text-align: center;
     padding: 4rem 2rem;
@@ -2049,7 +2049,7 @@ body.light-mode .no-results p {
     font-size: 1rem;
 }
 
-/* Light Mode for Forum Section */
+
 body.light-mode .forum-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
 }
@@ -2154,7 +2154,7 @@ body.light-mode .no-results p {
     color: #666;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .forum-controls {
         flex-direction: column;
@@ -2175,9 +2175,9 @@ body.light-mode .no-results p {
     }
 }
 
-/* ===========================
-   CONTACT SECTION STYLES
-   =========================== */
+
+
+
 
 .contact-section {
     padding: 100px 0;
@@ -2192,16 +2192,16 @@ body.light-mode .no-results p {
     margin-top: 3rem;
 }
 
-/* ===========================
-   PROJECTS SECTION STYLES
-   =========================== */
+
+
+
 .projects-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     min-height: 100vh;
 }
 
-/* Headings colors in dark mode for Projects (match Formation) */
+
 .projects-section .section-title {
     color: #ffffff !important;
 }
@@ -2241,7 +2241,7 @@ body.light-mode .no-results p {
     margin: 0 auto 3rem;
 }
 
-/* Project cards: entrance animation + smoother hover */
+
 .project-card {
     background: rgba(30, 41, 59, 0.8);
     padding: 1.5rem;
@@ -2250,18 +2250,18 @@ body.light-mode .no-results p {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
     will-change: transform, opacity;
-    /* Start slightly invisible/shifted for an entrance animation */
+    
     opacity: 0;
     transform: translateY(12px);
 }
 
-/* Trigger animation when card enters viewport */
+
 .project-card.in-view {
     animation: fadeInUp 0.6s ease-out both;
 }
 
-/* Small staggered delays so cards appear one after another (delays still apply when animated)
-   NOTE: these selectors target the card positions inside .project-grid and are left unchanged */
+
+
 .project-grid .project-card:nth-child(1) { animation-delay: 0.05s; }
 .project-grid .project-card:nth-child(2) { animation-delay: 0.12s; }
 .project-grid .project-card:nth-child(3) { animation-delay: 0.19s; }
@@ -2271,7 +2271,7 @@ body.light-mode .no-results p {
 .project-grid .project-card:nth-child(7) { animation-delay: 0.47s; }
 .project-grid .project-card:nth-child(8) { animation-delay: 0.54s; }
 
-/* Respect reduced motion preferences */
+
 @media (prefers-reduced-motion: reduce) {
     .project-card, .project-card.in-view,
     .project-why, .project-why.in-view {
@@ -2328,7 +2328,7 @@ body.light-mode .no-results p {
     list-style: disc inside;
 }
 
-/* Light mode for Projects */
+
 body.light-mode .projects-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
 }
@@ -2340,7 +2340,7 @@ body.light-mode .learning-list {
     border: 1px solid rgba(69, 0, 180, 0.2);
 }
 
-/* Headings colors in light mode for Projects */
+
 body.light-mode .projects-section .section-title {
     color: #333 !important;
 }
@@ -2372,9 +2372,9 @@ body.light-mode .tag {
     }
 }
 
-/* =========================================== */
-   /* OPTIMIZATION PAGE - OS SELECTOR */
-/* =========================================== */
+
+   
+
 .os-selector-container {
     background: rgba(30, 41, 59, 0.5);
     backdrop-filter: blur(20px);
@@ -2414,7 +2414,7 @@ body.light-mode .tag {
     transition: transform 0.3s ease;
 }
 
-/* Default hover state */
+
 .os-tab:hover:not(.active) {
     background: rgba(var(--primary-color-rgb), 0.1);
     border-color: var(--primary-color);
@@ -2426,7 +2426,7 @@ body.light-mode .tag {
     transform: scale(1.2) rotate(10deg);
 }
 
-/* Active state */
+
 .os-tab.active {
     background: var(--primary-color);
     color: white;
@@ -2451,7 +2451,7 @@ body.light-mode .tag {
     }
 }
 
-/* Light mode adjustments */
+
 body.light-mode .os-selector-container {
     background: rgba(255, 255, 255, 0.6);
     border-color: rgba(139, 92, 246, 0.3);
@@ -2474,7 +2474,7 @@ body.light-mode .os-tab.active {
     box-shadow: 0 8px 24px rgba(var(--primary-color-rgb), 0.3);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .os-selector-container {
         gap: 12px;
@@ -2491,7 +2491,7 @@ body.light-mode .os-tab.active {
     }
 }
 
-/* Contact Form */
+
 .contact-form-container {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -2582,7 +2582,7 @@ body.light-mode .os-tab.active {
     transform: none;
 }
 
-/* Messages */
+
 .message {
     padding: 1rem;
     border-radius: 10px;
@@ -2620,7 +2620,7 @@ body.light-mode .os-tab.active {
     }
 }
 
-/* Contact Info */
+
 .contact-info-container {
     display: flex;
     flex-direction: column;
@@ -2704,7 +2704,7 @@ body.light-mode .os-tab.active {
     text-decoration: underline;
 }
 
-/* Social Links */
+
 .social-links {
     display: flex;
     gap: 1rem;
@@ -2734,7 +2734,7 @@ body.light-mode .os-tab.active {
     transform: translateY(-2px);
 }
 
-/* Download CV */
+
 .download-cv {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -2779,7 +2779,7 @@ body.light-mode .os-tab.active {
     box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
 }
 
-/* Light Mode for Contact Section */
+
 body.light-mode .contact-section {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
 }
@@ -2885,7 +2885,7 @@ body.light-mode .cv-btn {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .contact-grid {
         grid-template-columns: 1fr;
@@ -2913,9 +2913,9 @@ body.light-mode .cv-btn {
     }
 }
 
-/* ===========================
-   BACK TO TOP BUTTON
-   =========================== */
+
+
+
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -2958,7 +2958,7 @@ body.light-mode .cv-btn {
     height: 24px;
 }
 
-/* Visually hide text but keep it available to screen readers */
+
 .sr-only {
     position: absolute !important;
     width: 1px !important;
@@ -2971,7 +2971,7 @@ body.light-mode .cv-btn {
     border: 0 !important;
 }
 
-/* Light Mode */
+
 body.light-mode .back-to-top {
     background: linear-gradient(135deg, #4500b4 0%, #3a0099 100%);
     box-shadow: 0 4px 15px rgba(69, 0, 180, 0.4);
@@ -2981,7 +2981,7 @@ body.light-mode .back-to-top:hover {
     box-shadow: 0 8px 25px rgba(69, 0, 180, 0.6);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .back-to-top {
         bottom: 20px;
@@ -2996,7 +2996,7 @@ body.light-mode .back-to-top:hover {
     }
 }
 
-        /* Optimization Section Styles */
+        
         .optimization-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -3032,7 +3032,7 @@ body.light-mode .back-to-top:hover {
             font-size: 1.1rem;
         }
 
-        /* Tools Grid */
+        
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -3089,7 +3089,7 @@ body.light-mode .back-to-top:hover {
             font-weight: 500;
         }
 
-        /* Guides */
+        
         .guides-container {
             display: flex;
             flex-direction: column;
@@ -3168,7 +3168,7 @@ body.light-mode .back-to-top:hover {
             font-size: 0.9rem;
         }
 
-        /* Code Snippets */
+        
         .snippets-container {
             display: flex;
             flex-direction: column;
@@ -3242,7 +3242,7 @@ body.light-mode .back-to-top:hover {
             line-height: 1.6;
         }
 
-        /* Tips Section */
+        
         .tips-section {
             margin-top: 4rem;
         }
@@ -3282,7 +3282,7 @@ body.light-mode .back-to-top:hover {
             margin: 0;
         }
 
-        /* Light Mode */
+            
         body.light-mode .optimization-section {
             background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
         }
@@ -3338,9 +3338,9 @@ body.light-mode .back-to-top:hover {
             color: #4500b4;
         }
 
-        /* ===========================
-           RESOURCES SECTION STYLES
-           =========================== */
+        
+
+
 
         .resources-section {
             padding: 100px 0;
@@ -3457,7 +3457,7 @@ body.light-mode .back-to-top:hover {
             box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
         }
 
-        /* Responsive */
+        
         @media (max-width: 768px) {
             .optimization-intro {
                 padding: 1.5rem;
@@ -3508,7 +3508,7 @@ body.light-mode .back-to-top:hover {
             }
         }
 
-        /* Light Mode for Resources Section */
+        
         body.light-mode .resources-section {
             background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
         }
@@ -3555,9 +3555,9 @@ body.light-mode .back-to-top:hover {
             border: 1px solid rgba(69, 0, 180, 0.2);
         }
 
-/* ============================================
-   CISCO TUTORIALS SECTION
-   ============================================ */
+
+
+
 
 .cisco-section {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -3586,7 +3586,7 @@ body.light-mode .back-to-top:hover {
     color: #cbd5e1;
 }
 
-/* Filter Tabs */
+
 .filter-tabs {
     display: flex;
     gap: 1rem;
@@ -3617,7 +3617,7 @@ body.light-mode .back-to-top:hover {
     border-color: #a855f7;
 }
 
-/* Tutorials Grid */
+
 .tutorials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -3745,7 +3745,7 @@ body.light-mode .back-to-top:hover {
     box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
 }
 
-/* Modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -3983,7 +3983,7 @@ body.light-mode .back-to-top:hover {
     }
 }
 
-/* Cisco Resources Section */
+
 .cisco-resources {
     margin-top: 5rem;
     padding: 3rem 0;
@@ -4061,7 +4061,7 @@ body.light-mode .back-to-top:hover {
     transform: translateY(0);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .tutorials-grid {
         grid-template-columns: 1fr;
@@ -4088,11 +4088,11 @@ body.light-mode .back-to-top:hover {
 .cisco-section {
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     min-height: 100vh;
-    padding-top: 100px;       /* pour compenser la nav fixe */
+    padding-top: 100px;       
     padding-bottom: 4rem;
 }
 
-/* Terminal Section Title and Subtitle Colors */
+
 .terminal-section .section-title,
 .cisco-section .section-title {
     color: #ffffff !important;
@@ -4103,7 +4103,7 @@ body.light-mode .back-to-top:hover {
     color: #cbd5e1 !important;
 }
 
-/* Terminal Intro Card */
+
 .terminal-intro {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -4136,7 +4136,7 @@ body.light-mode .back-to-top:hover {
     margin: 0 auto;
 }
 
-/* Commands Grid */
+
 .commands-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -4144,7 +4144,7 @@ body.light-mode .back-to-top:hover {
     margin: 2rem 0;
 }
 
-/* Command Card - Main Container */
+
 .command-card {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -4168,7 +4168,7 @@ body.light-mode .back-to-top:hover {
     border-color: rgba(139, 92, 246, 0.4);
 }
 
-/* Command Category Title */
+
 .command-category {
     color: #f8fafc;
     font-size: 1.3rem;
@@ -4176,7 +4176,7 @@ body.light-mode .back-to-top:hover {
     font-weight: 600;
 }
 
-/* Individual Command Item */
+
 .command-item {
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
@@ -4189,7 +4189,7 @@ body.light-mode .back-to-top:hover {
     border-bottom: none;
 }
 
-/* Command Header with Command Name and Alias */
+
 .command-header {
     display: flex;
     justify-content: space-between;
@@ -4210,14 +4210,14 @@ body.light-mode .back-to-top:hover {
     word-break: break-word;
 }
 
-/* Command Alias */
+
 .command-alias {
     color: #94a3b8;
     font-size: 0.85rem;
     font-style: italic;
 }
 
-/* Command Description */
+
 .command-desc {
     color: #cbd5e1;
     margin-bottom: 1rem;
@@ -4225,7 +4225,7 @@ body.light-mode .back-to-top:hover {
     line-height: 1.6;
 }
 
-/* Command Code/Example Block */
+
 .command-code {
     background: rgba(15, 23, 42, 0.6);
     color: #a78bfa;
@@ -4239,7 +4239,7 @@ body.light-mode .back-to-top:hover {
     margin: 0;
 }
 
-/* Light Mode - Terminal */
+
 body.light-mode .terminal-section,
 body.light-mode .cisco-section {
     background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
@@ -4308,7 +4308,7 @@ body.light-mode .command-code {
     border-color: rgba(139, 92, 246, 0.25);
 }
 
-/* Light Mode - Cisco specific readability */
+
 body.light-mode .page-header h1 {
     color: #1e293b;
 }
@@ -4429,7 +4429,7 @@ body.light-mode .warning-box p {
     color: #b91c1c;
 }
 
-/* Responsive Terminal Styles */
+
 @media (max-width: 768px) {
     .terminal-section,
     .cisco-section {
@@ -4546,7 +4546,7 @@ body.light-mode .warning-box p {
     }
 }
 
-/* Tablet sizes (769px - 1024px) - navbar adjustments */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-links {
         gap: 1rem;
@@ -4575,12 +4575,12 @@ body.light-mode .warning-box p {
     }
 }
 
-/* ============================================
-   MOBILE IMPROVEMENTS
-   ============================================ */
+
+
+
 
 @media (max-width: 768px) {
-    /* --- Formation Timeline: left rail (top-to-bottom, left-to-right reading) --- */
+    
     .formation-timeline::before {
         left: 18px;
         transform: none;
@@ -4615,7 +4615,7 @@ body.light-mode .warning-box p {
         padding: 1.25rem;
     }
 
-    /* Formation page section sizing */
+    
     .formation-section {
         padding: 80px 0 60px;
     }
@@ -4629,13 +4629,13 @@ body.light-mode .warning-box p {
         margin: 2rem 0 1.5rem;
     }
 
-    /* Experience card header: wrap date below title on narrow screens */
+    
     .experience-header {
         flex-wrap: wrap;
         gap: 0.4rem;
     }
 
-    /* Skills bars (homepage about section) */
+    
     .skill-item {
         gap: 0.75rem;
     }
@@ -4650,7 +4650,7 @@ body.light-mode .warning-box p {
         height: 15px;
     }
 
-    /* Resource category tabs: horizontal scroll instead of wrapping */
+    
     .resource-categories {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -4670,7 +4670,7 @@ body.light-mode .warning-box p {
         font-size: 0.9rem;
     }
 
-    /* Cisco filter tabs: show all difficulty tabs without horizontal scrolling */
+    
     .filter-tabs {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4687,14 +4687,14 @@ body.light-mode .warning-box p {
         text-align: center;
     }
 
-    /* Side menu link spacing: reduce on smaller screens */
+    
     .side-nav-links li {
         margin: 18px 0;
     }
 }
 
 @media (max-width: 480px) {
-    /* Timeline: tighter on very small phones */
+    
     .timeline-item,
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
@@ -4724,7 +4724,7 @@ body.light-mode .warning-box p {
         grid-template-columns: 1fr;
     }
 
-    /* Skill bars: tighter on very small phones */
+    
     .skill-square {
         width: 13px;
         height: 13px;
@@ -4735,13 +4735,13 @@ body.light-mode .warning-box p {
         font-size: 0.82rem;
     }
 
-    /* Side menu link spacing */
+    
     .side-nav-links li {
         margin: 14px 0;
     }
 }
 
-/* Si tu veux que ça reste cohérent en light mode */
+
 @media (prefers-reduced-motion: reduce) {
     .command-card, .command-card.in-view {
         animation: none !important;

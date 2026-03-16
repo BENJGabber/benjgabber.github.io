@@ -1,10 +1,10 @@
-// Forum ADEPEM Handler
-// Handles fetching, filtering, and displaying forum topics with CORS proxy fallback
 
-// Configuration du forum ADEPEM
+
+
+
 const FORUM_URL = 'https://forum.adepem.com';
 
-// Liste de proxies CORS (avec fallback)
+
 const CORS_PROXIES = [
     'https://corsproxy.io/?',
     'https://api.codetabs.com/v1/proxy?quest=',
@@ -13,11 +13,11 @@ const CORS_PROXIES = [
 
 let currentProxyIndex = 0;
 
-// State
+
 let allTopics = [];
 let filteredTopics = [];
 
-// Elements
+
 const loading = document.getElementById('loading');
 const forumGrid = document.getElementById('forumGrid');
 const noResults = document.getElementById('noResults');
@@ -27,7 +27,7 @@ const searchInput = document.getElementById('searchInput');
 const refreshBtn = document.getElementById('refreshBtn');
 const retryBtn = document.getElementById('retryBtn');
 
-// Fetch topics from ADEPEM forum
+
 async function fetchForumTopics() {
     try {
         loading.style.display = 'block';
@@ -35,10 +35,10 @@ async function fetchForumTopics() {
         noResults.style.display = 'none';
         errorMessage.style.display = 'none';
 
-        // Construire l'URL avec le proxy actuel
+        
         const proxyUrl = CORS_PROXIES[currentProxyIndex] + encodeURIComponent(`${FORUM_URL}/latest.json`);
 
-        // Timeout de 10 secondes
+        
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 10000);
 
@@ -54,26 +54,26 @@ async function fetchForumTopics() {
 
         const data = await response.json();
 
-        // Limiter à 12 discussions
+        
         allTopics = data.topic_list.topics.slice(0, 12);
         filteredTopics = [...allTopics];
         displayTopics();
 
-        // Réinitialiser l'index du proxy en cas de succès
+        
         currentProxyIndex = 0;
     } catch (error) {
-        // Essayer le proxy suivant si disponible
+        
         if (currentProxyIndex < CORS_PROXIES.length - 1) {
             currentProxyIndex++;
-            return fetchForumTopics(); // Réessayer avec le proxy suivant
+            return fetchForumTopics(); 
         }
 
-        // Si tous les proxies ont échoué
+        
         loading.style.display = 'none';
         errorMessage.style.display = 'block';
-        currentProxyIndex = 0; // Réinitialiser pour la prochaine tentative
+        currentProxyIndex = 0; 
 
-        // Message d'erreur
+        
         if (error.name === 'AbortError') {
             errorText.textContent = 'Le serveur met trop de temps à répondre. Réessayez dans quelques instants.';
         } else if (error.message.includes('Failed to fetch')) {
@@ -84,7 +84,7 @@ async function fetchForumTopics() {
     }
 }
 
-// Display topics
+
 function displayTopics() {
     loading.style.display = 'none';
 
@@ -140,7 +140,7 @@ function displayTopics() {
     }).join('');
 }
 
-// Format date
+
 function formatDate(date) {
     const now = new Date();
     const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
@@ -156,14 +156,14 @@ function formatDate(date) {
     });
 }
 
-// Escape HTML
+
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
 
-// Search functionality
+
 searchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
 
@@ -174,17 +174,17 @@ searchInput.addEventListener('input', (e) => {
     displayTopics();
 });
 
-// Refresh button
+
 refreshBtn.addEventListener('click', () => {
     searchInput.value = '';
     fetchForumTopics();
 });
 
-// Retry button
+
 retryBtn.addEventListener('click', fetchForumTopics);
 
-// Initialize
+
 fetchForumTopics();
 
-// Auto-refresh every 5 minutes
+
 setInterval(fetchForumTopics, 5 * 60 * 1000);

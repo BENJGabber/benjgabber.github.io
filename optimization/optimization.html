@@ -247,7 +247,7 @@
                         <h3>🪟 PowerShell - Services Windows</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
-                    <div class="snippet-desc">Lister les services en cours d'exécution triés par utilisation mémoire</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.win.services.desc">Lister les services en cours d'exécution triés par utilisation mémoire</div>
                     <pre class="snippet-code"><code>Get-Service | Where-Object {$_.Status -eq 'Running'} | 
 Select-Object DisplayName, Status | 
 Format-Table -AutoSize</code></pre>
@@ -258,7 +258,7 @@ Format-Table -AutoSize</code></pre>
                         <h3>⚡ Optimisation RAM Windows</h3>
                         <span class="snippet-lang">CMD</span>
                     </div>
-                    <div class="snippet-desc">Vider le cache RAM et optimiser la mémoire</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.win.ram.desc">Vider le cache RAM et optimiser la mémoire</div>
                     <pre class="snippet-code"><code>REM Vider le cache DNS
 ipconfig /flushdns
 
@@ -271,7 +271,7 @@ REM Vider le cache des fichiers système
                         <h3>💾 Gestion des Disques</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
-                    <div class="snippet-desc">Analyser l'utilisation des disques et lister les plus gros fichiers</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.win.disks.desc">Analyser l'utilisation des disques et lister les plus gros fichiers</div>
                     <pre class="snippet-code"><code># Afficher l'utilisation disque par lecteur
 Get-Volume | Format-Table -AutoSize
 
@@ -286,7 +286,7 @@ Select-Object -First 20 @{Name='Size(MB)'; Expression={[math]::Round($_.Length/1
                         <h3>🔍 Surveillance des Processus</h3>
                         <span class="snippet-lang">PowerShell</span>
                     </div>
-                    <div class="snippet-desc">Afficher les processus qui consomment le plus de RAM</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.win.processes.desc">Afficher les processus qui consomment le plus de RAM</div>
                     <pre class="snippet-code"><code>Get-Process | Sort-Object -Property WS -Descending | 
 Select-Object -First 10 @{Name='Process'; Expression={$_.Name}}, @{Name='RAM(MB)'; Expression={[math]::Round($_.WS/1MB, 2)}} | 
 Format-Table -AutoSize</code></pre>
@@ -464,7 +464,7 @@ Format-Table -AutoSize</code></pre>
                         <h3>🐧 Nettoyage Système Complet</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
-                    <div class="snippet-desc">Nettoyer le cache des paquets, les fichiers orphelins et les fichiers temporaires</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.linux.cleaning.desc">Nettoyer le cache des paquets, les fichiers orphelins et les fichiers temporaires</div>
                     <pre class="snippet-code"><code># Pour Debian/Ubuntu
 sudo apt update
 sudo apt upgrade
@@ -481,7 +481,7 @@ sudo snap set system refresh.retain=2</code></pre>
                         <h3>📊 Analyse des Disques</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
-                    <div class="snippet-desc">Trouver les plus gros fichiers et dossiers</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.linux.disks.desc">Trouver les plus gros fichiers et dossiers</div>
                     <pre class="snippet-code"><code># Voir l'utilisation disque des dossiers
 du -sh /* | sort -rh
 
@@ -497,7 +497,7 @@ iotop</code></pre>
                         <h3>⚙️ Optimisation des Services</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
-                    <div class="snippet-desc">Analyser et optimiser les services au démarrage</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.linux.services.desc">Analyser et optimiser les services au démarrage</div>
                     <pre class="snippet-code"><code># Voir les services les plus lents au démarrage
 systemd-analyze blame | head -10
 
@@ -517,7 +517,7 @@ systemctl list-units --type service --state running</code></pre>
                         <h3>💾 Surveillance Système en Temps Réel</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
-                    <div class="snippet-desc">Monitorer les ressources système et les processus</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.linux.monitoring.desc">Monitorer les ressources système et les processus</div>
                     <pre class="snippet-code"><code># Afficher les processus par utilisation CPU/RAM
 htop
 
@@ -536,7 +536,7 @@ sensors</code></pre>
                         <h3>🔍 Optimisation Réseau</h3>
                         <span class="snippet-lang">Bash</span>
                     </div>
-                    <div class="snippet-desc">Configurer et optimiser la connexion réseau</div>
+                    <div class="snippet-desc" data-i18n="optimization.snippet.linux.network.desc">Configurer et optimiser la connexion réseau</div>
                     <pre class="snippet-code"><code># Voir les interfaces réseau
 ip link show
 

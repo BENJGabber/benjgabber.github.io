@@ -10,6 +10,7 @@
 }
 
 
+/* Police Luciole */
 @font-face {
     font-family: 'Luciole';
     src: url('Fonts/Luciole-Regular.ttf') format('truetype');
@@ -52,6 +53,7 @@ body.luciole-mode {
 
 
 
+/* Barre de nav */
 nav {
     position: fixed;
     top: 0;
@@ -183,6 +185,7 @@ body.light-mode .language-select option {
 
 
 
+/* Section accueil */
 .hero {
     height: 100vh;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -494,6 +497,7 @@ body.light-mode .language-select option {
 
 
 
+/* Menu latéral */
 .side-menu {
     position: fixed;
     top: 0;
@@ -555,6 +559,7 @@ body.light-mode .language-select option {
 
 
 
+/* Section formation */
 .formation-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -653,6 +658,7 @@ body.light-mode .language-select option {
 
 
 
+/* Section CV */
 .cv-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -954,6 +960,7 @@ html, body {
 }
 
 
+/* Responsive mobile global */
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 1rem;
@@ -1044,6 +1051,7 @@ html, body {
 }
 
 
+/* Bouton thème */
 .theme-toggle {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -1082,6 +1090,7 @@ html, body {
 }
 
 
+/* Bouton police */
 .font-toggle {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -1105,6 +1114,7 @@ html, body {
 }
 
 
+/* Mode clair global */
 body.light-mode {
     background: #ffffff;
     color: #333;
@@ -1424,6 +1434,7 @@ body.light-mode .competence {
 }
 
 
+/* Section forum */
 .forum-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -2179,6 +2190,7 @@ body.light-mode .no-results p {
 
 
 
+/* Section contact */
 .contact-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -2195,6 +2207,7 @@ body.light-mode .no-results p {
 
 
 
+/* Section projets */
 .projects-section {
     padding: 100px 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -2997,6 +3010,7 @@ body.light-mode .back-to-top:hover {
 }
 
         
+        /* Section optimisation */
         .optimization-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -3342,6 +3356,7 @@ body.light-mode .back-to-top:hover {
 
 
 
+        /* Section ressources */
         .resources-section {
             padding: 100px 0;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
@@ -3559,6 +3574,7 @@ body.light-mode .back-to-top:hover {
 
 
 
+/* Section Cisco */
 .cisco-section {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
     color: #cbd5e1;
@@ -3984,6 +4000,7 @@ body.light-mode .back-to-top:hover {
 }
 
 
+/* Ressources Cisco */
 .cisco-resources {
     margin-top: 5rem;
     padding: 3rem 0;
@@ -4084,6 +4101,7 @@ body.light-mode .back-to-top:hover {
         padding: 1rem;
     }
 }
+/* Sections terminal/cisco */
 .terminal-section,
 .cisco-section {
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
@@ -4104,6 +4122,7 @@ body.light-mode .back-to-top:hover {
 }
 
 
+/* Intro terminal */
 .terminal-intro {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -4137,6 +4156,7 @@ body.light-mode .back-to-top:hover {
 }
 
 
+/* Grille commandes */
 .commands-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -4145,6 +4165,7 @@ body.light-mode .back-to-top:hover {
 }
 
 
+/* Carte commande */
 .command-card {
     background: rgba(30, 41, 59, 0.8);
     backdrop-filter: blur(20px);
@@ -4497,6 +4518,7 @@ body.light-mode .warning-box p {
     }
 }
 
+/* Responsive petit mobile */
 @media (max-width: 480px) {
     .terminal-section,
     .cisco-section {
@@ -4547,6 +4569,7 @@ body.light-mode .warning-box p {
 }
 
 
+/* Responsive tablette */
 @media (min-width: 769px) and (max-width: 1024px) {
     .nav-links {
         gap: 1rem;
@@ -4742,6 +4765,7 @@ body.light-mode .warning-box p {
 }
 
 
+/* Accessibilité animation */
 @media (prefers-reduced-motion: reduce) {
     .command-card, .command-card.in-view {
         animation: none !important;

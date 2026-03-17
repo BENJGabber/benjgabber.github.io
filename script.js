@@ -1,3 +1,4 @@
+// Init global page
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const sideMenu = document.getElementById('sideMenu');
@@ -6,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
 
+    // Menu latéral mobile
     if (menuToggle && sideMenu) {
         menuToggle.addEventListener('click', () => {
             sideMenu.classList.toggle('open');
@@ -27,11 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Easter egg photo
     let clickCount = 0;
     let clickTimer = null;
     const CLICK_THRESHOLD = 10;
     const RESET_DELAY = 3000;
 
+    // Ouvre lightbox
     function openLightbox() {
         if (!cvPhoto || !lightbox || !lightboxImage) return;
         lightboxImage.src = cvPhoto.src;
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Indice de clic
     function showClickHint(message) {
         const hint = document.createElement('div');
         hint.textContent = message;
@@ -110,12 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Textes indices
     const CLICK_HINTS = {
         fr: { half: 'À mi-chemin... 🤔', almost: 'Encore un peu... 👀' },
         en: { half: 'Halfway... 🤔', almost: 'Almost there... 👀' },
         es: { half: '¡A mitad de camino... 🤔', almost: '¡Casi listo... 👀' }
     };
 
+    // Fun facts
     const EASTER_FACTS = {
         fr: [
             "🎮 Fun Fact : J'adore démonter et réparer des appareils électroniques depuis mon plus jeune âge !",
@@ -149,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    // Modale easter egg
     function showEasterEgg() {
         const selectedLang = localStorage.getItem('selectedLang') || 'fr';
         const facts = EASTER_FACTS[selectedLang] || EASTER_FACTS.fr;
@@ -244,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Animation image CV
     const cvSection = document.querySelector('.cv-section');
     const cvContent = document.querySelector('.cv-content');
     const cvImageWrapper = document.querySelector('.cv-image');
@@ -303,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
+    // Cache traduction
     const TRANSLATION_CACHE_KEY = 'translationCache';
     const CACHE_EXPIRY_DAYS = 7;
     const originalTranslations = {};
@@ -310,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const originalAria = {};
 
     
+    // Dictionnaire i18n
     const manualTranslations = {
         en: {
             'nav.brand': 'My Portfolio',
@@ -1567,6 +1578,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Placeholders i18n
     const manualPlaceholderTranslations = {
         en: {
             'contact.form.name.ph': 'Your name',
@@ -1585,6 +1597,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     
+    // Langues disponibles
     const languages = [{
             code: 'fr',
             name: 'Français',
@@ -1603,6 +1616,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     
+    // Capture textes FR
     function captureOriginalTranslations() {
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.dataset.i18n;
@@ -1631,6 +1645,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Lit cache
     function getCache() {
         try {
             const cache = localStorage.getItem(TRANSLATION_CACHE_KEY);
@@ -1647,6 +1662,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Sauve cache
     function saveCache(cache) {
         try {
             localStorage.setItem(TRANSLATION_CACHE_KEY, JSON.stringify({
@@ -1672,12 +1688,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Trad API désactivée
     async function translateText(text, targetLang) {
         
         return text;
     }
 
     
+    // Toast traduction
     function showTranslationNotification(message, isError = false) {
         const existing = document.getElementById('translationNotification');
         if (existing) existing.remove();
@@ -1732,6 +1750,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Applique i18n manuel
     function applyManualTranslations(targetLang) {
         if (targetLang === 'fr') {
             
@@ -1797,6 +1816,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Traduit la page
     async function translatePage(targetLang) {
         const langName = languages.find(l => l.code === targetLang) ?.name || targetLang;
 
@@ -1811,6 +1831,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // Init bouton langue
     function initLanguageSelector() {
         const languageToggle = document.getElementById('languageToggle');
         const languageToggleMobile = document.getElementById('languageToggleMobile');
@@ -1865,6 +1886,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
+    // API i18n globale
     window.manualTranslations = manualTranslations;
     window.applyManualTranslations = applyManualTranslations;
     window.translatePage = translatePage;
@@ -1875,10 +1897,12 @@ document.addEventListener('DOMContentLoaded', () => {
 }); 
 
 
+// Thème global
 const themeToggle = document.getElementById('themeToggle');
 const themeToggleMobile = document.getElementById('themeToggleMobile');
 const body = document.body;
 
+// Init thème
 function initThemeToggle(toggle) {
     if (!toggle) return;
     const currentTheme = localStorage.getItem('theme') || 'dark';
@@ -1901,9 +1925,11 @@ if (themeToggle) initThemeToggle(themeToggle);
 if (themeToggleMobile) initThemeToggle(themeToggleMobile);
 
 
+// Police globale
 const fontToggle = document.getElementById('fontToggle');
 const fontToggleMobile = document.getElementById('fontToggleMobile');
 
+// Init police
 function initFontToggle(toggle) {
     if (!toggle) return;
     const currentFont = localStorage.getItem('font') || 'default';
@@ -1930,6 +1956,7 @@ if (fontToggle) initFontToggle(fontToggle);
 if (fontToggleMobile) initFontToggle(fontToggleMobile);
 
 
+// Bouton haut page
 const backToTopButton = document.getElementById('backToTop');
 
 if (backToTopButton) {
@@ -1943,6 +1970,7 @@ if (backToTopButton) {
     });
 
     
+    // Scroll fluide haut
     function smoothScrollToTop(duration = 600) {
         const start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         if (start <= 0) return;
@@ -1976,6 +2004,7 @@ if (backToTopButton) {
     });
 
     
+    // Observer cartes projets
     (function setupProjectCardObserver() {
         const cards = document.querySelectorAll('.project-card, .project-why');
         if (!cards.length) return;
@@ -2003,6 +2032,7 @@ if (backToTopButton) {
         }
     })();
 
+    // Observer cartes commandes
     (function setupCommandCardObserver() {
         const cards = document.querySelectorAll('.command-card');
         if (!cards.length) return;
@@ -2032,6 +2062,7 @@ if (backToTopButton) {
 }
 
 
+// Onglets optimisation
 document.addEventListener('DOMContentLoaded', () => {
     const windowsTab = document.getElementById('windowsTab');
     const linuxTab = document.getElementById('linuxTab');
@@ -2071,6 +2102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Boutons copie snippets
 document.addEventListener('DOMContentLoaded', () => {
     const getSnippetCopyLabels = () => {
         const lang = localStorage.getItem('selectedLang') || 'fr';
@@ -2115,6 +2147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Onglets ressources
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.resource-tab').forEach(tab => {
         tab.addEventListener('click', () => {
@@ -2137,6 +2170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Toast global
 function showToast(message, type = 'info', duration = 4000) {
     const container = document.getElementById('toastContainer');
     if (!container) return;

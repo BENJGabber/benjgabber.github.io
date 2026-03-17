@@ -2,22 +2,27 @@
 
 
 
+// URL forum
 const FORUM_URL = 'https://forum.adepem.com';
 
 
+// Proxies CORS
 const CORS_PROXIES = [
     'https://corsproxy.io/?',
     'https://api.codetabs.com/v1/proxy?quest=',
     'https://api.allorigins.win/raw?url='
 ];
 
+// Index proxy courant
 let currentProxyIndex = 0;
 
 
+// Données forum
 let allTopics = [];
 let filteredTopics = [];
 
 
+// Éléments DOM
 const loading = document.getElementById('loading');
 const forumGrid = document.getElementById('forumGrid');
 const noResults = document.getElementById('noResults');
@@ -28,6 +33,7 @@ const refreshBtn = document.getElementById('refreshBtn');
 const retryBtn = document.getElementById('retryBtn');
 
 
+// Charge les topics
 async function fetchForumTopics() {
     try {
         loading.style.display = 'block';
@@ -85,6 +91,7 @@ async function fetchForumTopics() {
 }
 
 
+// Affiche les topics
 function displayTopics() {
     loading.style.display = 'none';
 
@@ -141,6 +148,7 @@ function displayTopics() {
 }
 
 
+// Formate une date
 function formatDate(date) {
     const now = new Date();
     const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
@@ -157,6 +165,7 @@ function formatDate(date) {
 }
 
 
+// Échappe HTML
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -164,6 +173,7 @@ function escapeHtml(text) {
 }
 
 
+// Recherche locale
 searchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
 
@@ -175,16 +185,20 @@ searchInput.addEventListener('input', (e) => {
 });
 
 
+// Rafraîchit la liste
 refreshBtn.addEventListener('click', () => {
     searchInput.value = '';
     fetchForumTopics();
 });
 
 
+// Réessaie après erreur
 retryBtn.addEventListener('click', fetchForumTopics);
 
 
+// Chargement initial
 fetchForumTopics();
 
 
+// Auto-refresh 5 min
 setInterval(fetchForumTopics, 5 * 60 * 1000);

@@ -1,17 +1,20 @@
 
 
 
+// IDs EmailJS
 const EMAIL_SERVICE_ID = 'service_7n8wk97';
 const TEMPLATE_RECEPTION_ID = 'template_lpd0e4d';
 const TEMPLATE_AUTOREPLY_ID = 'template_44urjvt';
 
 
+// Éléments DOM
 const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMessage = document.getElementById('successMessage');
 const errorMessage = document.getElementById('errorMessage');
 
 
+// Fingerprint client
 async function getSuperFingerprint() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -130,9 +133,11 @@ async function getSuperFingerprint() {
 }
 
 
+// Score anti-spam
 let suspicionScore = 0;
 const MAX_SUSPICION = 100;
 
+// Ajoute suspicion
 function addSuspicion(points, reason) {
     suspicionScore += points;
     if (suspicionScore >= MAX_SUSPICION) {
@@ -143,6 +148,7 @@ function addSuspicion(points, reason) {
 }
 
 
+// Signaux comportement
 let mouseMovements = 0;
 let keyPresses = 0;
 let formFocusTime = 0;
@@ -165,6 +171,7 @@ if (contactForm) {
 }
 
 
+// Bloque l'utilisateur
 function lockoutUser(reason) {
     const lockoutKey = 'contact_lockout';
     const lockoutData = {
@@ -183,6 +190,7 @@ function lockoutUser(reason) {
     }
 }
 
+// Vérifie blocage
 function checkLockout() {
     const lockoutKey = 'contact_lockout';
     const lockoutData = localStorage.getItem(lockoutKey);
@@ -205,6 +213,7 @@ function checkLockout() {
 }
 
 
+// Contrôle envoi
 async function canSendMessage() {
     
     if (checkLockout()) return false;
@@ -251,6 +260,7 @@ async function canSendMessage() {
 }
 
 
+// Envoi formulaire
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();

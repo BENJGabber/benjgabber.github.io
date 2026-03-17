@@ -2,6 +2,7 @@
 
 
 
+// Données tutoriels
 const tutorials = [
     {
         id: 1,
@@ -196,11 +197,13 @@ const tutorials = [
 ];
 
 
+// Langue courante
 function getCurrentLanguage() {
     return localStorage.getItem('selectedLang') || 'fr';
 }
 
 
+// Trad clé tutoriel
 function getTutorialTranslation(key) {
     const lang = getCurrentLanguage();
     if (window.manualTranslations && window.manualTranslations[lang] && window.manualTranslations[lang][key]) {
@@ -211,6 +214,7 @@ function getTutorialTranslation(key) {
 }
 
 
+// Trad difficulté
 function getDifficultyTranslation(difficulty) {
     const difficulties = {
         'fr': { 'beginner': 'Débutant', 'intermediate': 'Intermédiaire', 'advanced': 'Avancé' },
@@ -222,6 +226,7 @@ function getDifficultyTranslation(difficulty) {
 }
 
 
+// Données ressources
 const resources = [
     {
         id: 'academy',
@@ -274,6 +279,7 @@ const resources = [
 ];
 
 
+// Rend ressources
 function renderResources() {
     const grid = document.getElementById('resourcesGrid');
     grid.innerHTML = '';
@@ -295,6 +301,7 @@ function renderResources() {
 }
 
 
+// Rend cartes tutoriels
 function displayTutorials(filter = 'all') {
     const grid = document.getElementById('tutorialsGrid');
     grid.innerHTML = '';
@@ -330,6 +337,7 @@ function displayTutorials(filter = 'all') {
         });
 }
 
+// Ouvre le modal
 function openModal(id) {
     const tutorial = tutorials.find(t => t.id === id);
     const modal = document.getElementById('tutorialModal');
@@ -429,6 +437,7 @@ function openModal(id) {
     modal.classList.add('active');
 }
 
+// Copie commandes
 function copyToClipboard(btn) {
     const code = btn.nextElementSibling.textContent;
     const copiedLabel = getTutorialTranslation('cisco.copied') || '✓ Copié';
@@ -439,10 +448,12 @@ function copyToClipboard(btn) {
     });
 }
 
+// Ferme le modal
 document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('tutorialModal').classList.remove('active');
 });
 
+// Filtres difficulté
 document.querySelectorAll('.filter-tab').forEach(btn => {
     btn.addEventListener('click', (e) => {
         document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
@@ -451,11 +462,13 @@ document.querySelectorAll('.filter-tab').forEach(btn => {
     });
 });
 
+// Init contenu Cisco
 function initTutorials() {
     displayTutorials();
     renderResources();
 }
 
+// Réagit au changement langue
 window.addEventListener('languageChanged', (e) => {
     displayTutorials();
     renderResources();
@@ -465,6 +478,7 @@ window.addEventListener('languageChanged', (e) => {
     }
 });
 
+// Init page Cisco
 function initCiscoPage() {
     const lang = localStorage.getItem('selectedLang') || 'fr';
 
